@@ -1,0 +1,33 @@
+ext {
+
+    android = [
+            compileSdkVersion: 23,
+            buildToolsVersion: "23.0.2",
+
+            minSdkVersion    : 15,
+            targetSdkVersion : 23,
+
+            versionCode      : 1,
+            versionName      : '1.0.0',
+
+            VSupportSdk      : '23.3.0'
+    ]
+
+    dependencies = [
+            "appcompat-v7"   : "com.android.support:appcompat-v7:${android["VSupportSdk"]}",
+            "support-v4"     : "com.android.support:support-v4:${android["VSupportSdk"]}",
+            "design"         : "com.android.support:design:${android["VSupportSdk"]}",
+            "annotations"    : "com.android.support:support-annotations:${android["VSupportSdk"]}",
+            "recyclerview-v7": "com.android.support:recyclerview-v7:${android["VSupportSdk"]}",
+            "butterknife"    : "com.jakewharton:butterknife:8.4.0",
+            "butterknife-apt": "com.jakewharton:butterknife-compiler:8.4.0",
+            "glide"         : "com.github.bumptech.glide:glide:3.7.0",
+            "picasso"       : "com.squareup.picasso:picasso:2.5.2",
+            "okhttp3"       : "com.squareup.okhttp3:okhttp:3.3.0",
+            "gson"          : "com.google.code.gson:gson:2.6.2",
+            "eventbus"      : "org.greenrobot:eventbus:3.0.0",
+            "xrecyclerview"  : "com.github.limedroid:ARecyclerView:v1.0.0",
+            "canary-debug"  : "com.squareup.leakcanary:leakcanary-android:1.4-beta2",
+            "canary-release": "com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2",
+    ]
+}

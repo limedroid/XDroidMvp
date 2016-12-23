@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_showMvp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="Hello Mvp!"
+        android:textColor="#fff"
+        android:textSize="28sp" />
+</RelativeLayout>
