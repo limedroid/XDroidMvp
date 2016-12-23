@@ -111,12 +111,18 @@ public class VMain extends XView<MainActivity> {
 
 ## TODO
 
-
 * [ ] rx
 * [ ] retrofit
 * [ ] rxpermission
 * [ ] rxbus
 * [ ] cache
 
+## About Me
+
+**Email** : droidlover@126.com
+
+**XDroid交流群**：153569290
+
+**XDroid MVC版本**：[XDroid](https://github.com/limedroid/XDroid)
 
 
