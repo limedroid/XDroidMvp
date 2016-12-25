@@ -40,6 +40,11 @@ public class XApi {
         return instance;
     }
 
+
+    public static <T> T get(Class<T> service) {
+        return getInstance().getRetrofit(true).create(service);
+    }
+
     public static void registerProvider(NetProvider provider) {
         XApi.provider = provider;
     }

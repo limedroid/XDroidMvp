@@ -4,23 +4,28 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tbruyelle.rxpermissions.RxPermissions;
+import com.trello.rxlifecycle.components.support.RxFragment;
+
+import cn.droidlover.xdroidmvp.XDroidConf;
 import cn.droidlover.xdroidmvp.event.BusProvider;
 
 /**
  * Created by wanglei on 2016/12/22.
  */
 
-public abstract class XFragment<V extends IView> extends Fragment implements IPresent<V> {
+public abstract class XFragment<V extends IView> extends RxFragment implements IPresent<V> {
 
     private PDelegate pDelegate;
     private V v;
     private Activity context;
     private View rootView;
+
+    private RxPermissions rxPermissions;
 
 
     @Nullable
@@ -90,6 +95,14 @@ public abstract class XFragment<V extends IView> extends Fragment implements IPr
         }
         getpDelegate().destory();
         pDelegate = null;
+    }
+
+    protected RxPermissions getRxPermissions() {
+        if (rxPermissions == null) {
+            rxPermissions = new RxPermissions(context);
+            rxPermissions.setLogging(XDroidConf.DEV);
+        }
+        return rxPermissions;
     }
 
     @Override

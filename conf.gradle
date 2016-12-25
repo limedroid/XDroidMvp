@@ -12,7 +12,8 @@ ext {
 
             VSupportSdk      : '23.3.0',
             VRetrofitSdk     : "2.1.0",
-            VOkhttp          : "3.4.2"
+            VOkhttp          : "3.4.2",
+            VRxlifecycle     : "1.0"
     ]
     dependencies = [
             "appcompat-v7"               : "com.android.support:appcompat-v7:${android["VSupportSdk"]}",
@@ -36,6 +37,10 @@ ext {
             "retrofit-adapter-rxjava"    : "com.squareup.retrofit2:adapter-rxjava:${android["VRetrofitSdk"]}",
             "okhttp3-logging-interceptor": "com.squareup.okhttp3:logging-interceptor:${android["VOkhttp"]}",
             "okhttp3"                    : "com.squareup.okhttp3:okhttp:${android["VOkhttp"]}",
+            "rxlifecycle"                : "com.trello:rxlifecycle:${android["VRxlifecycle"]}",
+            "rxlifecycle-android"        : "com.trello:rxlifecycle-android:${android["VRxlifecycle"]}",
+            "rxlifecycle-components"     : "com.trello:rxlifecycle-components:${android["VRxlifecycle"]}",
+            "rxpermissions"              : "com.tbruyelle.rxpermissions:rxpermissions:0.9.1@aar",
 
             "canary-debug"               : "com.squareup.leakcanary:leakcanary-android:1.4-beta2",
             "canary-release"             : "com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2",

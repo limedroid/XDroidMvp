@@ -3,20 +3,25 @@ package cn.droidlover.xdroidmvp.mvp;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 
+import com.tbruyelle.rxpermissions.RxPermissions;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+
+import cn.droidlover.xdroidmvp.XDroidConf;
 import cn.droidlover.xdroidmvp.event.BusProvider;
 
 /**
  * Created by wanglei on 2016/12/22.
  */
 
-public abstract class XActivity<V extends IView> extends AppCompatActivity implements IPresent<V> {
+public abstract class XActivity<V extends IView> extends RxAppCompatActivity implements IPresent<V> {
 
     private PDelegate pDelegate;
     private V v;
     private Context context;
+
+    private RxPermissions rxPermissions;
 
 
     @Override
@@ -94,6 +99,14 @@ public abstract class XActivity<V extends IView> extends AppCompatActivity imple
             getMenuInflater().inflate(getV().getOptionsMenuId(), menu);
         }
         return super.onCreateOptionsMenu(menu);
+    }
+
+    protected RxPermissions getRxPermissions() {
+        if (rxPermissions == null) {
+            rxPermissions = new RxPermissions(this);
+            rxPermissions.setLogging(XDroidConf.DEV);
+        }
+        return rxPermissions;
     }
 
     @Override
