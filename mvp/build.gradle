@@ -25,8 +25,17 @@ dependencies {
     compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["annotations"]
     compile rootProject.ext.dependencies["recyclerview-v7"]
+
     compile rootProject.ext.dependencies["xrecyclerview"]
     compile rootProject.ext.dependencies["butterknife"]
     compile rootProject.ext.dependencies["glide"]
+
     compile rootProject.ext.dependencies["gson"]
+    compile rootProject.ext.dependencies["rxandroid"]
+    compile rootProject.ext.dependencies["rxjava"]
+    compile rootProject.ext.dependencies["retrofit"]
+    compile rootProject.ext.dependencies["retrofit-converter-gson"]
+    compile rootProject.ext.dependencies["retrofit-adapter-rxjava"]
+    compile rootProject.ext.dependencies["okhttp3-logging-interceptor"]
+    compile rootProject.ext.dependencies["okhttp3"]
 }

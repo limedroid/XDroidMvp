@@ -1094,4 +1094,27 @@ public class Kits {
     }
 
 
+    public static class Empty {
+
+
+        public static boolean check(Object obj) {
+            return obj == null;
+        }
+
+        public static boolean check(List list) {
+            return list == null || list.isEmpty();
+        }
+
+        public static boolean check(Object[] array) {
+            return array == null || array.length == 0;
+        }
+
+        public static boolean check(String str) {
+            return str == null || "".equals(str);
+        }
+
+
+    }
+
+
 }
