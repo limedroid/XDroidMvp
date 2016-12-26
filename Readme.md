@@ -12,7 +12,7 @@
 
 新增：
 
-无需写`Contract`！ 无需写`Present`接口！  无需写`View`接口!
+**无需写`Contract`！ 无需写`Present`接口！  无需写`View`接口!**
 
 * Mvp实现
 * `RxJava` & `RxAndroid`
@@ -117,6 +117,8 @@ public class VMain extends XView<MainActivity> {
 * [x] rxpermission
 * [x] rxbus
 * [ ] cache
+* [ ] wiki
+* [ ] demo
 
 ## About Me
 
