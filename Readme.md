@@ -12,15 +12,15 @@
 
 新增：
 
-无需写Contract！ 无需写Present接口！  无需写View接口!
+无需写`Contract`！ 无需写`Present`接口！  无需写`View`接口!
 
 * Mvp实现
-* RxJava & RxAndroid
-* 权限适配 RxPermission
-* 事件订阅默认采用 RxBus
+* `RxJava` & `RxAndroid`
+* 权限适配 `RxPermission`
+* 事件订阅默认采用 `RxBus`
 * 网络交互：
-	* Retrofit + rx
-	* Https
+	* `Retrofit` + `rx`
+	* `Https`
 	* 统一异常处理
 	* 缓存
 	* 。。。。
@@ -28,14 +28,14 @@
 保留：
 
 * 提供`XActivity`、`XFragment`、`SimpleRecAdapter`、`SimpleListAdapte`r等基类，可快速进行开发
-* 完整封装XRecyclerView，可实现绝大部分需求
-* QTContentLayout、XRecyclerContentLayout实现loading、error、empty、content四种状态的自由切换
-* 实现了Memory、Disk、SharedPreferences三种方式的缓存，可自由扩展
+* 完整封装`XRecyclerView`，可实现绝大部分需求
+* `QTContentLayout`、`XRecyclerContentLayout`实现loading、error、empty、content四种状态的自由切换
+* 实现了`Memory`、`Disk`、`SharedPreferences`三种方式的缓存，可自由扩展
 * 内置了`EventBus`，可自由切换到其他事件订阅库
 * 内置`Glide`，可自由切换其他图片加载库
-* 可输出漂亮的`Log`，支持Json、Xml、Throwable等，蝇量级实现
+* 可输出漂亮的`Log`，支持`Json`、`Xml`、`Throwable`等，蝇量级实现
 * 内置链式路由
-* 内置常用工具类：package、random、file...,提供的都是非常常用的方法
+* 内置常用工具类：`package`、`random`、`file`...,提供的都是非常常用的方法
 * 内置加密工具类 `XCodec`，你想要的加密姿势都有
 
 
@@ -106,15 +106,16 @@ public class VMain extends XView<MainActivity> {
 
 ## 更新日志
 
-* 2016年12月23日，新增mvp、base、cache、event、imageloader、log、router
+* 2016-12-23，新增mvp、base、cache、event、imageloader、log、router
+* 2016-12-25，新增rxJava、rxAndroid、rxlifecycle、rxpermission、rxbus、net(retrofit)
 
 
 ## TODO
 
-* [ ] rx
-* [ ] retrofit
-* [ ] rxpermission
-* [ ] rxbus
+* [x] rx
+* [x] retrofit
+* [x] rxpermission
+* [x] rxbus
 * [ ] cache
 
 ## About Me
