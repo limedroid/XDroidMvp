@@ -24,4 +24,6 @@ public interface NetProvider {
     long configReadTimeoutMills();
 
     boolean configLogEnable();
+
+    boolean handleError(NetError error);
 }

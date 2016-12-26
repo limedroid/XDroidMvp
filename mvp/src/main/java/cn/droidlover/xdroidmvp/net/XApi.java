@@ -10,6 +10,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by wanglei on 2016/12/24.
@@ -41,7 +45,7 @@ public class XApi {
     }
 
 
-    public static <T> T get(Class<T> service) {
+    public static <S> S get(Class<S> service) {
         return getInstance().getRetrofit(true).create(service);
     }
 
@@ -115,4 +119,26 @@ public class XApi {
         }
     }
 
+    public static NetProvider getProvider() {
+        return provider;
+    }
+
+
+    public static Observable<IModel> transform(Observable<IModel> observable) {
+        return observable.flatMap(new Func1<IModel, Observable<IModel>>() {
+            @Override
+            public Observable<IModel> call(IModel model) {
+                if (model == null || model.isNull()) {
+                    return Observable.error(new NetError(null, NetError.NoDataError));
+                } else if (model.isAuthError()) {
+                    return Observable.error(new NetError(null, NetError.AuthError));
+                } else if (model.isBizError()) {
+                    return Observable.error(new NetError(null, NetError.BusinessError));
+                } else {
+                    return Observable.just(model);
+                }
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }
