@@ -1,20 +1,11 @@
 package cn.droidlover.xdroidmvp.mvp;
 
-import android.content.Context;
-import android.os.Bundle;
-
 /**
- * Created by wanglei on 2016/12/22.
+ * Created by wanglei on 2016/12/29.
  */
 
-public interface IPresent<V>{
+public interface IPresent<V> {
+    void attachV(V view);
 
-    boolean useEventBus();
-
-    V newV();
-
-    Context getRootContext();
-
-    void initData(Bundle savedInstanceState);
-
+    void detachV();
 }
