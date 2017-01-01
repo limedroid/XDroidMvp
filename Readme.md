@@ -42,7 +42,7 @@
 
 
 <p align="center">
-	<img src="MVP.png"/>
+	<img src="mvp.png"/>
 </p>
 
 
