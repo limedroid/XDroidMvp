@@ -114,7 +114,7 @@ public class PBasePager extends XPresent<BasePagerFragment> {
 
 ## Get Started
 
-使用，仅需三步：
+使用，仅需四步：
 
 ### step1  
 
