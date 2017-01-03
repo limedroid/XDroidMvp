@@ -24,7 +24,7 @@ public class XFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        if (titles != null || titles.length > position) {
+        if (titles != null && titles.length > position) {
             return titles[position];
         }
         return "";
