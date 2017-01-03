@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_share_white_24dp"
+        android:title="分享"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_refresh"
+        android:title="刷新"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_copy"
+        android:title="复制链接"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_open_in_browser"
+        android:title="在浏览器中打开"
+        app:showAsAction="never" />
+</menu>

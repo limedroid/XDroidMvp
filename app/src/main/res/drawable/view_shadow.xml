@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 阴影 -->
+    <item>
+        <shape android:shape="rectangle">
+            <!-- 阴影颜色 -->
+            <gradient
+                android:angle="90"
+                android:endColor="#b7b7b7"
+                android:startColor="#e8e8e8" />
+            <!-- 阴影圆角 -->
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+    <!-- 前景 -->
+    <item android:bottom="2dp"> <!-- 阴影厚度 -->
+        <shape android:shape="rectangle">
+            <solid android:color="#fff" /> <!-- 前景颜色 -->
+            <corners android:radius="0dp" /> <!-- 前景圆角 -->
+        </shape>
+    </item>
+</layer-list>

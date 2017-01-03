@@ -34,5 +34,6 @@ buildscript {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     apt rootProject.ext.dependencies["butterknife-apt"]
+    compile rootProject.ext.dependencies["avi-loading"]
     compile project(":mvp")
 }

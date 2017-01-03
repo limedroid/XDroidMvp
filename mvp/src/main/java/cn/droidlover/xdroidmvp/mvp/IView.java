@@ -1,25 +1,24 @@
 package cn.droidlover.xdroidmvp.mvp;
 
+import android.os.Bundle;
 import android.view.View;
 
 /**
- * Created by wanglei on 2016/12/22.
+ * Created by wanglei on 2016/12/29.
  */
 
-public interface IView<P extends IPresent> {
-
+public interface IView<P> {
     void bindUI(View rootView);
 
     void bindEvent();
 
-    int getLayoutId();
+    void initData(Bundle savedInstanceState);
 
     int getOptionsMenuId();
 
-    View getRootView();
+    int getLayoutId();
 
-    void attachP(P present);
+    boolean useEventBus();
 
-    void detach();
-
+    P newP();
 }

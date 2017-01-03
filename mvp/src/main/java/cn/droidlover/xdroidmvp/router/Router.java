@@ -46,6 +46,13 @@ public class Router {
         return this;
     }
 
+    public Router addFlags(int flags) {
+        if (intent != null) {
+            intent.addFlags(flags);
+        }
+        return this;
+    }
+
     public Router data(Bundle data) {
         this.data = data;
         return this;

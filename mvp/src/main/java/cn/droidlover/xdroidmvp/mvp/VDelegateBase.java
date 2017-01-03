@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Toast;
 
 /**
- * Created by wanglei on 2016/12/22.
+ * Created by wanglei on 2016/12/29.
  */
 
 public class VDelegateBase implements VDelegate {
@@ -16,26 +16,39 @@ public class VDelegateBase implements VDelegate {
         this.context = context;
     }
 
-    public static VDelegateBase create(Context context) {
+    public static VDelegate create(Context context) {
         return new VDelegateBase(context);
+    }
+
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void destory() {
+
     }
 
     @Override
     public void visible(boolean flag, View view) {
-        if (flag)
-            view.setVisibility(View.VISIBLE);
+        if (flag) view.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void gone(boolean flag, View view) {
-        if (flag)
-            view.setVisibility(View.GONE);
+        if (flag) view.setVisibility(View.GONE);
     }
 
     @Override
     public void inVisible(View view) {
-        if (false)
-            view.setVisibility(View.INVISIBLE);
+        view.setVisibility(View.INVISIBLE);
     }
 
     @Override

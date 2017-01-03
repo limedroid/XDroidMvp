@@ -11,6 +11,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
+import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -123,22 +124,51 @@ public class XApi {
         return provider;
     }
 
-
-    public static Observable<IModel> transform(Observable<IModel> observable) {
-        return observable.flatMap(new Func1<IModel, Observable<IModel>>() {
+    /**
+     * 线程切换
+     *
+     * @return
+     */
+    public static <T extends IModel> Observable.Transformer<T, ? extends T> getScheduler() {
+        Observable.Transformer<T, ? extends T> transformer = new Observable.Transformer<T, T>() {
             @Override
-            public Observable<IModel> call(IModel model) {
-                if (model == null || model.isNull()) {
-                    return Observable.error(new NetError(null, NetError.NoDataError));
-                } else if (model.isAuthError()) {
-                    return Observable.error(new NetError(null, NetError.AuthError));
-                } else if (model.isBizError()) {
-                    return Observable.error(new NetError(null, NetError.BusinessError));
-                } else {
-                    return Observable.just(model);
-                }
+            public Observable<T> call(Observable<T> observable) {
+                return observable.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread());
             }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        };
+        return transformer;
     }
+
+    /**
+     * 异常处理变换
+     *
+     * @return
+     */
+    public static <T extends IModel> Observable.Transformer<T, ? extends T> getApiTransformer() {
+        Observable.Transformer<T, ? extends T> transformer = new Observable.Transformer<T, T>() {
+            @Override
+            public Observable<T> call(Observable<T> observable) {
+
+                return observable.flatMap(new Func1<T, Observable<T>>() {
+                    @Override
+                    public Observable<T> call(T model) {
+                        if (model == null || model.isNull()) {
+                            return Observable.error(new NetError(null, NetError.NoDataError));
+                        } else if (model.isAuthError()) {
+                            return Observable.error(new NetError(null, NetError.AuthError));
+                        } else if (model.isBizError()) {
+                            return Observable.error(new NetError(null, NetError.BusinessError));
+                        } else {
+                            return Observable.just(model);
+                        }
+                    }
+
+                });
+            }
+        };
+        return transformer;
+    }
+
+
 }

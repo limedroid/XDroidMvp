@@ -13,7 +13,7 @@ import rx.Subscriber;
  * Created by wanglei on 2016/12/26.
  */
 
-public abstract class ApiSubcriber<T> extends Subscriber<T> {
+public abstract class ApiSubcriber<T extends IModel> extends Subscriber<T> {
 
 
     @Override
@@ -47,6 +47,10 @@ public abstract class ApiSubcriber<T> extends Subscriber<T> {
 
     protected abstract void onFail(NetError error);
 
+    @Override
+    public void onCompleted() {
+
+    }
 
     protected boolean useCommonErrorHandler() {
         return true;
