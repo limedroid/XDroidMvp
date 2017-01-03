@@ -3,6 +3,7 @@ package cn.droidlover.xdroidmvp.demo.ui;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import butterknife.BindView;
@@ -28,6 +29,7 @@ public class AboutActivity extends XActivity {
     private void initToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_white_24dp);
         getSupportActionBar().setTitle("关于XDroidMvp");
     }
@@ -64,5 +66,14 @@ public class AboutActivity extends XActivity {
     @Override
     public Object newP() {
         return null;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
