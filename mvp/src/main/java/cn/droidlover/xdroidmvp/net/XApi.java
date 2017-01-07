@@ -6,12 +6,10 @@ import cn.droidlover.xdroidmvp.kit.Kits;
 import okhttp3.CookieJar;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
-import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -102,8 +100,7 @@ public class XApi {
             }
 
             if (provider.configLogEnable()) {
-                HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
-                logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+                LogInterceptor logInterceptor = new LogInterceptor();
                 builder.addInterceptor(logInterceptor);
             }
 

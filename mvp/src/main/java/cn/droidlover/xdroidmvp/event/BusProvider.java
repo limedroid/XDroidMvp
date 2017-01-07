@@ -6,9 +6,9 @@ package cn.droidlover.xdroidmvp.event;
 
 public class BusProvider {
 
-    private static IBus bus;
+    private static RxBusImpl bus;
 
-    public static IBus getBus() {
+    public static RxBusImpl getBus() {
         if (bus == null) {
             synchronized (BusProvider.class) {
                 if (bus == null) {

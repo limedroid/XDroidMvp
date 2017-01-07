@@ -36,7 +36,6 @@ dependencies {
     compile rootProject.ext.dependencies["retrofit"]
     compile rootProject.ext.dependencies["retrofit-converter-gson"]
     compile rootProject.ext.dependencies["retrofit-adapter-rxjava"]
-    compile rootProject.ext.dependencies["okhttp3-logging-interceptor"]
     compile rootProject.ext.dependencies["okhttp3"]
 
     compile rootProject.ext.dependencies["rxlifecycle"]
