@@ -118,6 +118,9 @@ public class GlideLoader implements ILoader {
         if (options.loadErrorResId != Options.RES_NONE) {
             request.error(options.loadErrorResId);
         }
+        if (options.isCenterCrop) {
+            request.centerCrop();
+        }
         request.diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .crossFade()
                 .into(target);
