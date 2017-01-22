@@ -14,7 +14,7 @@ public class SimpleRouterCallback implements RouterCallback {
     }
 
     @Override
-    public void OnNext(Activity from, Class<?> to) {
+    public void onNext(Activity from, Class<?> to) {
 
     }
 

@@ -10,7 +10,7 @@ public interface RouterCallback {
 
     void onBefore(Activity from, Class<?> to);
 
-    void OnNext(Activity from, Class<?> to);
+    void onNext(Activity from, Class<?> to);
 
     void onError(Activity from, Class<?> to, Throwable throwable);
 

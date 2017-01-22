@@ -24,6 +24,6 @@ public class XDroidConf {
     public static final int IL_LOADING_RES = ILoader.Options.RES_NONE;
     public static final int IL_ERROR_RES = ILoader.Options.RES_NONE;
 
-    // # dev model
+    // #dev model
     public static final boolean DEV = true;
 }
