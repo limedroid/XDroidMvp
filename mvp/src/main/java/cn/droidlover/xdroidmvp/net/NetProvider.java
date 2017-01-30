@@ -9,8 +9,6 @@ import okhttp3.OkHttpClient;
  */
 
 public interface NetProvider {
-    String configBaseUrl();
-
     Interceptor[] configInterceptors();
 
     void configHttps(OkHttpClient.Builder builder);

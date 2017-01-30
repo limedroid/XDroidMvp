@@ -3,7 +3,6 @@ package cn.droidlover.xdroidmvp.demo;
 import android.app.Application;
 import android.content.Context;
 
-import cn.droidlover.xdroidmvp.demo.net.Api;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.NetProvider;
 import cn.droidlover.xdroidmvp.net.RequestHandler;
@@ -26,10 +25,6 @@ public class App extends Application {
         context = this;
 
         XApi.registerProvider(new NetProvider() {
-            @Override
-            public String configBaseUrl() {
-                return Api.API_BASE_URL;
-            }
 
             @Override
             public Interceptor[] configInterceptors() {

@@ -9,7 +9,7 @@ import cn.droidlover.xdroidmvp.demo.R;
 import cn.droidlover.xdroidmvp.demo.model.GankResults;
 import cn.droidlover.xdroidmvp.demo.present.PBasePager;
 import cn.droidlover.xdroidmvp.demo.widget.StateView;
-import cn.droidlover.xdroidmvp.mvp.XFragment;
+import cn.droidlover.xdroidmvp.mvp.XLazyFragment;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xrecyclerview.XRecyclerContentLayout;
 import cn.droidlover.xrecyclerview.XRecyclerView;
@@ -18,7 +18,7 @@ import cn.droidlover.xrecyclerview.XRecyclerView;
  * Created by wanglei on 2016/12/31.
  */
 
-public abstract class BasePagerFragment extends XFragment<PBasePager> {
+public abstract class BasePagerFragment extends XLazyFragment<PBasePager> {
 
     @BindView(R.id.contentLayout)
     XRecyclerContentLayout contentLayout;

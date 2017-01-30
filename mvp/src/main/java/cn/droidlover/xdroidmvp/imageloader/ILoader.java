@@ -38,6 +38,7 @@ public interface ILoader {
 
         public int loadingResId = RES_NONE;        //加载中的资源id
         public int loadErrorResId = RES_NONE;      //加载失败的资源id
+        public ImageView.ScaleType scaleType = null;
 
         public static final int RES_NONE = -1;
 
@@ -48,6 +49,11 @@ public interface ILoader {
         public Options(int loadingResId, int loadErrorResId) {
             this.loadingResId = loadingResId;
             this.loadErrorResId = loadErrorResId;
+        }
+
+        public Options scaleType(ImageView.ScaleType scaleType) {
+            this.scaleType = scaleType;
+            return this;
         }
     }
 

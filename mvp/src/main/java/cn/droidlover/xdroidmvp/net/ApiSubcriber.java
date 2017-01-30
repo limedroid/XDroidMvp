@@ -35,8 +35,8 @@ public abstract class ApiSubcriber<T extends IModel> extends Subscriber<T> {
             }
 
             if (useCommonErrorHandler()
-                    && XApi.getProvider() != null) {
-                if (XApi.getProvider().handleError(error)) {        //使用通用异常处理
+                    && XApi.getCommonProvider() != null) {
+                if (XApi.getCommonProvider().handleError(error)) {        //使用通用异常处理
                     return;
                 }
             }

@@ -43,7 +43,8 @@ public class GlideLoader implements ILoader {
             request.error(options.loadErrorResId);
         }
 
-        request.diskCacheStrategy(DiskCacheStrategy.SOURCE)
+        wrapScaleType(request, options)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .crossFade()
                 .into(new SimpleTarget<GlideBitmapDrawable>() {
 
@@ -118,8 +119,45 @@ public class GlideLoader implements ILoader {
         if (options.loadErrorResId != Options.RES_NONE) {
             request.error(options.loadErrorResId);
         }
-        request.diskCacheStrategy(DiskCacheStrategy.SOURCE)
+
+        wrapScaleType(request, options)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .crossFade()
                 .into(target);
+    }
+
+    private DrawableTypeRequest wrapScaleType(DrawableTypeRequest request, Options options) {
+        if (options != null
+                && options.scaleType != null) {
+            switch (options.scaleType) {
+                case MATRIX:
+                    break;
+
+                case FIT_XY:
+                    break;
+
+                case FIT_START:
+                    break;
+
+                case FIT_END:
+                    break;
+
+                case CENTER:
+                    break;
+
+                case CENTER_INSIDE:
+                    break;
+
+                case FIT_CENTER:
+                    request.fitCenter();
+                    break;
+
+                case CENTER_CROP:
+                    request.centerCrop();
+                    break;
+            }
+        }
+
+        return request;
     }
 }
