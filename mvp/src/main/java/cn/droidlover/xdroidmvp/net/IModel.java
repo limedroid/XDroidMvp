@@ -9,5 +9,7 @@ public interface IModel {
 
     boolean isAuthError();  //验证错误
 
-    boolean isBizError();   //义务错误
+    boolean isBizError();   //业务错误
+
+    String getErrorMsg();   //后台返回的错误信息
 }

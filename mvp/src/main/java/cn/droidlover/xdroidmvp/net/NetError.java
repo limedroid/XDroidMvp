@@ -20,10 +20,15 @@ public class NetError extends Exception {
         this.type = type;
     }
 
+    public NetError(String detailMessage, int type) {
+        super(detailMessage);
+        this.type = type;
+    }
+
     @Override
     public String getMessage() {
         if (exception != null) return exception.getMessage();
-        return null;
+        return super.getMessage();
     }
 
     public int getType() {

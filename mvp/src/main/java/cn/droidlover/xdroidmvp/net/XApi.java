@@ -195,11 +195,11 @@ public class XApi {
                     @Override
                     public Observable<T> call(T model) {
                         if (model == null || model.isNull()) {
-                            return Observable.error(new NetError(null, NetError.NoDataError));
+                            return Observable.error(new NetError(model.getErrorMsg(), NetError.NoDataError));
                         } else if (model.isAuthError()) {
-                            return Observable.error(new NetError(null, NetError.AuthError));
+                            return Observable.error(new NetError(model.getErrorMsg(), NetError.AuthError));
                         } else if (model.isBizError()) {
-                            return Observable.error(new NetError(null, NetError.BusinessError));
+                            return Observable.error(new NetError(model.getErrorMsg(), NetError.BusinessError));
                         } else {
                             return Observable.just(model);
                         }
