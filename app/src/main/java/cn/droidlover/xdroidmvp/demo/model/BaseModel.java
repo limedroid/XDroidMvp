@@ -32,4 +32,9 @@ public class BaseModel implements IModel {
     public boolean isBizError() {
         return error;
     }
+
+    @Override
+    public String getErrorMsg() {
+        return null;
+    }
 }
