@@ -33,7 +33,7 @@ public class RxBusImpl implements IBus {
 
     }
 
-    public Observable toObservable() {
-        return bus;
+    public <T extends IEvent> Observable<T> toObservable(Class<T> eventType) {
+        return bus.ofType(eventType);
     }
 }

@@ -17,7 +17,7 @@ public class RxBusActivity extends XActivity {
 
         BusProvider.getBus().post(new LoginEvent());
 
-        BusProvider.getBus().toObservable()
+        BusProvider.getBus().toObservable(LoginEvent.class)
                 .subscribe(new Action1<LoginEvent>() {
                     @Override
                     public void call(LoginEvent loginEvent) {
@@ -25,6 +25,7 @@ public class RxBusActivity extends XActivity {
                     }
 
                 });
+
 
     }
 

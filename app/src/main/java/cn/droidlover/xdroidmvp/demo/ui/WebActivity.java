@@ -79,6 +79,7 @@ public class WebActivity extends XActivity {
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
                 if (newProgress == 100) {
+                    swipeRefreshLayout.setRefreshing(false);
                     if (contentLayout != null)
                         contentLayout.showContent();
                     if (webView != null)
