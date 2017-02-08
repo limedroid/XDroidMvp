@@ -82,19 +82,14 @@ public class LogInterceptor implements Interceptor {
 
 
     private boolean isText(MediaType mediaType) {
-        if (mediaType.type() != null && mediaType.type().equals("text")) {
-            return true;
-        }
-        if (mediaType.subtype() != null) {
-            if (mediaType.subtype().equals("json") ||
-                    mediaType.subtype().equals("xml") ||
-                    mediaType.subtype().equals("html") ||
-                    mediaType.subtype().equals("webviewhtml") ||
-                    mediaType.subtype().equals("x-www-form-urlencoded")
-                    )
-                return true;
-        }
-        return false;
+        if (mediaType == null) return false;
+
+        return ("text".equals(mediaType.subtype())
+                || "json".equals(mediaType.subtype())
+                || "xml".equals(mediaType.subtype())
+                || "html".equals(mediaType.subtype())
+                || "webviewhtml".equals(mediaType.subtype())
+                || "x-www-form-urlencoded".equals(mediaType.subtype()));
     }
 
     private String bodyToString(final Request request) {
