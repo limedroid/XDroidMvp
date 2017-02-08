@@ -1,7 +1,6 @@
 package cn.droidlover.xdroidmvp.mvp;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
@@ -89,14 +88,6 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        if (useEventBus()) {
-            BusProvider.getBus().unregister(this);
-        }
-    }
-
-    @Override
     public boolean useEventBus() {
         return false;
     }
@@ -104,6 +95,9 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (useEventBus()) {
+            BusProvider.getBus().unregister(this);
+        }
         if (getP() != null) {
             getP().detachV();
         }
