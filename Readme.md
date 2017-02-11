@@ -10,6 +10,8 @@
 
 **XDroidMvp全新文档**：[https://github.com/limedroid/XDroidMvp/wiki](https://github.com/limedroid/XDroidMvp/wiki)
 
+[![](https://jitpack.io/v/limedroid/XDroidMvp.svg)](https://jitpack.io/#limedroid/XDroidMvp)
+
 <p align="center">
 	<img src="art/XdroidMvp_total.png"/>
 </p>
@@ -157,6 +159,25 @@ allprojects {
 ### step4
 
 修改`XDroidConf`配置类，主要针对log、cache、router、imageloader。若采用默认配置，此步骤可略过.
+
+## 第二种方式，通过JitPack引入
+
+### step1 在根目录的gradle文件中配置:
+```groovy
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+
+### step2 添加依赖:
+```groovy
+dependencies {
+	        compile 'com.github.limedroid:XDroidMvp:v1.5.0'
+}
+```
 
 
 ## Demo效果
