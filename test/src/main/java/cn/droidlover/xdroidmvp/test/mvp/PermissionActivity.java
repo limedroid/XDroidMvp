@@ -4,7 +4,7 @@ import android.Manifest;
 import android.os.Bundle;
 
 import cn.droidlover.xdroidmvp.mvp.XActivity;
-import rx.functions.Action1;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by wanglei on 2017/1/30.
@@ -15,9 +15,9 @@ public class PermissionActivity extends XActivity {
     public void initData(Bundle savedInstanceState) {
         getRxPermissions()
                 .request(Manifest.permission.CAMERA)
-                .subscribe(new Action1<Boolean>() {
+                .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void call(Boolean granted) {
+                    public void accept(Boolean granted) throws Exception {
                         if (granted) {
                             //TODO 许可
 

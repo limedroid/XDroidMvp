@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import cn.droidlover.xdroidmvp.event.BusProvider;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
-import rx.functions.Action1;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by wanglei on 2017/1/30.
@@ -17,13 +17,12 @@ public class RxBusActivity extends XActivity {
 
         BusProvider.getBus().post(new LoginEvent());
 
-        BusProvider.getBus().toObservable(LoginEvent.class)
-                .subscribe(new Action1<LoginEvent>() {
+        BusProvider.getBus().toFlowable(LoginEvent.class)
+                .subscribe(new Consumer<LoginEvent>() {
                     @Override
-                    public void call(LoginEvent loginEvent) {
+                    public void accept(LoginEvent loginEvent) throws Exception {
                         //TODO 事件处理
                     }
-
                 });
 
 
