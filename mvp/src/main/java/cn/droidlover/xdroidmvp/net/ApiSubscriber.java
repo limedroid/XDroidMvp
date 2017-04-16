@@ -14,7 +14,7 @@ import io.reactivex.subscribers.ResourceSubscriber;
  * Created by wanglei on 2016/12/26.
  */
 
-public abstract class ApiSubcriber<T extends IModel> extends ResourceSubscriber<T> {
+public abstract class ApiSubscriber<T extends IModel> extends ResourceSubscriber<T> {
 
 
     @Override

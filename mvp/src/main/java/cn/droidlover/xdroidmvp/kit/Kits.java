@@ -27,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by wanglei on 2016/11/28.
@@ -709,7 +710,7 @@ public class Kits {
             }
 
             java.io.File folder = new java.io.File(folderName);
-            return (folder.exists() && folder.isDirectory()) ? true : folder.mkdirs();
+            return (folder.exists() && folder.isDirectory()) || folder.mkdirs();
         }
 
         /**
@@ -826,17 +827,17 @@ public class Kits {
     }
 
     public static class Date {
-        private static SimpleDateFormat m = new SimpleDateFormat("MM");
-        private static SimpleDateFormat d = new SimpleDateFormat("dd");
-        private static SimpleDateFormat md = new SimpleDateFormat("MM-dd");
-        private static SimpleDateFormat ymd = new SimpleDateFormat("yyyy-MM-dd");
-        private static SimpleDateFormat ymdDot = new SimpleDateFormat("yyyy.MM.dd");
-        private static SimpleDateFormat ymdhms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        private static SimpleDateFormat ymdhmss = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-        private static SimpleDateFormat ymdhm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        private static SimpleDateFormat hm = new SimpleDateFormat("HH:mm");
-        private static SimpleDateFormat mdhm = new SimpleDateFormat("MM月dd日 HH:mm");
-        private static SimpleDateFormat mdhmLink = new SimpleDateFormat("MM-dd HH:mm");
+        private static SimpleDateFormat m = new SimpleDateFormat("MM", Locale.getDefault());
+        private static SimpleDateFormat d = new SimpleDateFormat("dd", Locale.getDefault());
+        private static SimpleDateFormat md = new SimpleDateFormat("MM-dd", Locale.getDefault());
+        private static SimpleDateFormat ymd = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        private static SimpleDateFormat ymdDot = new SimpleDateFormat("yyyy.MM.dd", Locale.getDefault());
+        private static SimpleDateFormat ymdhms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        private static SimpleDateFormat ymdhmss = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault());
+        private static SimpleDateFormat ymdhm = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        private static SimpleDateFormat hm = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        private static SimpleDateFormat mdhm = new SimpleDateFormat("MM月dd日 HH:mm", Locale.getDefault());
+        private static SimpleDateFormat mdhmLink = new SimpleDateFormat("MM-dd HH:mm", Locale.getDefault());
 
         /**
          * 年月日[2015-07-28]

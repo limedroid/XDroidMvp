@@ -174,14 +174,13 @@ public class XApi {
      * @return
      */
     public static <T extends IModel> FlowableTransformer<T, T> getScheduler() {
-        FlowableTransformer<T, T> transformer = new FlowableTransformer<T, T>() {
+        return new FlowableTransformer<T, T>() {
             @Override
             public Publisher<T> apply(Flowable<T> upstream) {
                 return upstream.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread());
             }
         };
-        return transformer;
     }
 
     /**
@@ -191,7 +190,7 @@ public class XApi {
      */
     public static <T extends IModel> FlowableTransformer<T, T> getApiTransformer() {
 
-        FlowableTransformer<T, T> transformer = new FlowableTransformer<T, T>() {
+        return new FlowableTransformer<T, T>() {
             @Override
             public Publisher<T> apply(Flowable<T> upstream) {
                 return upstream.flatMap(new Function<T, Publisher<T>>() {
@@ -211,7 +210,6 @@ public class XApi {
                 });
             }
         };
-        return transformer;
     }
 
 

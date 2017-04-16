@@ -119,6 +119,7 @@ public class DiskCache implements ICache {
         try {
             cache.remove(getMd5Key(key));
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

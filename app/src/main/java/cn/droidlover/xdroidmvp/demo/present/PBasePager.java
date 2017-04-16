@@ -4,7 +4,7 @@ import cn.droidlover.xdroidmvp.demo.model.GankResults;
 import cn.droidlover.xdroidmvp.demo.net.Api;
 import cn.droidlover.xdroidmvp.demo.ui.BasePagerFragment;
 import cn.droidlover.xdroidmvp.mvp.XPresent;
-import cn.droidlover.xdroidmvp.net.ApiSubcriber;
+import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
@@ -21,7 +21,7 @@ public class PBasePager extends XPresent<BasePagerFragment> {
                 .compose(XApi.<GankResults>getApiTransformer())
                 .compose(XApi.<GankResults>getScheduler())
                 .compose(getV().<GankResults>bindToLifecycle())
-                .subscribe(new ApiSubcriber<GankResults>() {
+                .subscribe(new ApiSubscriber<GankResults>() {
                     @Override
                     protected void onFail(NetError error) {
                         getV().showError(error);

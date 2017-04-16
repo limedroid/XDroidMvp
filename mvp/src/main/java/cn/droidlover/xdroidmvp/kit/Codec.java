@@ -154,7 +154,7 @@ public class Codec {
                         fin.close();
                     }
                 } catch (IOException e) {
-
+                    e.printStackTrace();
                 }
             }
         }
@@ -241,9 +241,7 @@ public class Codec {
         private static Key toKey(byte[] key) throws Exception {
             DESKeySpec dks = new DESKeySpec(key);
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(Algorithm.DES.getType());
-            SecretKey secretKey = keyFactory.generateSecret(dks);
-
-            return secretKey;
+            return keyFactory.generateSecret(dks);
         }
 
         /**
@@ -515,10 +513,7 @@ public class Codec {
     }
 
     public static boolean checkNull(String text) {
-        if (text == null || text.length() == 0)
-            return true;
-        else
-            return false;
+        return null == text || text.length() == 0;
     }
 
     public enum Algorithm {

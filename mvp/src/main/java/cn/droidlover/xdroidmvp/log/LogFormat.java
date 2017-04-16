@@ -55,6 +55,7 @@ public class LogFormat {
                 formatted = ja.toString(JSON_INDENT);
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return formatted;
@@ -76,7 +77,7 @@ public class LogFormat {
             formatted = xmlOutput.getWriter().toString().replaceFirst(">", ">"
                     + XPrinter.lineSeparator);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return formatted;
     }

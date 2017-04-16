@@ -52,6 +52,7 @@ public class LogInterceptor implements Interceptor {
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -76,6 +77,7 @@ public class LogInterceptor implements Interceptor {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return response;
     }
