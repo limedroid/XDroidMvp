@@ -3,7 +3,7 @@ package cn.droidlover.xdroidmvp.mvp;
 import android.os.Bundle;
 import android.view.View;
 
-import com.tbruyelle.rxpermissions.RxPermissions;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import butterknife.Unbinder;
 import cn.droidlover.xdroidmvp.XDroidConf;

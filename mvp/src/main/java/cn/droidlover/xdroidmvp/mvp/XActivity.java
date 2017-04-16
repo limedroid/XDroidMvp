@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.View;
 
-import com.tbruyelle.rxpermissions.RxPermissions;
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.Unbinder;
 import cn.droidlover.xdroidmvp.XDroidConf;

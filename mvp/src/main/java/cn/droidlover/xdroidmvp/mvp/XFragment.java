@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tbruyelle.rxpermissions.RxPermissions;
-import com.trello.rxlifecycle.components.support.RxFragment;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.Unbinder;
 import cn.droidlover.xdroidmvp.XDroidConf;

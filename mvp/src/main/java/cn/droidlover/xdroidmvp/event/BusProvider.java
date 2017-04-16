@@ -12,7 +12,7 @@ public class BusProvider {
         if (bus == null) {
             synchronized (BusProvider.class) {
                 if (bus == null) {
-                    bus = new RxBusImpl();
+                    bus = RxBusImpl.get();
                 }
             }
         }

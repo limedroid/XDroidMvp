@@ -7,13 +7,14 @@ import org.json.JSONException;
 
 import java.net.UnknownHostException;
 
-import rx.Subscriber;
+import io.reactivex.subscribers.ResourceSubscriber;
+
 
 /**
  * Created by wanglei on 2016/12/26.
  */
 
-public abstract class ApiSubcriber<T extends IModel> extends Subscriber<T> {
+public abstract class ApiSubcriber<T extends IModel> extends ResourceSubscriber<T> {
 
 
     @Override
@@ -48,9 +49,10 @@ public abstract class ApiSubcriber<T extends IModel> extends Subscriber<T> {
     protected abstract void onFail(NetError error);
 
     @Override
-    public void onCompleted() {
+    public void onComplete() {
 
     }
+
 
     protected boolean useCommonErrorHandler() {
         return true;

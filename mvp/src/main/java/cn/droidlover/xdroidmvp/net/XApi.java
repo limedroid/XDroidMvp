@@ -1,20 +1,23 @@
 package cn.droidlover.xdroidmvp.net;
 
+import org.reactivestreams.Publisher;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import cn.droidlover.xdroidmvp.kit.Kits;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.CookieJar;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by wanglei on 2016/12/24.
@@ -85,7 +88,7 @@ public class XApi {
                 .client(getClient(baseUrl, provider))
                 .addConverterFactory(GsonConverterFactory.create());
         if (useRx) {
-            builder.addCallAdapterFactory(RxJavaCallAdapterFactory.create());
+            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         }
 
         Retrofit retrofit = builder.build();
@@ -170,11 +173,11 @@ public class XApi {
      *
      * @return
      */
-    public static <T extends IModel> Observable.Transformer<T, ? extends T> getScheduler() {
-        Observable.Transformer<T, ? extends T> transformer = new Observable.Transformer<T, T>() {
+    public static <T extends IModel> FlowableTransformer<T, T> getScheduler() {
+        FlowableTransformer<T, T> transformer = new FlowableTransformer<T, T>() {
             @Override
-            public Observable<T> call(Observable<T> observable) {
-                return observable.subscribeOn(Schedulers.io())
+            public Publisher<T> apply(Flowable<T> upstream) {
+                return upstream.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread());
             }
         };
@@ -186,25 +189,25 @@ public class XApi {
      *
      * @return
      */
-    public static <T extends IModel> Observable.Transformer<T, ? extends T> getApiTransformer() {
-        Observable.Transformer<T, ? extends T> transformer = new Observable.Transformer<T, T>() {
-            @Override
-            public Observable<T> call(Observable<T> observable) {
+    public static <T extends IModel> FlowableTransformer<T, T> getApiTransformer() {
 
-                return observable.flatMap(new Func1<T, Observable<T>>() {
+        FlowableTransformer<T, T> transformer = new FlowableTransformer<T, T>() {
+            @Override
+            public Publisher<T> apply(Flowable<T> upstream) {
+                return upstream.flatMap(new Function<T, Publisher<T>>() {
                     @Override
-                    public Observable<T> call(T model) {
+                    public Publisher<T> apply(T model) throws Exception {
+
                         if (model == null || model.isNull()) {
-                            return Observable.error(new NetError(model.getErrorMsg(), NetError.NoDataError));
+                            return Flowable.error(new NetError(model.getErrorMsg(), NetError.NoDataError));
                         } else if (model.isAuthError()) {
-                            return Observable.error(new NetError(model.getErrorMsg(), NetError.AuthError));
+                            return Flowable.error(new NetError(model.getErrorMsg(), NetError.AuthError));
                         } else if (model.isBizError()) {
-                            return Observable.error(new NetError(model.getErrorMsg(), NetError.BusinessError));
+                            return Flowable.error(new NetError(model.getErrorMsg(), NetError.BusinessError));
                         } else {
-                            return Observable.just(model);
+                            return Flowable.just(model);
                         }
                     }
-
                 });
             }
         };

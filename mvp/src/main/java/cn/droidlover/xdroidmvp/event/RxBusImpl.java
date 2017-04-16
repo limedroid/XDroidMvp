@@ -1,9 +1,9 @@
 package cn.droidlover.xdroidmvp.event;
 
-import rx.Observable;
-import rx.subjects.PublishSubject;
-import rx.subjects.SerializedSubject;
-import rx.subjects.Subject;
+
+import io.reactivex.Flowable;
+import io.reactivex.processors.FlowableProcessor;
+import io.reactivex.processors.PublishProcessor;
 
 /**
  * Created by wanglei on 2016/12/22.
@@ -11,7 +11,15 @@ import rx.subjects.Subject;
 
 public class RxBusImpl implements IBus {
 
-    private final Subject<IEvent, IEvent> bus = new SerializedSubject<>(PublishSubject.<IEvent>create());
+    private FlowableProcessor<Object> bus = null;
+
+    private RxBusImpl() {
+        bus = PublishProcessor.create().toSerialized();
+    }
+
+    public static RxBusImpl get() {
+        return Holder.instance;
+    }
 
     @Override
     public void register(Object object) {
@@ -33,7 +41,11 @@ public class RxBusImpl implements IBus {
 
     }
 
-    public <T extends IEvent> Observable<T> toObservable(Class<T> eventType) {
+    public <T extends IEvent> Flowable<T> toFlowable(Class<T> eventType) {
         return bus.ofType(eventType);
+    }
+
+    private static class Holder {
+        private static final RxBusImpl instance = new RxBusImpl();
     }
 }
