@@ -42,7 +42,7 @@ public class RxBusImpl implements IBus {
     }
 
     public <T extends IEvent> Flowable<T> toFlowable(Class<T> eventType) {
-        return bus.ofType(eventType);
+        return bus.ofType(eventType).onBackpressureBuffer();
     }
 
     private static class Holder {
