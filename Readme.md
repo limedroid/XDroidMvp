@@ -175,7 +175,7 @@ allprojects {
 ### step2 添加依赖:
 ```groovy
 dependencies {
-	        compile 'com.github.limedroid:XDroidMvp:v1.5.0'
+	        compile 'com.github.limedroid:XDroidMvp:v1.8.0'
 }
 ```
 
@@ -200,6 +200,7 @@ dependencies {
 
 ## 更新日志
 
+* 2017-04-23，新增proguard rules,upgrade to rx2
 * 2016-12-23，新增mvp、base、cache、event、imageloader、log、router
 * 2016-12-25，新增rxJava、rxAndroid、rxlifecycle、rxpermission、rxbus、net(retrofit)
 * 2016-12-26，新增网络异常统一处理
