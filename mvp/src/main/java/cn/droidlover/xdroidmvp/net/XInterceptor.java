@@ -26,7 +26,11 @@ public class XInterceptor implements Interceptor {
         }
         Response response = chain.proceed(request);
         if (handler != null) {
-            response = handler.onAfterRequest(response, response.body().string(), chain);
+            Response tmp = handler.onAfterRequest(response, chain);
+            if (tmp != null) {
+                return tmp;
+            }
+
         }
         return response;
     }
