@@ -22,7 +22,7 @@ public class DiskCache implements ICache {
     private DiskLruCache cache;
 
     static String TAG_CACHE = "=====createTime{createTime_v}expireMills{expireMills_v}";
-    static String REGEX = "=====createTime\\{(\\d{1,})\\}expireMills\\{(\\d{1,})\\}";
+    static String REGEX = "=====createTime\\{(\\d{1,})\\}expireMills\\{(-?\\d{1,})\\}";
     private Pattern compile;
 
     public static final long NO_CACHE = -1L;
