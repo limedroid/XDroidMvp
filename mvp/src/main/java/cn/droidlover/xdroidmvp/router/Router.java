@@ -58,6 +58,11 @@ public class Router {
         return this;
     }
 
+    public Router putBundle(@Nullable String key, Bundle bundle) {
+        getBundleData().putBundle(key, bundle);
+        return this;
+    }
+
     public Router putByte(@Nullable String key, byte value) {
         getBundleData().putByte(key, value);
         return this;
@@ -85,6 +90,11 @@ public class Router {
 
     public Router putFloat(@Nullable String key, float value) {
         getBundleData().putFloat(key, value);
+        return this;
+    }
+
+    public Router putDouble(@Nullable String key, double value) {
+        getBundleData().putDouble(key, value);
         return this;
     }
 
