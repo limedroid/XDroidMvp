@@ -15,6 +15,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import cn.droidlover.xdroidmvp.kit.Kits;
+
 /**
  * Created by wanglei on 2016/11/29.
  */
@@ -103,18 +105,23 @@ public class LogFormat {
 
 
     public static String formatArgs(String format, Object... args) {
-        if (format != null) {
-            return String.format(format, args);
-        } else {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0, N = args.length; i < N; i++) {
-                if (i != 0) {
-                    sb.append(", ");
-                }
-                sb.append(args[i]);
+        try {
+            if (!Kits.Empty.check(format)) {
+                return String.format(format, args);
             }
-            return sb.toString();
+
+        } catch (Exception e) {
         }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0, N = args.length; i < N; i++) {
+            if (i != 0) {
+                sb.append(", ");
+            }
+            sb.append(args[i]);
+        }
+        return sb.toString();
+
     }
 
     public static String formatBorder(String[] segments) {
