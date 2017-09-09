@@ -1,19 +1,24 @@
 package cn.droidlover.xdroidmvp.mvp;
 
+import java.lang.ref.WeakReference;
+
 /**
  * Created by wanglei on 2016/12/29.
  */
 
 public class XPresent<V extends IView> implements IPresent<V> {
-    private V v;
+    private WeakReference<V> v;
 
     @Override
     public void attachV(V view) {
-        v = view;
+        v = new WeakReference<V>(view);
     }
 
     @Override
     public void detachV() {
+        if (v.get() != null) {
+            v.clear();
+        }
         v = null;
     }
 
@@ -21,6 +26,6 @@ public class XPresent<V extends IView> implements IPresent<V> {
         if (v == null) {
             throw new IllegalStateException("v can not be null");
         }
-        return v;
+        return v.get();
     }
 }
