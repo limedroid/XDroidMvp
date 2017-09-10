@@ -24,4 +24,6 @@ public interface NetProvider {
     boolean configLogEnable();
 
     boolean handleError(NetError error);
+
+    boolean dispatchProgressEnable();
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import cn.droidlover.xdroidmvp.kit.Kits;
+import cn.droidlover.xdroidmvp.net.progress.ProgressHelper;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -123,6 +124,10 @@ public class XApi {
         RequestHandler handler = provider.configHandler();
         if (handler != null) {
             builder.addInterceptor(new XInterceptor(handler));
+        }
+
+        if (provider.dispatchProgressEnable()) {
+            builder.addInterceptor(ProgressHelper.get().getInterceptor());
         }
 
         Interceptor[] interceptors = provider.configInterceptors();
