@@ -23,7 +23,7 @@ public class XPresent<V extends IView> implements IPresent<V> {
     }
 
     protected V getV() {
-        if (v == null) {
+        if (v == null || v.get() == null) {
             throw new IllegalStateException("v can not be null");
         }
         return v.get();
