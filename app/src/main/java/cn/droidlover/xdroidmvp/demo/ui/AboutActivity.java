@@ -31,7 +31,7 @@ public class AboutActivity extends XActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_white_24dp);
-        getSupportActionBar().setTitle("关于XDroidMvp!");
+        getSupportActionBar().setTitle("关于XDroidMvp!!");
     }
 
     @OnClick({
