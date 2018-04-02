@@ -65,6 +65,11 @@ public class App extends Application {
             public boolean handleError(NetError error) {
                 return false;
             }
+
+            @Override
+            public boolean dispatchProgressEnable() {
+                return false;
+            }
         });
     }
 
