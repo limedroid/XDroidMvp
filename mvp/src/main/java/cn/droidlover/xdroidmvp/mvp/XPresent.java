@@ -28,4 +28,10 @@ public class XPresent<V extends IView> implements IPresent<V> {
         }
         return v.get();
     }
+
+
+    @Override
+    public boolean hasV() {
+        return v != null && v.get() != null;
+    }
 }

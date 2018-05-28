@@ -58,7 +58,9 @@ public abstract class XLazyFragment<P extends IPresent>
     protected P getP() {
         if (p == null) {
             p = newP();
-            if (p != null) {
+        }
+        if (p != null) {
+            if (!p.hasV()) {
                 p.attachV(this);
             }
         }
