@@ -1,16 +1,15 @@
 ext {
 
     android = [
-            compileSdkVersion: 23,
-            buildToolsVersion: "23.0.3",
+            compileSdkVersion: 26,
 
             minSdkVersion    : 15,
-            targetSdkVersion : 23,
+            targetSdkVersion : 26,
 
             versionCode      : 1,
             versionName      : '1.0.0',
 
-            VSupportSdk      : '23.3.0',
+            VSupportSdk      : '27.1.1',
             VRetrofitSdk     : "2.2.0",
             VOkhttp          : "3.4.2",
             VRxlifecycle     : "2.0.1"
