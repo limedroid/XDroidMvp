@@ -2,9 +2,10 @@ package cn.droidlover.xdroidmvp.test.rxbus;
 
 import android.os.Bundle;
 
+import com.blankj.rxbus.RxBus;
+
 import cn.droidlover.xdroidmvp.event.BusProvider;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
-import io.reactivex.functions.Consumer;
 
 /**
  * Created by wanglei on 2017/1/30.
@@ -17,14 +18,13 @@ public class RxBusActivity extends XActivity {
 
         BusProvider.getBus().post(new LoginEvent());
 
-        BusProvider.getBus().toFlowable(LoginEvent.class)
-                .subscribe(new Consumer<LoginEvent>() {
+        BusProvider.getBus()
+                .subscribe(this, new RxBus.Callback<LoginEvent>() {
                     @Override
-                    public void accept(LoginEvent loginEvent) throws Exception {
+                    public void onEvent(LoginEvent loginEvent) {
                         //TODO 事件处理
                     }
                 });
-
 
     }
 

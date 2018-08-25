@@ -54,6 +54,8 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        getP();
+
         if (useEventBus()) {
             BusProvider.getBus().register(this);
         }

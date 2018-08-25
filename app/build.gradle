@@ -1,9 +1,7 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         applicationId 'cn.droidlover.xdroidmvp.demo'
@@ -24,7 +22,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    apt rootProject.ext.dependencies["butterknife-apt"]
-    compile rootProject.ext.dependencies["avi-loading"]
-    compile project(":mvp")
+    annotationProcessor rootProject.ext.dependencies["butterknife-apt"]
+    implementation rootProject.ext.dependencies["avi-loading"]
+    implementation project(":mvp")
 }

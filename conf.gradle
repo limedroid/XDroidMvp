@@ -2,7 +2,7 @@ ext {
 
     android = [
             compileSdkVersion: 23,
-            buildToolsVersion: "23.0.2",
+            buildToolsVersion: "23.0.3",
 
             minSdkVersion    : 15,
             targetSdkVersion : 23,
@@ -29,6 +29,7 @@ ext {
             "picasso"                    : "com.squareup.picasso:picasso:2.5.2",
             "xrecyclerview"              : "com.github.limedroid:ARecyclerView:v1.2.3",
             "avi-loading"                : "com.wang.avi:library:1.0.2",
+            "rxbus"                      : "com.blankj:rxbus:1.2",
 
             "gson"                       : "com.google.code.gson:gson:2.6.2",
             "rxandroid"                  : "io.reactivex.rxjava2:rxandroid:2.0.1",

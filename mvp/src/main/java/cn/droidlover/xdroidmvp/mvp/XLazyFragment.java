@@ -26,6 +26,9 @@ public abstract class XLazyFragment<P extends IPresent>
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
+
+        getP();
+
         if (getLayoutId() > 0) {
             setContentView(getLayoutId());
             bindUI(getRealRootView());

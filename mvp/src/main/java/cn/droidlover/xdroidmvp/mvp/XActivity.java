@@ -34,6 +34,8 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
         super.onCreate(savedInstanceState);
         context = this;
 
+        getP();
+
         if (getLayoutId() > 0) {
             setContentView(getLayoutId());
             bindUI(null);

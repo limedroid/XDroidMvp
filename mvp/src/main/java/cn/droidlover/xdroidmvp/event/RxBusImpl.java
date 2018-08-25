@@ -1,9 +1,7 @@
 package cn.droidlover.xdroidmvp.event;
 
 
-import io.reactivex.Flowable;
-import io.reactivex.processors.FlowableProcessor;
-import io.reactivex.processors.PublishProcessor;
+import com.blankj.rxbus.RxBus;
 
 /**
  * Created by wanglei on 2016/12/22.
@@ -11,41 +9,45 @@ import io.reactivex.processors.PublishProcessor;
 
 public class RxBusImpl implements IBus {
 
-    private FlowableProcessor<Object> bus = null;
-
     private RxBusImpl() {
-        bus = PublishProcessor.create().toSerialized();
+    }
+
+
+    @Override
+    public void register(Object object) {
+    }
+
+    @Override
+    public void unregister(Object object) {
+        RxBus.getDefault().unregister(object);
+    }
+
+    @Override
+    public void post(IEvent event) {
+        RxBus.getDefault().post(event);
+    }
+
+    @Override
+    public void postSticky(IEvent event) {
+        RxBus.getDefault().postSticky(event);
+    }
+
+    public <T> void subscribe(Object subscriber,
+                              RxBus.Callback<T> callback) {
+        RxBus.getDefault().subscribe(subscriber, callback);
+    }
+
+    public <T> void subscribeSticky(Object subscriber,
+                                    RxBus.Callback<T> callback) {
+        RxBus.getDefault().subscribeSticky(subscriber, callback);
     }
 
     public static RxBusImpl get() {
         return Holder.instance;
     }
 
-    @Override
-    public void register(Object object) {
-
-    }
-
-    @Override
-    public void unregister(Object object) {
-
-    }
-
-    @Override
-    public void post(IEvent event) {
-        bus.onNext(event);
-    }
-
-    @Override
-    public void postSticky(IEvent event) {
-
-    }
-
-    public <T extends IEvent> Flowable<T> toFlowable(Class<T> eventType) {
-        return bus.ofType(eventType).onBackpressureBuffer();
-    }
-
     private static class Holder {
         private static final RxBusImpl instance = new RxBusImpl();
     }
 }
+
