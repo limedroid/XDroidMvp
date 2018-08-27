@@ -1,6 +1,6 @@
 package cn.droidlover.xdroidmvp.test;
 
-import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -31,10 +31,9 @@ public class ImageLoaderTest extends XActivity {
         ILFactory.getLoader().loadNet(imageView, urlPath, null);
         ILFactory.getLoader().loadNet(context, urlPath, null, new LoadCallback() {
             @Override
-            public void onLoadReady(Bitmap bitmap) {
+            public void onLoadReady(Drawable drawable) {
 
             }
-
         });
         ILFactory.getLoader().loadResource(imageView, resIds, null);
         ILFactory.getLoader().clearMemoryCache(context);

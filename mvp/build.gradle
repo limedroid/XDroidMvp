@@ -32,6 +32,7 @@ dependencies {
     api rootProject.ext.dependencies["xrecyclerview"]
     api rootProject.ext.dependencies["butterknife"]
     api rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
 
     api rootProject.ext.dependencies["gson"]
     api rootProject.ext.dependencies["rxandroid"]
