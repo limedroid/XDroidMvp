@@ -36,15 +36,16 @@ public class GlideLoader implements ILoader {
         return Glide.with(context);
     }
 
-    private void load(Context context, Object model, ImageView target, Options options) {
+    private void load(Object model, ImageView target, Options options) {
         if (options == null) options = Options.defaultOptions();
         RequestOptions requestOptions = new RequestOptions()
+                .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .placeholder(options.loadingResId)
                 .error(options.loadErrorResId)
                 .priority(Priority.HIGH);
 
-        getRequestManager(context)
+        getRequestManager(target.getContext())
                 .load(model)
                 .apply(requestOptions)
                 .transition(withCrossFade())
@@ -52,8 +53,8 @@ public class GlideLoader implements ILoader {
     }
 
     @Override
-    public void loadNet(Context context, ImageView target, String url, Options options) {
-        load(context, url, target, options);
+    public void loadNet(ImageView target, String url, Options options) {
+        load(url, target, options);
     }
 
     @Override
@@ -89,18 +90,18 @@ public class GlideLoader implements ILoader {
     }
 
     @Override
-    public void loadResource(Context context,ImageView target, int resId, Options options) {
-        load(context, resId, target, options);
+    public void loadResource(ImageView target, int resId, Options options) {
+        load(resId, target, options);
     }
 
     @Override
-    public void loadAssets(Context context, ImageView target, String assetName, Options options) {
-        load(context, "file:///android_asset/" + assetName, target, options);
+    public void loadAssets(ImageView target, String assetName, Options options) {
+        load("file:///android_asset/" + assetName, target, options);
     }
 
     @Override
-    public void loadFile(Context context,ImageView target, File file, Options options) {
-        load(context, file, target, options);
+    public void loadFile(ImageView target, File file, Options options) {
+        load(file, target, options);
     }
 
     @Override

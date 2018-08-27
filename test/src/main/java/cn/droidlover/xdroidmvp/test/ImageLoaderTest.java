@@ -26,16 +26,16 @@ public class ImageLoaderTest extends XActivity {
         int resIds = 0;
 
         ILFactory.getLoader().init(context);
-        ILFactory.getLoader().loadAssets(context,imageView, assetPath, null);
-        ILFactory.getLoader().loadFile(context,imageView, new File(filePath), null);
-        ILFactory.getLoader().loadNet(context,imageView, urlPath, null);
+        ILFactory.getLoader().loadAssets(imageView, assetPath, null);
+        ILFactory.getLoader().loadFile(imageView, new File(filePath), null);
+        ILFactory.getLoader().loadNet(imageView, urlPath, null);
         ILFactory.getLoader().loadNet(context, urlPath, null, new LoadCallback() {
             @Override
             public void onLoadReady(Drawable drawable) {
 
             }
         });
-        ILFactory.getLoader().loadResource(context,imageView, resIds, null);
+        ILFactory.getLoader().loadResource(imageView, resIds, null);
         ILFactory.getLoader().clearMemoryCache(context);
         ILFactory.getLoader().resume(context);
         ILFactory.getLoader().pause(context);
@@ -50,7 +50,7 @@ public class ImageLoaderTest extends XActivity {
 
         int loadingResId = -1;
         int loadErrorResId = -1;
-        ILFactory.getLoader().loadNet(context,imageView, urlPath,
+        ILFactory.getLoader().loadNet(imageView, urlPath,
                 new ILoader.Options(loadingResId, loadErrorResId).scaleType(ImageView.ScaleType.FIT_CENTER));
 
     }
