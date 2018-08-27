@@ -38,12 +38,7 @@ public class GlideLoader implements ILoader {
 
     private void load(Object model, ImageView target, Options options) {
         if (options == null) options = Options.defaultOptions();
-        RequestOptions requestOptions = new RequestOptions()
-                .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .placeholder(options.loadingResId)
-                .error(options.loadErrorResId)
-                .priority(Priority.HIGH);
+        RequestOptions requestOptions = wrapScaleType(options);
 
         getRequestManager(target.getContext())
                 .load(model)
@@ -122,5 +117,40 @@ public class GlideLoader implements ILoader {
     @Override
     public void pause(Context context) {
         getRequestManager(context).pauseRequests();
+    }
+
+    private RequestOptions wrapScaleType(Options options) {
+        RequestOptions request = new RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .priority(Priority.HIGH);
+
+        if (options.scaleType != null) {
+            if (options.loadingResId != Options.RES_NONE) {
+                request.placeholder(options.loadingResId);
+            }
+            if (options.loadErrorResId != Options.RES_NONE) {
+                request.error(options.loadErrorResId);
+            }
+
+            switch (options.scaleType) {
+                case MATRIX:
+                case FIT_XY:
+                case FIT_START:
+                case FIT_END:
+                case CENTER:
+                case CENTER_INSIDE:
+                    break;
+
+                case FIT_CENTER:
+                    request.fitCenter();
+                    break;
+
+                case CENTER_CROP:
+                    request.centerCrop();
+                    break;
+            }
+        }
+
+        return request;
     }
 }
