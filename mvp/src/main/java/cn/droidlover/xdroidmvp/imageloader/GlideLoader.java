@@ -120,10 +120,17 @@ public class GlideLoader implements ILoader {
             request.error(options.loadErrorResId);
         }
 
-        wrapScaleType(request, options)
+        wrapTransformation(wrapScaleType(request, options), options)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .crossFade()
                 .into(target);
+    }
+
+    private DrawableTypeRequest wrapTransformation(DrawableTypeRequest request, Options options) {
+        if (options.transformation != null) {
+            request.bitmapTransform(options.transformation);
+        }
+        return request;
     }
 
     private DrawableTypeRequest wrapScaleType(DrawableTypeRequest request, Options options) {

@@ -3,6 +3,8 @@ package cn.droidlover.xdroidmvp.imageloader;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+
 import java.io.File;
 
 import cn.droidlover.xdroidmvp.XDroidConf;
@@ -39,6 +41,7 @@ public interface ILoader {
         public int loadingResId = RES_NONE;        //加载中的资源id
         public int loadErrorResId = RES_NONE;      //加载失败的资源id
         public ImageView.ScaleType scaleType = null;
+        public BitmapTransformation transformation = null;
 
         public static final int RES_NONE = -1;
 
@@ -53,6 +56,11 @@ public interface ILoader {
 
         public Options scaleType(ImageView.ScaleType scaleType) {
             this.scaleType = scaleType;
+            return this;
+        }
+
+        public Options transform(BitmapTransformation transformation) {
+            this.transformation = transformation;
             return this;
         }
     }
