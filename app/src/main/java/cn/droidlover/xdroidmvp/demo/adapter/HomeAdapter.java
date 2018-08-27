@@ -63,7 +63,7 @@ public class HomeAdapter extends SimpleRecAdapter<GankResults.Item, HomeAdapter.
                 holder.ivPart.setVisibility(View.VISIBLE);
                 holder.ivVedio.setVisibility(View.GONE);
 
-                ILFactory.getLoader().loadNet(holder.ivPart, item.getUrl(), null);
+                ILFactory.getLoader().loadNet(context, holder.ivPart, item.getUrl(), null);
                 holder.tvItem.setText("瞧瞧妹纸，扩展扩展视野......");
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override

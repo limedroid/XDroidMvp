@@ -3,17 +3,20 @@ package cn.droidlover.xdroidmvp.imageloader;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
-import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.io.File;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 /**
  * Created by wanglei on 2016/11/28.
@@ -22,45 +25,62 @@ import java.io.File;
 public class GlideLoader implements ILoader {
 
     @Override
-    public void init(Context context) {
+    public void init(Context mContext) {
 
     }
 
+    private RequestManager getRequestManager(Context context) {
+        if (context instanceof Activity) {
+            return Glide.with((Activity) context);
+        }
+        return Glide.with(context);
+    }
+
+    private void load(Context context, Object model, ImageView target, Options options) {
+        if (options == null) options = Options.defaultOptions();
+        RequestOptions requestOptions = new RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .placeholder(options.loadingResId)
+                .error(options.loadErrorResId)
+                .priority(Priority.HIGH);
+
+        getRequestManager(context)
+                .load(model)
+                .apply(requestOptions)
+                .transition(withCrossFade())
+                .into(target);
+    }
+
     @Override
-    public void loadNet(ImageView target, String url, Options options) {
-        load(getRequestManager(target.getContext()).load(url), target, options);
+    public void loadNet(Context context, ImageView target, String url, Options options) {
+        load(context, url, target, options);
     }
 
     @Override
     public void loadNet(Context context, String url, Options options, final LoadCallback callback) {
-        DrawableTypeRequest request = getRequestManager(context).load(url);
         if (options == null) options = Options.defaultOptions();
+        RequestOptions requestOptions = new RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .placeholder(options.loadingResId)
+                .error(options.loadErrorResId)
+                .priority(Priority.HIGH);
 
-        if (options.loadingResId != Options.RES_NONE) {
-            request.placeholder(options.loadingResId);
-        }
-        if (options.loadErrorResId != Options.RES_NONE) {
-            request.error(options.loadErrorResId);
-        }
-
-        wrapScaleType(request, options)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .crossFade()
-                .into(new SimpleTarget<GlideBitmapDrawable>() {
+        getRequestManager(context)
+                .load(url)
+                .apply(requestOptions)
+                .transition(withCrossFade())
+                .into(new SimpleTarget<Drawable>() {
 
                     @Override
-                    public void onLoadFailed(Exception e, Drawable errorDrawable) {
-                        super.onLoadFailed(e, errorDrawable);
-                        if (callback != null) {
-                            callback.onLoadFailed(e);
-                        }
+                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                        super.onLoadFailed(errorDrawable);
                     }
 
                     @Override
-                    public void onResourceReady(GlideBitmapDrawable resource, GlideAnimation<? super GlideBitmapDrawable> glideAnimation) {
-                        if (resource != null && resource.getBitmap() != null) {
+                    public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+                        if (resource != null) {
                             if (callback != null) {
-                                callback.onLoadReady(resource.getBitmap());
+                                callback.onLoadReady(resource);
                             }
                         }
                     }
@@ -69,18 +89,18 @@ public class GlideLoader implements ILoader {
     }
 
     @Override
-    public void loadResource(ImageView target, int resId, Options options) {
-        load(getRequestManager(target.getContext()).load(resId), target, options);
+    public void loadResource(Context context,ImageView target, int resId, Options options) {
+        load(context, resId, target, options);
     }
 
     @Override
-    public void loadAssets(ImageView target, String assetName, Options options) {
-        load(getRequestManager(target.getContext()).load("file:///android_asset/" + assetName), target, options);
+    public void loadAssets(Context context, ImageView target, String assetName, Options options) {
+        load(context, "file:///android_asset/" + assetName, target, options);
     }
 
     @Override
-    public void loadFile(ImageView target, File file, Options options) {
-        load(getRequestManager(target.getContext()).load(file), target, options);
+    public void loadFile(Context context,ImageView target, File file, Options options) {
+        load(context, file, target, options);
     }
 
     @Override
@@ -101,63 +121,5 @@ public class GlideLoader implements ILoader {
     @Override
     public void pause(Context context) {
         getRequestManager(context).pauseRequests();
-    }
-
-    private RequestManager getRequestManager(Context context) {
-        if (context instanceof Activity) {
-            return Glide.with((Activity) context);
-        }
-        return Glide.with(context);
-    }
-
-    private void load(DrawableTypeRequest request, ImageView target, Options options) {
-        if (options == null) options = Options.defaultOptions();
-
-        if (options.loadingResId != Options.RES_NONE) {
-            request.placeholder(options.loadingResId);
-        }
-        if (options.loadErrorResId != Options.RES_NONE) {
-            request.error(options.loadErrorResId);
-        }
-
-        wrapScaleType(request, options)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .crossFade()
-                .into(target);
-    }
-
-    private DrawableTypeRequest wrapScaleType(DrawableTypeRequest request, Options options) {
-        if (options != null
-                && options.scaleType != null) {
-            switch (options.scaleType) {
-                case MATRIX:
-                    break;
-
-                case FIT_XY:
-                    break;
-
-                case FIT_START:
-                    break;
-
-                case FIT_END:
-                    break;
-
-                case CENTER:
-                    break;
-
-                case CENTER_INSIDE:
-                    break;
-
-                case FIT_CENTER:
-                    request.fitCenter();
-                    break;
-
-                case CENTER_CROP:
-                    request.centerCrop();
-                    break;
-            }
-        }
-
-        return request;
     }
 }

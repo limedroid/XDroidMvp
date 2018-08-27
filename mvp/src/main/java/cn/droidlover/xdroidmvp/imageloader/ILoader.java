@@ -15,15 +15,15 @@ public interface ILoader {
 
     void init(Context context);
 
-    void loadNet(ImageView target, String url, Options options);
+    void loadNet(Context context, ImageView target, String url, Options options);
 
     void loadNet(Context context, String url, Options options, LoadCallback callback);
 
-    void loadResource(ImageView target, int resId, Options options);
+    void loadResource(Context context, ImageView target, int resId, Options options);
 
-    void loadAssets(ImageView target, String assetName, Options options);
+    void loadAssets(Context context, ImageView target, String assetName, Options options);
 
-    void loadFile(ImageView target, File file, Options options);
+    void loadFile(Context context, ImageView target, File file, Options options);
 
     void clearMemoryCache(Context context);
 
