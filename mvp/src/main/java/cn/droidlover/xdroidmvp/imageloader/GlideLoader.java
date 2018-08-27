@@ -55,11 +55,7 @@ public class GlideLoader implements ILoader {
     @Override
     public void loadNet(Context context, String url, Options options, final LoadCallback callback) {
         if (options == null) options = Options.defaultOptions();
-        RequestOptions requestOptions = new RequestOptions()
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .placeholder(options.loadingResId)
-                .error(options.loadErrorResId)
-                .priority(Priority.HIGH);
+        RequestOptions requestOptions = wrapScaleType(options);
 
         getRequestManager(context)
                 .load(url)
