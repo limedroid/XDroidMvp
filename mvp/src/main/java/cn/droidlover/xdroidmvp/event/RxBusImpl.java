@@ -23,22 +23,22 @@ public class RxBusImpl implements IBus {
     }
 
     @Override
-    public void post(IEvent event) {
+    public void post(AbsEvent event) {
         RxBus.getDefault().post(event);
     }
 
     @Override
-    public void postSticky(IEvent event) {
+    public void postSticky(AbsEvent event) {
         RxBus.getDefault().postSticky(event);
     }
 
-    public <T> void subscribe(Object subscriber,
-                              RxBus.Callback<T> callback) {
+    public <T extends AbsEvent> void subscribe(Object subscriber,
+                                               RxBus.Callback<T> callback) {
         RxBus.getDefault().subscribe(subscriber, callback);
     }
 
-    public <T> void subscribeSticky(Object subscriber,
-                                    RxBus.Callback<T> callback) {
+    public <T extends AbsEvent> void subscribeSticky(Object subscriber,
+                                                     RxBus.Callback<T> callback) {
         RxBus.getDefault().subscribeSticky(subscriber, callback);
     }
 

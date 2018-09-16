@@ -7,13 +7,16 @@ package cn.droidlover.xdroidmvp.event;
 public interface IBus {
 
     void register(Object object);
+
     void unregister(Object object);
-    void post(IEvent event);
-    void postSticky(IEvent event);
+
+    void post(AbsEvent event);
+
+    void postSticky(AbsEvent event);
 
 
-    interface IEvent {
-        int getTag();
+    abstract class AbsEvent {
+        public abstract int getTag();
     }
 
 }
