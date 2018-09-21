@@ -39,9 +39,9 @@ public class GirlAdapter extends SimpleRecAdapter<GankResults.Item, GirlAdapter.
         GankResults.Item item = data.get(position);
 
         //圆形
-//        ILFactory.getLoader().loadCirclePic(item.getUrl(),holder.ivGirl, new ILoader.Options(R.mipmap.xdroid_logo_128, R.mipmap.xdroid_logo_128));
+//        ILFactory.getLoader().loadCircle(item.getUrl(),holder.ivGirl, new ILoader.Options(R.mipmap.xdroid_logo_128, R.mipmap.xdroid_logo_128));
         //圆角
-//        ILFactory.getLoader().loadPicWithCorner(item.getUrl(),holder.ivGirl, 50,new ILoader.Options(R.mipmap.xdroid_logo_128, R.mipmap.xdroid_logo_128));
+//        ILFactory.getLoader().loadCorner(item.getUrl(),holder.ivGirl, 50,new ILoader.Options(R.mipmap.xdroid_logo_128, R.mipmap.xdroid_logo_128));
         //正常
         ILFactory.getLoader().loadNet(holder.ivGirl, item.getUrl(), new ILoader.Options(R.mipmap.xdroid_logo_128, R.mipmap.xdroid_logo_128));
 

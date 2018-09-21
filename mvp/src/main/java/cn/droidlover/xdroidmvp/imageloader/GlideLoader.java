@@ -166,7 +166,7 @@ public class GlideLoader implements ILoader {
 
     //加载圆形图片
     @Override
-    public void loadCirclePic(String url, final ImageView target, Options options) {
+    public void loadCircle(String url, final ImageView target, Options options) {
         RequestOptions requestOptions = wrapScaleType(options);
         requestOptions.optionalCircleCrop();
 
@@ -180,7 +180,7 @@ public class GlideLoader implements ILoader {
 
     //加载圆形图片
     @Override
-    public void loadPicWithCorner(String url, final ImageView target, int radius, Options options) {
+    public void loadCorner(String url, final ImageView target, int radius, Options options) {
         RequestOptions requestOptions = wrapScaleType(options);
 
         //设置图片圆角角度
