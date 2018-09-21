@@ -33,6 +33,9 @@ public interface ILoader {
 
     void pause(Context context);
 
+    void loadCirclePic(String url, ImageView target, Options options);
+
+    void loadPicWithCorner(String url, ImageView target, int radius, Options options);
 
     class Options {
 
