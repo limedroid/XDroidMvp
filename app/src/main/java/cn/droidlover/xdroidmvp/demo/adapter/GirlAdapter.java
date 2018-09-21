@@ -10,6 +10,7 @@ import cn.droidlover.xdroidmvp.base.SimpleRecAdapter;
 import cn.droidlover.xdroidmvp.demo.R;
 import cn.droidlover.xdroidmvp.demo.model.GankResults;
 import cn.droidlover.xdroidmvp.imageloader.ILFactory;
+import cn.droidlover.xdroidmvp.imageloader.ILoader;
 import cn.droidlover.xdroidmvp.kit.KnifeKit;
 
 /**
@@ -37,7 +38,12 @@ public class GirlAdapter extends SimpleRecAdapter<GankResults.Item, GirlAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         GankResults.Item item = data.get(position);
 
-        ILFactory.getLoader().loadNet(holder.ivGirl, item.getUrl(), null);
+        //圆形
+//        ILFactory.getLoader().loadCircle(item.getUrl(),holder.ivGirl, new ILoader.Options(R.mipmap.xdroid_logo_128, R.mipmap.xdroid_logo_128));
+        //圆角
+//        ILFactory.getLoader().loadCorner(item.getUrl(),holder.ivGirl, 50,new ILoader.Options(R.mipmap.xdroid_logo_128, R.mipmap.xdroid_logo_128));
+        //正常
+        ILFactory.getLoader().loadNet(holder.ivGirl, item.getUrl(), new ILoader.Options(R.mipmap.xdroid_logo_128, R.mipmap.xdroid_logo_128));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
