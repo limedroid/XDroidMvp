@@ -17,9 +17,11 @@ import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.bumptech.glide.request.transition.Transition;
 
 import java.io.File;
@@ -48,10 +50,13 @@ public class GlideLoader implements ILoader {
         if (options == null) options = Options.defaultOptions();
         RequestOptions requestOptions = wrapScaleType(options);
 
+        DrawableTransitionOptions drawableTransitionOptions = new DrawableTransitionOptions().
+                crossFade(new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build());
+
         getRequestManager(target.getContext())
                 .load(model)
                 .apply(requestOptions)
-                .transition(withCrossFade())
+                .transition(drawableTransitionOptions)
                 .into(target);
     }
 
