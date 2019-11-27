@@ -1,16 +1,17 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.limedroid'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion "29.0.2"
+
     defaultConfig {
-        applicationId 'cn.droidlover.xdroidmvp.demo'
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -19,10 +20,24 @@ android {
     }
 }
 
-
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    annotationProcessor rootProject.ext.dependencies["butterknife-apt"]
-    api rootProject.ext.dependencies["avi-loading"]
-    api project(":mvp")
+    api rootProject.ext.dependencies["recyclerview-v7"]
+    api rootProject.ext.dependencies["annotations"]
+    api rootProject.ext.dependencies["XStateController"]
+    api rootProject.ext.dependencies["support-v4"]
+}
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
 }

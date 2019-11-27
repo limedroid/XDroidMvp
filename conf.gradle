@@ -1,51 +1,66 @@
 ext {
 
     android = [
-            compileSdkVersion: 27,
+            compileSdkVersion : 29,
 
-            minSdkVersion    : 15,
-            targetSdkVersion : 26,
+            minSdkVersion     : 16,
+            targetSdkVersion  : 29,
 
-            versionCode      : 1,
-            versionName      : '1.0.0',
+            versionCode       : 1,
+            versionName       : '1.0.0',
 
-            VSupportSdk      : '27.1.1',
-            VRetrofitSdk     : "2.2.0",
-            VOkhttp          : "3.4.2",
-            VRxlifecycle     : "2.0.1"
+            VSupportSdk       : '27.1.1',
+            VRetrofitSdk      : "2.2.0",
+            VOkhttp           : "3.4.2",
+            VRxlifecycle      : "3.0.0",
+
+            latest_integration: "latest.integration",
     ]
     dependencies = [
-            "appcompat-v7"               : "com.android.support:appcompat-v7:${android["VSupportSdk"]}",
-            "support-v4"                 : "com.android.support:support-v4:${android["VSupportSdk"]}",
-            "design"                     : "com.android.support:design:${android["VSupportSdk"]}",
-            "annotations"                : "com.android.support:support-annotations:${android["VSupportSdk"]}",
-            "recyclerview-v7"            : "com.android.support:recyclerview-v7:${android["VSupportSdk"]}",
 
-            "butterknife"                : "com.jakewharton:butterknife:8.4.0",
-            "butterknife-apt"            : "com.jakewharton:butterknife-compiler:8.4.0",
+            "appcompat-v7"               : "androidx.appcompat:appcompat:${android["latest_integration"]}",
+
+            "support-v4"                 : "androidx.legacy:legacy-support-v4:${android["latest_integration"]}",
+
+            "design"                     : "com.google.android.material:material:${android["latest_integration"]}",
+
+            "annotations"                : "androidx.annotation:annotation:1.1.0",
+
+            "recyclerview-v7"            : "androidx.recyclerview:recyclerview:${android["latest_integration"]}",
+
+            "butterknife"                : "com.jakewharton:butterknife:10.2.0",
+            "butterknife-apt"            : "com.jakewharton:butterknife-compiler:10.2.0",
+
             "eventbus"                   : "org.greenrobot:eventbus:3.0.0",
-            "glide"                      : "com.github.bumptech.glide:glide:4.8.0",
-            "glide-compiler"             : "com.github.bumptech.glide:compiler:4.8.0",
+            "glide"                      : "com.github.bumptech.glide:glide:4.9.0",
+            "glide-compiler"             : "com.github.bumptech.glide:compiler:4.9.0",
             "picasso"                    : "com.squareup.picasso:picasso:2.5.2",
-            "xrecyclerview"              : "com.github.limedroid:ARecyclerView:v1.2.3",
+//            "xrecyclerview"              : "com.github.limedroid:ARecyclerView:v1.2.3",
             "avi-loading"                : "com.wang.avi:library:1.0.2",
             "rxbus"                      : "com.blankj:rxbus:1.2",
 
             "gson"                       : "com.google.code.gson:gson:2.6.2",
             "rxandroid"                  : "io.reactivex.rxjava2:rxandroid:2.0.1",
             "rxjava"                     : "io.reactivex.rxjava2:rxjava:2.0.1",
+
             "retrofit"                   : "com.squareup.retrofit2:retrofit:${android["VRetrofitSdk"]}",
             "retrofit-converter-gson"    : "com.squareup.retrofit2:converter-gson:${android["VRetrofitSdk"]}",
             "retrofit-adapter-rxjava"    : "com.squareup.retrofit2:adapter-rxjava2:${android["VRetrofitSdk"]}",
             "okhttp3-logging-interceptor": "com.squareup.okhttp3:logging-interceptor:${android["VOkhttp"]}",
             "okhttp3"                    : "com.squareup.okhttp3:okhttp:${android["VOkhttp"]}",
-            "rxlifecycle"                : "com.trello.rxlifecycle2:rxlifecycle:${android["VRxlifecycle"]}",
-            "rxlifecycle-android"        : "com.trello.rxlifecycle2:rxlifecycle-android:${android["VRxlifecycle"]}",
-            "rxlifecycle-components"     : "com.trello.rxlifecycle2:rxlifecycle-components:${android["VRxlifecycle"]}",
+
+            "rxlifecycle"                : "com.trello.rxlifecycle3:rxlifecycle:${android["VRxlifecycle"]}",
+
+            "rxlifecycle-android"        : "com.trello.rxlifecycle3:rxlifecycle-android:${android["VRxlifecycle"]}",
+
+            "rxlifecycle-components"     : "com.trello.rxlifecycle3:rxlifecycle-components:${android["VRxlifecycle"]}",
+
             "rxpermissions"              : "com.tbruyelle.rxpermissions2:rxpermissions:0.9.3@aar",
 
             "canary-debug"               : "com.squareup.leakcanary:leakcanary-android:1.4-beta2",
             "canary-release"             : "com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2",
+
+            "XStateController"           : "com.github.limedroid:XStateController:v1.1.1",
     ]
 
 }

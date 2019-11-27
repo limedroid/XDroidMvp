@@ -2,7 +2,7 @@ package cn.droidlover.xdroidmvp.demo.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 

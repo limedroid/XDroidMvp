@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import com.trello.rxlifecycle3.components.support.RxFragment;
 
-import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import java.lang.reflect.Field;
 

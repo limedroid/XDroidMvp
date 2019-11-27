@@ -1,1 +1,1 @@
-include ':app', ':mvp', ':test'
+include ':app', ':mvp', ':test',':xrecycler'

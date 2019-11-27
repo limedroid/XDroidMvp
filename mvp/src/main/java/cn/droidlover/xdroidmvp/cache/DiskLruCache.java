@@ -688,6 +688,7 @@ public final class DiskLruCache implements Closeable {
     /**
      * Closes this cache. Stored values will remain on the filesystem.
      */
+    @Override
     public synchronized void close() throws IOException {
         if (journalWriter == null) {
             return; // already closed

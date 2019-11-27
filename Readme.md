@@ -1,4 +1,4 @@
-#XDroidMvp 轻量级的Android MVP快速开发框架
+#XDroidMvp 轻量级的Android MVP快速开发框架(AndroidX适配版本)
 
 ## 概述
 
@@ -196,7 +196,10 @@ dependencies {
 * [ButterKnife](https://github.com/JakeWharton/butterknife)使用的是8.4.0版本，重点是 `@BindView`，可以去项目官网查看。
 * [Rxlifecycle](https://github.com/trello/RxLifecycle)使用的是1.0版本，具体如何使用可以查看官网。
 * [RxPermissions](https://github.com/tbruyelle/RxPermissions)使用的是0.9.1版本，具体如何使用可以查看官网。
-* [retrofit](https://github.com/square/retrofit)，具体如何使用可以查看官网。
+* [retrofit](https://github.com/square/retrofit)，具体如何使用可以查看官网。   
+* [一定]()要修改当前项目的 gradle.properties添加  
+    android.useAndroidX=true  
+    android.enableJetifier=true
 
 ## 更新日志
 
@@ -224,6 +227,8 @@ dependencies {
 **Email** : droidlover@126.com
 
 **XDroid交流群**：153569290
+
+**XDroid MVP原版**：[XDroidMvp](https://github.com/limedroid/XDroidMvp)    
 
 **XDroid MVC版本**：[XDroid](https://github.com/limedroid/XDroid)
 
