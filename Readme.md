@@ -203,6 +203,7 @@ dependencies {
 
 ## 更新日志
 
+* 2019-11-27, 修改support依赖为AndroidX依赖  
 * 2017-04-23，新增proguard rules,upgrade to rx2
 * 2016-12-23，新增mvp、base、cache、event、imageloader、log、router
 * 2016-12-25，新增rxJava、rxAndroid、rxlifecycle、rxpermission、rxbus、net(retrofit)
