@@ -16,7 +16,7 @@
 
 package cn.droidlover.xdroidmvp.cache;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;

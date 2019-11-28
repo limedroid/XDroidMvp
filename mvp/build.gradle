@@ -1,7 +1,18 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.novoda.bintray-release'
 
-group = 'com.github.limedroid'
+publish {
+    artifactId = 'xdroid-mvp'  // artifactId
+    uploadName = 'XDroidMvp' // 展示名字
+    publishVersion = '1.0.0' // 版本
+    userOrg = rootProject.userOrg
+    groupId = rootProject.groupId
+    repoName = rootProject.repoName
+    desc = ''
+    website = rootProject.website
+    licences = rootProject.licences
+}
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -19,7 +30,6 @@ android {
         }
     }
 }
-
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api rootProject.ext.dependencies["appcompat-v7"]
@@ -28,8 +38,8 @@ dependencies {
     api rootProject.ext.dependencies["annotations"]
     api rootProject.ext.dependencies["recyclerview-v7"]
 
-//    api rootProject.ext.dependencies["xrecyclerview"]
-    api project(path: ':xrecycler')
+    api rootProject.ext.dependencies["xrecyclerview"]
+
     api rootProject.ext.dependencies["butterknife"]
     api rootProject.ext.dependencies["glide"]
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
@@ -57,7 +67,6 @@ task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
-
 artifacts {
     archives sourcesJar
 }
