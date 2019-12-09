@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="XRecyclerContentLayout">
+        <attr name="recyclerClipToPadding" format="boolean" />
+        <attr name="recyclerPadding" format="dimension" />
+        <attr name="recyclerPaddingTop" format="dimension" />
+        <attr name="recyclerPaddingBottom" format="dimension" />
+        <attr name="recyclerPaddingLeft" format="dimension" />
+        <attr name="recyclerPaddingRight" format="dimension" />
+        <attr name="recyclerScrollbarNone" format="boolean" />
+        <attr name="recyclerBackgroundColor" format="color" />
+
+        <attr name="recyclerScrollbarStyle">
+            <flag name="insideOverlay" value="0x00000000" />
+            <flag name="insideInset" value="0x01000000" />
+            <flag name="outsideOverlay" value="0x02000000" />
+            <flag name="outsideInset" value="0x03000000" />
+        </attr>
+    </declare-styleable>
+</resources>

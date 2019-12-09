@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-
+    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId 'cn.droidlover.xdroidmvp.demo'
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -17,12 +17,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
     annotationProcessor rootProject.ext.dependencies["butterknife-apt"]
-    implementation rootProject.ext.dependencies["avi-loading"]
-    implementation project(":mvp")
+    api rootProject.ext.dependencies["avi-loading"]
+    api project(":mvp")
 }

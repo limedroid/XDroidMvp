@@ -3,18 +3,18 @@ package cn.droidlover.xdroidmvp.mvp;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.Unbinder;
 import cn.droidlover.xdroidmvp.XDroidConf;
 import cn.droidlover.xdroidmvp.event.BusProvider;
 import cn.droidlover.xdroidmvp.kit.KnifeKit;
+import com.trello.rxlifecycle3.components.support.RxFragment;
 
 /**
  * Created by wanglei on 2016/12/29.
