@@ -3,25 +3,38 @@ apply from: "conf.gradle"
 
 buildscript {
     repositories {
+        jcenter() { url 'https://maven.aliyun.com/repository/jcenter' }
         jcenter()
+        maven {url 'https://dl.bintray.com/lennon-xia/lennon/'}
         maven {
             url 'https://maven.google.com/'
             name 'Google'
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath 'com.android.tools.build:gradle:3.5.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.0'
+        classpath 'com.novoda:bintray-release:0.9.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
-
+ext{
+    userOrg = 'lennon-xia' // 用户名
+    repoName = "lennon" // 仓库名
+    groupId = 'com.lennon.utill' // groupId
+    desc = 'useful tool for android' // 描述
+    website = 'https://github.com/lennon19940306/XDroidMvp-AndroidX' // 地址 ， 填写真实可访问地址
+    licences = ['Apache-2.0']// 描述 ， 填写licences
+}
 allprojects {
+
     repositories {
+        jcenter() { url 'https://maven.aliyun.com/repository/jcenter' }
         mavenCentral()
+        maven {url 'https://dl.bintray.com/lennon-xia/lennon/'}
         maven {
             url 'https://maven.google.com/'
             name 'Google'

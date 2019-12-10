@@ -19,8 +19,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
     annotationProcessor rootProject.ext.dependencies["butterknife-apt"]
-    implementation project(":mvp")
+    api project(":mvp")
 }
 

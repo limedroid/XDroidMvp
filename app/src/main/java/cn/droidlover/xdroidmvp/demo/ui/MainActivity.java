@@ -1,10 +1,9 @@
 package cn.droidlover.xdroidmvp.demo.ui;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ import butterknife.BindView;
 import cn.droidlover.xdroidmvp.base.XFragmentAdapter;
 import cn.droidlover.xdroidmvp.demo.R;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
+import com.google.android.material.tabs.TabLayout;
 
 /**
  * Created by wanglei on 2016/12/22.

@@ -1,5 +1,6 @@
 package cn.droidlover.xdroidmvp.kit;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -144,6 +145,7 @@ public class Kits {
          * @param packageName
          * @return
          */
+        @SuppressLint("NewApi")
         public static Boolean isTopActivity(Context context, String packageName) {
             if (context == null || TextUtils.isEmpty(packageName)) {
                 return null;
@@ -198,11 +200,12 @@ public class Kits {
          * @param context
          * @return
          */
+        @SuppressLint("NewApi")
         public static boolean isApplicationInBackground(Context context) {
             ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
             List<ActivityManager.RunningTaskInfo> taskList = am.getRunningTasks(1);
             if (taskList != null && !taskList.isEmpty()) {
-                ComponentName topActivity = taskList.get(0).topActivity;
+              ComponentName topActivity = taskList.get(0).topActivity;
                 if (topActivity != null && !topActivity.getPackageName().equals(context.getPackageName())) {
                     return true;
                 }
@@ -1011,7 +1014,7 @@ public class Kits {
 
     }
 
-
+    @SuppressLint("MissingPermission")
     public static class NetWork {
         public static final String NETWORK_TYPE_WIFI = "wifi";
         public static final String NETWORK_TYPE_3G = "eg";

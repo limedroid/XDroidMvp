@@ -1,0 +1,32 @@
+# Android
+local.properties
+*.keystore
+*.DS_Store
+
+# Gradle
+.gradle
+build
+jacoco.exec
+
+# gh-pages
+doc/**
+_site/*
+_pages/*
+docs/**/*
+
+# Vim
+*.swp
+*.swo
+
+# sed
+*.bak
+
+# Intellij
+*.iml
+*.ipr
+*.iws
+.idea/**
+!.idea/codeStyleSettings.xml
+!.idea/inspectionProfiles
+!.idea/inspectionProfiles/Project_Default.xml
+

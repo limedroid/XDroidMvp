@@ -2,17 +2,17 @@ package cn.droidlover.xdroidmvp.mvp;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.Menu;
 import android.view.View;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.Unbinder;
 import cn.droidlover.xdroidmvp.XDroidConf;
 import cn.droidlover.xdroidmvp.event.BusProvider;
 import cn.droidlover.xdroidmvp.kit.KnifeKit;
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 /**
  * Created by wanglei on 2016/12/29.

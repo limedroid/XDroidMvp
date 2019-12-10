@@ -58,7 +58,9 @@ public class DiskCache implements ICache {
     }
 
     public void put(String key, String value, long expireMills) {
-        if (TextUtils.isEmpty(key) || TextUtils.isEmpty(value)) return;
+        if (TextUtils.isEmpty(key) || TextUtils.isEmpty(value)) {
+            return;
+        }
 
         String name = getMd5Key(key);
         try {
@@ -82,6 +84,7 @@ public class DiskCache implements ICache {
     }
 
 
+    @Override
     public String get(String key) {
         try {
             String md5Key = getMd5Key(key);
@@ -115,6 +118,7 @@ public class DiskCache implements ICache {
         return null;
     }
 
+    @Override
     public void remove(String key) {
         try {
             cache.remove(getMd5Key(key));
@@ -123,6 +127,7 @@ public class DiskCache implements ICache {
         }
     }
 
+    @Override
     public boolean contains(String key) {
         try {
             DiskLruCache.Snapshot snapshot = cache.get(getMd5Key(key));
@@ -133,6 +138,7 @@ public class DiskCache implements ICache {
         return false;
     }
 
+    @Override
     public void clear() {
         try {
             cache.delete();

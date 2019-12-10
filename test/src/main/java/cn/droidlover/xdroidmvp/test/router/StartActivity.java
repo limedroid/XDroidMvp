@@ -2,8 +2,8 @@ package cn.droidlover.xdroidmvp.test.router;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityOptionsCompat;
 
+import androidx.core.app.ActivityOptionsCompat;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
 import cn.droidlover.xdroidmvp.router.Router;
 
