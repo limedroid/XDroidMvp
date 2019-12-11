@@ -85,7 +85,9 @@ public abstract class RecyclerAdapter<T, F extends RecyclerView.ViewHolder> exte
             int position = data.indexOf(element);
             data.remove(element);
             notifyItemRemoved(position);
-            notifyItemChanged(position);
+            if (position < data.size()) {
+                notifyItemChanged(position);
+            }
         }
     }
 
@@ -98,7 +100,9 @@ public abstract class RecyclerAdapter<T, F extends RecyclerView.ViewHolder> exte
         if (data != null && data.size() > position) {
             data.remove(position);
             notifyItemRemoved(position);
-            notifyItemChanged(position);
+            if (position < data.size()) {
+                notifyItemChanged(position);
+            }
         }
     }
 

@@ -3,9 +3,10 @@ apply from: "conf.gradle"
 
 buildscript {
     repositories {
+        maven {url 'https://dl.bintray.com/lennon-xia/lennon/'}
         jcenter() { url 'https://maven.aliyun.com/repository/jcenter' }
         jcenter()
-        maven {url 'https://dl.bintray.com/lennon-xia/lennon/'}
+
         maven {
             url 'https://maven.google.com/'
             name 'Google'
@@ -32,9 +33,10 @@ ext{
 allprojects {
 
     repositories {
+        maven {url 'https://dl.bintray.com/lennon-xia/lennon/'}
         jcenter() { url 'https://maven.aliyun.com/repository/jcenter' }
         mavenCentral()
-        maven {url 'https://dl.bintray.com/lennon-xia/lennon/'}
+
         maven {
             url 'https://maven.google.com/'
             name 'Google'

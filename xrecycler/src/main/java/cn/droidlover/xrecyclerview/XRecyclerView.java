@@ -7,6 +7,7 @@ import android.view.View;
 import java.util.Collections;
 import java.util.List;
 
+import android.widget.Adapter;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.Nullable;
@@ -232,7 +233,7 @@ public class XRecyclerView extends RecyclerView {
     }
 
     public XRecyclerView horizontalStaggeredLayoutManager(int spanCount) {
-        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.HORIZONTAL);
         setLayoutManager(manager);
         return this;
     }

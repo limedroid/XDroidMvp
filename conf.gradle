@@ -18,6 +18,7 @@ ext {
     ]
     dependencies = [
 
+
             "appcompat-v7"               : "androidx.appcompat:appcompat:${android["latest_integration"]}",
 
             "support-v4"                 : "androidx.legacy:legacy-support-v4:${android["latest_integration"]}",
@@ -36,7 +37,8 @@ ext {
             "glide-compiler"             : "com.github.bumptech.glide:compiler:4.9.0",
             "picasso"                    : "com.squareup.picasso:picasso:2.5.2",
 
-            "xrecyclerview"              : "com.lennon.utill:xrecycler:1.0.0",
+            "xrecyclerview"              : "com.lennon.utill:xrecycler:1.0.2",
+            "xdroid-mvp"                 : "com.lennon.utill:xdroid-mvp:1.0.0",
 
             "avi-loading"                : "com.wang.avi:library:1.0.2",
             "rxbus"                      : "com.blankj:rxbus:1.2",
