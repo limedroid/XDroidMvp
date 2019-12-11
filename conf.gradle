@@ -37,7 +37,7 @@ ext {
             "glide-compiler"             : "com.github.bumptech.glide:compiler:4.9.0",
             "picasso"                    : "com.squareup.picasso:picasso:2.5.2",
 
-            "xrecyclerview"              : "com.lennon.utill:xrecycler:1.0.2",
+            "xrecyclerview"              : "com.lennon.utill:xrecycler:1.0.3",
             "xdroid-mvp"                 : "com.lennon.utill:xdroid-mvp:1.0.0",
 
             "avi-loading"                : "com.wang.avi:library:1.0.2",
