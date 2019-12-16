@@ -34,6 +34,7 @@
 	* **支持多个baseUrl**
 	* 。。。。
 * 无需担心rx内存泄漏
+* 适配AndroidX，请前往`android-x`分支
 
 保留：
 
