@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    artifactId = 'lennon-utill'  // artifactId
+    uploadName = 'LennonUtill' // 展示名字
+    publishVersion = '1.0.3' // 版本
+    userOrg = rootProject.userOrg
+    groupId = rootProject.groupId
+    repoName = rootProject.repoName
+    desc = ''
+    website = rootProject.website
+    licences = rootProject.licences
+}
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api rootProject.ext.dependencies["xdroid-mvp"]
+
+    api rootProject.ext.dependencies["PersistentCookieJar"]
+    api rootProject.ext.dependencies["qiujuer-ui"]
+    api rootProject.ext.dependencies["multidex"]
+    api rootProject.ext.dependencies["exifinterface"]
+    api rootProject.ext.dependencies["constraintlayout"]
+
+    api rootProject.ext.dependencies["navigation-fragment-ktx"]
+    api rootProject.ext.dependencies["navigation-ui-ktx"]
+    api rootProject.ext.dependencies["navigation-ui"]
+    api rootProject.ext.dependencies["navigation-fragment"]
+}

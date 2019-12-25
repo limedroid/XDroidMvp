@@ -5,10 +5,8 @@ import android.view.View;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
-import butterknife.Unbinder;
 import cn.droidlover.xdroidmvp.XDroidConf;
 import cn.droidlover.xdroidmvp.event.BusProvider;
-import cn.droidlover.xdroidmvp.kit.KnifeKit;
 
 /**
  * Created by wanglei on 2017/1/26.
@@ -21,7 +19,6 @@ public abstract class XLazyFragment<P extends IPresent>
     private P p;
 
     private RxPermissions rxPermissions;
-    private Unbinder unbinder;
 
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
@@ -31,18 +28,12 @@ public abstract class XLazyFragment<P extends IPresent>
 
         if (getLayoutId() > 0) {
             setContentView(getLayoutId());
-            bindUI(getRealRootView());
         }
         if (useEventBus()) {
             BusProvider.getBus().register(this);
         }
         bindEvent();
         initData(savedInstanceState);
-    }
-
-    @Override
-    public void bindUI(View rootView) {
-        unbinder = KnifeKit.bind(this, rootView);
     }
 
     @Override

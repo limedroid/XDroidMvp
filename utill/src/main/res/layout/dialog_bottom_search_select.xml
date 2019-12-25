@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_333333"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_10"
+        android:background="@drawable/common_dialog_frame"
+        android:orientation="vertical"
+        android:padding="@dimen/space_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_45">
+
+            <com.lennon.cn.utill.widget.SearchView
+                android:id="@+id/dialog_bottom_search_select_search"
+                android:layout_width="@dimen/space_0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:search_hint="请输入关键词查询"
+                app:show_button="false" />
+
+            <TextView
+                android:id="@+id/dialog_bottom_search_select_cancle"
+                android:layout_width="@dimen/space_80"
+                android:layout_height="match_parent"
+                android:background="@drawable/common_button"
+                android:gravity="center"
+                android:paddingLeft="@dimen/space_10"
+                android:paddingRight="@dimen/space_10"
+                android:text="取消"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <cn.droidlover.xrecyclerview.XRecyclerView
+            android:id="@+id/dialog_bottom_search_select_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/space_5" />
+    </LinearLayout>
+
+
+</LinearLayout>

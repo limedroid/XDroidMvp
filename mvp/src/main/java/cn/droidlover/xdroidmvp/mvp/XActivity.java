@@ -4,14 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import android.view.Menu;
-import android.view.View;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
-import butterknife.Unbinder;
 import cn.droidlover.xdroidmvp.XDroidConf;
 import cn.droidlover.xdroidmvp.event.BusProvider;
-import cn.droidlover.xdroidmvp.kit.KnifeKit;
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 /**
@@ -26,7 +23,6 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
 
     private RxPermissions rxPermissions;
 
-    private Unbinder unbinder;
 
 
     @Override
@@ -38,16 +34,10 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
 
         if (getLayoutId() > 0) {
             setContentView(getLayoutId());
-            bindUI(null);
             bindEvent();
         }
         initData(savedInstanceState);
 
-    }
-
-    @Override
-    public void bindUI(View rootView) {
-        unbinder = KnifeKit.bind(this);
     }
 
     protected VDelegate getvDelegate() {

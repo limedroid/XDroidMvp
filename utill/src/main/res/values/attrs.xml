@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SearchView">
+        <attr name="search_hint" format="string"/>
+        <attr name="show_button" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="clear_edit_attrs">
+        <attr name="input_type" format="enum">
+            <enum name="phone" value="0" />
+            <enum name="card" value="1" />
+            <enum name="IDcard" value="2" />
+        </attr>
+        <!--<attr name="use_bank_num_mode" format="boolean"  />-->
+        <!--<attr name="scan_bank_click" format="boolean"  />-->
+    </declare-styleable>
+    <declare-styleable name="DrawableTextView">
+        <attr name="drawableWidth" format="dimension" />
+        <attr name="drawableHeight" format="dimension" />
+    </declare-styleable>
+    <!-- 自定义星星属性 -->
+    <declare-styleable name="star">
+        //星星数量
+        <attr name="starsNum" format="integer"></attr>
+        //星星宽度
+        <attr name="starWidth" format="dimension"></attr>
+        //星星高度
+        <attr name="starHeight" format="dimension"></attr>
+        //星星间距
+        <attr name="starDistance" format="dimension"></attr>
+        //星星背景
+        <attr name="starBackground" format="reference"></attr>
+        //星星变化背景
+        <attr name="starDrawBackground" format="reference"></attr>
+        //控件是否可以点击
+        <attr name="starClickable" format="boolean"></attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="MyRatingBar">
+        <attr name="space_width" format="dimension"></attr>
+        <attr name="star_width" format="dimension"></attr>
+        <attr name="star_height" format="dimension"></attr>
+        <attr name="star_max" format="integer"></attr>
+        <attr name="star_rating" format="float"></attr>
+        <attr name="star_hollow" format="reference"></attr>
+        <attr name="star_solid" format="reference"></attr>
+        <attr name="star_isIndicator" format="boolean"></attr>
+        <attr name="star_orientation" format="integer"></attr>
+    </declare-styleable>
+</resources>

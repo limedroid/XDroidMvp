@@ -30,7 +30,6 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    annotationProcessor rootProject.ext.dependencies["butterknife-apt"]
     api rootProject.ext.dependencies["avi-loading"]
-    api rootProject.ext.dependencies["xdroid-mvp"]
+    api "com.lennon.utill:xdroid-mvp:1.0.1"
 }

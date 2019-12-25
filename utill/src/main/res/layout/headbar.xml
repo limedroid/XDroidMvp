@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:dt="http://schemas.android.com/apk/res-auto"
+			  android:layout_width="match_parent"
+              android:layout_height="@dimen/title_hight"
+              android:orientation="horizontal">
+
+    <com.lennon.cn.utill.widget.DrawableTextView
+            android:id="@+id/headbar_left_tv"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/space_5"
+            android:gravity="left|center"
+            android:text="返回"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_16"/>
+
+    <TextView
+            android:id="@+id/headbar_mid_tv"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/space_5"
+            android:layout_marginRight="@dimen/space_5"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:ellipsize="marquee"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_20"/>
+
+    <LinearLayout
+			android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginRight="@dimen/space_10"
+            android:layout_weight="1"
+            android:gravity="right|center">
+
+        <com.lennon.cn.utill.widget.DrawableTextView
+                android:id="@+id/headbar_right_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawablePadding="@dimen/space_5"
+                android:gravity="center|right"
+                android:text="返回"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/text_16"/>
+
+        <ImageView
+                android:id="@+id/headbar_right_igv"
+                android:layout_width="@dimen/space_30"
+                android:layout_height="@dimen/space_30"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"/>
+    </LinearLayout>
+</LinearLayout>

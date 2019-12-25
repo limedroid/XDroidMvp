@@ -1,12 +1,16 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 //apply plugin: 'com.novoda.bintray-release'
 //
 //publish {
 //    artifactId = 'xdroid-mvp'  // artifactId
 //    uploadName = 'XDroidMvp' // 展示名字
-//    publishVersion = '1.0.0' // 版本
+//    publishVersion = '1.0.3' // 版本
 //    userOrg = rootProject.userOrg
 //    groupId = rootProject.groupId
 //    repoName = rootProject.repoName
@@ -41,9 +45,9 @@ dependencies {
 
     api rootProject.ext.dependencies["xrecyclerview"]
 
-    api rootProject.ext.dependencies["butterknife"]
     api rootProject.ext.dependencies["glide"]
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    kapt rootProject.ext.dependencies["glide-compiler"]
 
     api rootProject.ext.dependencies["gson"]
     api rootProject.ext.dependencies["rxandroid"]
@@ -58,6 +62,8 @@ dependencies {
     api rootProject.ext.dependencies["rxlifecycle-android"]
     api rootProject.ext.dependencies["rxlifecycle-components"]
     api rootProject.ext.dependencies["rxpermissions"]
+
+    api rootProject.ext.dependencies["kotlin"]
 }
 
 tasks.withType(JavaCompile) {

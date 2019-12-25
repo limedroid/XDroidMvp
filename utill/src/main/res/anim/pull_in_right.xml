@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- move current activity to right and in -->
+<!-- Second Activity Goes Here -->
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="300"
+    android:fromXDelta="100%"
+    android:fromYDelta="0%"
+    android:interpolator="@android:anim/decelerate_interpolator"
+    android:toXDelta="0%"
+    android:toYDelta="0%" />

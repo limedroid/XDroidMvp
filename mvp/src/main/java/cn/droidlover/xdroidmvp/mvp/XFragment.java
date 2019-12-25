@@ -10,10 +10,8 @@ import android.view.ViewGroup;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
-import butterknife.Unbinder;
 import cn.droidlover.xdroidmvp.XDroidConf;
 import cn.droidlover.xdroidmvp.event.BusProvider;
-import cn.droidlover.xdroidmvp.kit.KnifeKit;
 import com.trello.rxlifecycle3.components.support.RxFragment;
 
 /**
@@ -30,8 +28,6 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
 
     private RxPermissions rxPermissions;
 
-    private Unbinder unbinder;
-
 
     @Nullable
     @Override
@@ -39,7 +35,6 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
         layoutInflater = inflater;
         if (rootView == null && getLayoutId() > 0) {
             rootView = inflater.inflate(getLayoutId(), null);
-            bindUI(rootView);
         } else {
             ViewGroup viewGroup = (ViewGroup) rootView.getParent();
             if (viewGroup != null) {
@@ -61,11 +56,6 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
         }
         bindEvent();
         initData(savedInstanceState);
-    }
-
-    @Override
-    public void bindUI(View rootView) {
-        unbinder = KnifeKit.bind(this, rootView);
     }
 
     protected VDelegate getvDelegate() {

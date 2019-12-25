@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<dimen name="title_hight">45dp</dimen>
+	<!--text-->
+	<dimen name="text_10">10sp</dimen>
+	<dimen name="text_12">12sp</dimen>
+	<dimen name="text_14">14sp</dimen>
+	<dimen name="text_16">16sp</dimen>
+	<dimen name="text_18">18sp</dimen>
+	<dimen name="text_20">20sp</dimen>
+	<dimen name="text_22">22sp</dimen>
+	<dimen name="text_24">24sp</dimen>
+	<dimen name="text_30">30sp</dimen>
+
+	<dimen name="xspace_50">-50dp</dimen>
+	<dimen name="xspace_60">-60dp</dimen>
+	<dimen name="xspace_70">-70dp</dimen>
+	<dimen name="xspace_75">-75dp</dimen>
+
+	<!--space-->
+	<dimen name="space_0.5">0.5dp</dimen>
+	<dimen name="space_0">0dp</dimen>
+	<dimen name="space_1">1dp</dimen>
+	<dimen name="space_2">2dp</dimen>
+	<dimen name="space_3">3dp</dimen>
+	<dimen name="space_4">4dp</dimen>
+	<dimen name="space_5">5dp</dimen>
+	<dimen name="space_6">6dp</dimen>
+	<dimen name="space_7">7dp</dimen>
+	<dimen name="space_8">8dp</dimen>
+	<dimen name="space_10">10dp</dimen>
+	<dimen name="space_12">12dp</dimen>
+	<dimen name="space_14">14dp</dimen>
+	<dimen name="space_15">15dp</dimen>
+	<dimen name="space_16">16dp</dimen>
+	<dimen name="space_18">18dp</dimen>
+	<dimen name="space_20">20dp</dimen>
+	<dimen name="space_22">22dp</dimen>
+	<dimen name="space_25">25dp</dimen>
+	<dimen name="space_26">26dp</dimen>
+	<dimen name="space_30">30dp</dimen>
+	<dimen name="space_40">40dp</dimen>
+	<dimen name="space_45">45dp</dimen>
+	<dimen name="space_46">46dp</dimen>
+	<dimen name="space_48">48dp</dimen>
+	<dimen name="space_50">50dp</dimen>
+	<dimen name="space_55">55dp</dimen>
+	<dimen name="space_56">56dp</dimen>
+	<dimen name="space_60">60dp</dimen>
+	<dimen name="space_70">70dp</dimen>
+	<dimen name="space_80">80dp</dimen>
+	<dimen name="space_85">85dp</dimen>
+	<dimen name="space_90">90dp</dimen>
+	<dimen name="space_100">100dp</dimen>
+	<dimen name="space_110">110dp</dimen>
+	<dimen name="space_120">120dp</dimen>
+	<dimen name="space_130">130dp</dimen>
+	<dimen name="space_135">135dp</dimen>
+	<dimen name="space_140">140dp</dimen>
+	<dimen name="space_150">150dp</dimen>
+	<dimen name="space_165">165dp</dimen>
+	<dimen name="space_170">170dp</dimen>
+	<dimen name="space_180">180dp</dimen>
+	<dimen name="space_200">200dp</dimen>
+	<dimen name="space_250">250dp</dimen>
+	<dimen name="space_300">300dp</dimen>
+	<dimen name="space_320">320dp</dimen>
+    <dimen name="space_340">340dp</dimen>
+	<dimen name="space_350">350dp</dimen>
+	<dimen name="space_425">425dp</dimen>
+
+</resources>

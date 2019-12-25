@@ -2,6 +2,7 @@
 apply from: "conf.gradle"
 
 buildscript {
+    ext.kotlin_version = '1.3.61'
     repositories {
         maven {url 'https://dl.bintray.com/lennon-xia/lennon/'}
         jcenter() { url 'https://maven.aliyun.com/repository/jcenter' }
@@ -13,10 +14,10 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.2'
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.0'
         classpath 'com.novoda:bintray-release:0.9.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

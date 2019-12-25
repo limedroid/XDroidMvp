@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_hight"
+        android:background="@drawable/conner_ffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/searchview_input_edt"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="@dimen/space_40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginRight="@dimen/space_5"
+            android:layout_weight="1"
+            android:background="@color/color_FFFFFF"
+            android:drawablePadding="@dimen/space_5"
+            android:hint="@string/xsm_seach_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:padding="@dimen/space_6"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/text_16" />
+
+        <ImageView
+            android:id="@+id/search_delete_igv"
+            android:layout_width="@dimen/space_25"
+            android:layout_height="@dimen/space_25"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_5"
+            android:src="@mipmap/cha2" />
+
+        <TextView
+            android:id="@+id/search_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/conner_right_fd0202"
+            android:gravity="center"
+            android:padding="@dimen/space_10"
+            android:text="搜索"
+            android:textColor="@color/color_ffffff"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/searchview_lv"
+        style="@style/listView_common"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/space_5"
+        android:layout_marginRight="@dimen/space_5"
+        android:layout_marginBottom="@dimen/space_5"
+        android:divider="@color/color_e6e6e6"
+        android:footerDividersEnabled="true" />
+</LinearLayout>

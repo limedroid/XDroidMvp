@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center"
+              android:background="@color/color_7f000000">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/common_dialog_frame"
+            android:gravity="center"
+            android:layout_width="@dimen/space_320"
+            android:layout_height="wrap_content">
+
+
+        <TextView
+                android:id="@+id/common_alert_dialog_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:gravity="center|left"
+                android:paddingLeft="@dimen/space_20"
+                android:text="温馨提示"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/text_20"
+                android:paddingStart="@dimen/space_20"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_1"
+                android:layout_marginLeft="@dimen/space_10"
+                android:layout_marginRight="@dimen/space_10"
+                android:background="@color/color_EAEAEA"/>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <EditText
+                    android:id="@+id/common_alert_dialog_qty_edt"
+                    android:layout_width="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_height="@dimen/space_56"
+                    android:background="@drawable/common_dialog_frame"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:maxLength="5"
+                    android:layout_margin="@dimen/space_10"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_16"
+                    android:visibility="visible"
+                    android:importantForAutofill="no"
+                    tools:ignore="LabelFor,UnusedAttribute"/>
+
+            <EditText
+                    android:id="@+id/common_alert_dialog_content_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_56"
+                    android:layout_margin="@dimen/space_10"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/common_dialog_frame"
+                    android:gravity="center"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_16"
+                    android:visibility="visible"
+                    android:importantForAutofill="no"
+                    tools:ignore="LabelFor,UnusedAttribute"/>
+
+            <TextView
+                    android:id="@+id/common_alert_dialog_msg_tv"
+                    android:layout_width="wrap_content"
+                    android:minHeight="@dimen/space_120"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|center_vertical"
+                    android:paddingBottom="@dimen/space_5"
+                    android:paddingLeft="@dimen/space_10"
+                    android:paddingRight="@dimen/space_10"
+                    android:visibility="gone"
+                    android:layout_centerInParent="true"
+                    android:paddingTop="@dimen/space_5"
+                    android:text="确认删除？"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_16"/>
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:gravity="center"
+                android:layout_margin="@dimen/space_10">
+
+
+            <TextView
+                    android:id="@+id/common_alert_dialog_cancle_tv"
+                    android:layout_width="@dimen/space_120"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center|right"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:background="@drawable/btn_bfbfbf_frame"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/space_10"
+                    android:paddingRight="@dimen/space_10"
+                    android:text="取消"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="@dimen/text_16"/>
+
+            <TextView
+                    android:id="@+id/common_alert_dialog_sure_tv"
+                    android:layout_width="@dimen/space_120"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:layout_marginRight="@dimen/space_20"
+                    android:background="@drawable/common_button"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/space_10"
+                    android:paddingRight="@dimen/space_10"
+                    android:text="确认"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="@dimen/text_16"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

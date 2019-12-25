@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name" translatable="false">Utill</string>
+    <string name="get_sms" translatable="false">获取验证码</string>
+    <string name="reget_sms" translatable="false">重新获取</string>
+    <string name="resend_sms" translatable="false">秒</string>
+    <string name="xsm_seach_hint" translatable="false">请输入烟品名称</string>
+</resources>
