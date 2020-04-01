@@ -4,18 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
-import cn.droidlover.xdroidmvp.cache.SharedPref;
 import cn.droidlover.xdroidmvp.log.XLog;
-import com.lennon.cn.utill.base.BaseApplication;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class GetDeviceId {
-    //保存的文件 采用隐藏文件的形式进行保存
-    private static final String DEVICES_FILE_NAME = ".DEVICES";
 
     /**
      * 获取设备唯一标识符
@@ -63,47 +58,12 @@ public class GetDeviceId {
      * @return
      */
     public static List<String> readDeviceID(Context context) {
-        File file = getDevicesDir(context);
         File newFile = getNewDevicesDir(context);
         List<String> strings = getFileContent(new File(newFile.getAbsolutePath() + "/", "devices.txt"));
         if (strings.size() > 0) {
             return strings;
         }
-//        return getFileContent(file);
-
-//        try {
-//            List<String> strings = new ArrayList<>();
-//            FileInputStream fis = new FileInputStream(newFile);
-//            InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
-//            BufferedReader in = new BufferedReader(isr);
-//            String temp;
-//            while ((temp = in.readLine()) != null) {
-//                strings.add(temp);
-//            }
-//            in.close();
-//            XLog.e("-------------readDeviceIdFile" + strings.toString());
-//            if (strings.size() > 0) {
-//                return strings;
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        try {
-            strings = new ArrayList<>();
-            FileInputStream fis = new FileInputStream(file);
-            InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
-            BufferedReader in = new BufferedReader(isr);
-            String temp;
-            while ((temp = in.readLine()) != null) {
-                strings.add(temp);
-            }
-            in.close();
-            XLog.e("-------------readDeviceIdFile" + strings.toString());
-            return strings;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return new ArrayList<>();
     }
 
     /**
@@ -113,7 +73,6 @@ public class GetDeviceId {
      * @param context
      */
     public static void saveDeviceID(String str, Context context) {
-        File file = getDevicesDir(context);
         File newFile = getNewDevicesDir(context);
         File f = new File(newFile.getPath(), newFile.getName() + ".txt");
         try {
@@ -125,28 +84,10 @@ public class GetDeviceId {
             XLog.e(e.getMessage());
         }
 
-//        try {
         writeTxtToFile("deviceId:" + str, newFile.getAbsolutePath() + "/", "devices.txt");
-//            writer.write("deviceId:" + str);
-//            writer.newLine();
+
         writeTxtToFile("deviceId-version:2", newFile.getAbsolutePath() + "/", "devices.txt");
-//            out.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        writeTxtToFile("deviceId:" + str, file.getParent(), file.getName());
-//        writeTxtToFile("deviceId-version:2", file.getParent(), file.getName());
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            OutputStreamWriter out = new OutputStreamWriter(fos, "UTF-8");
-            BufferedWriter writer = new BufferedWriter(out);
-            writer.write("deviceId:" + str);
-            writer.newLine();
-            writer.write("deviceId-version:2");
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
     }
 
@@ -232,29 +173,6 @@ public class GetDeviceId {
 //            }
         }
         return content;
-    }
-
-    /**
-     * 统一处理设备唯一标识 保存的文件的地址
-     *
-     * @param context
-     * @return
-     */
-    private static File getDevicesDir(Context context) {
-        File mCropFile = null;
-        mCropFile = new File(BaseApplication.Companion.getDataFile(), DEVICES_FILE_NAME);
-        if (!mCropFile.getParentFile().exists()) {
-            mCropFile.getParentFile().mkdirs();
-        }
-        if (!mCropFile.exists()) {
-            try {
-                mCropFile.createNewFile();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        XLog.e("getDevicesDir-----------------" + context.getFilesDir() + "-------------" + mCropFile.getParent() + "-----------------" + mCropFile.getName());
-        return mCropFile;
     }
 
     private static File getNewDevicesDir(Context context) {

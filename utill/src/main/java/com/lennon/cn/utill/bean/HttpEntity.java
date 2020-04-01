@@ -43,6 +43,11 @@ public class HttpEntity<T> implements IModel, Serializable {
     }
 
     @Override
+    public String getErrorCode() {
+        return code;
+    }
+
+    @Override
     public boolean isNull() {
         if (!"0000".equals(code)) {
             return data == null && !"1000".equals(code);

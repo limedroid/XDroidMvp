@@ -21,6 +21,7 @@ public abstract class ApiSubscriber<T extends IModel> extends ResourceSubscriber
     public void onError(Throwable e) {
         NetError error = null;
         if (e != null) {
+            e.printStackTrace();
             if (!(e instanceof NetError)) {
                 if (e instanceof UnknownHostException) {
                     error = new NetError(e, NetError.NoConnectError);

@@ -7,9 +7,11 @@ import android.graphics.drawable.Drawable;
  */
 
 public abstract class LoadCallback {
-    void onLoadFailed() {}
+    public void onLoadFailed() {
+    }
 
     public abstract void onLoadReady(Drawable drawable);
 
-    void onLoadCanceled() {}
+    public void onLoadCanceled() {
+    }
 }

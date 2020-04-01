@@ -28,20 +28,12 @@ public class LogFormat {
 
     private static final char VERTICAL_BORDER_CHAR = '║';
 
-    // Length: 100.
     private static final String TOP_HORIZONTAL_BORDER =
-            "╔═════════════════════════════════════════════════" +
-                    "══════════════════════════════════════════════════";
+            "╔═══════════════════════════════════════════════════════════════════════════════════════════════════";
 
-    // Length: 99.
-    private static final String DIVIDER_HORIZONTAL_BORDER =
-            "╟─────────────────────────────────────────────────" +
-                    "──────────────────────────────────────────────────";
+    private static final String DIVIDER_HORIZONTAL_BORDER = "╟───────────────────────────────────────────────────────────────────────────────────────────────────";
 
-    // Length: 100.
-    private static final String BOTTOM_HORIZONTAL_BORDER =
-            "╚═════════════════════════════════════════════════" +
-                    "══════════════════════════════════════════════════";
+    private static final String BOTTOM_HORIZONTAL_BORDER = "╚═══════════════════════════════════════════════════════════════════════════════════════════════════";
 
     public static String formatJson(String json) {
         String formatted = null;

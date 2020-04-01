@@ -3,9 +3,11 @@ package com.lennon.cn.utill.base
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import cn.droidlover.xdroidmvp.log.XLog
 import cn.droidlover.xdroidmvp.mvp.XActivity
@@ -46,6 +48,26 @@ abstract class BaseActivity<P : BasePresent<*>> : XActivity<P>(), BaseView<P> {
         return 0
     }
 
+    /**
+     * 隐藏虚拟按键，并且设置成全屏
+     */
+    fun hideBottomUIMenu() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) { // lower api
+            val v = this.window.decorView
+            v.systemUiVisibility = View.GONE
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //for new api versions.
+            val decorView = window.decorView
+            val uiOptions = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                    or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                    or View.SYSTEM_UI_FLAG_IMMERSIVE)
+            decorView.systemUiVisibility = uiOptions
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+        }
+    }
     override fun showProgressDialog(msg: String) {
         if (dialog != null) dialog!!.dismiss()
         dialog = CustomProgressDialog(getContext())

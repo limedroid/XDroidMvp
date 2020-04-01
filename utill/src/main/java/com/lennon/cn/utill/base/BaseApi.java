@@ -22,7 +22,6 @@ public abstract class BaseApi<T> {
             service = XApi.getInstance().getRetrofit(url, true).create(tClass);
         } catch (Exception e) {
             e.printStackTrace();
-            BaseApplication.Companion.registerProvider();
             service = XApi.getInstance().getRetrofit(url, true).create(tClass);
         }
     }

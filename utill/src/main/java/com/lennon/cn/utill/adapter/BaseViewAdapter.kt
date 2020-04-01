@@ -19,7 +19,7 @@ class BaseViewAdapter(context: Context) : SimpleRecAdapter<BaseViewBean, BaseVie
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        super.onBindViewHolder(holder, position)
+        super.onBindViewHolder(holder, position)
         val d = data[position]
         d.loadIcon(holder.icon)
         d.loadName(holder.name)

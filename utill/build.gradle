@@ -8,7 +8,7 @@ apply plugin: 'com.novoda.bintray-release'
 publish {
     artifactId = 'lennon-utill'  // artifactId
     uploadName = 'LennonUtill' // 展示名字
-    publishVersion = '1.0.3' // 版本
+    publishVersion = '1.2.2' // 版本
     userOrg = rootProject.userOrg
     groupId = rootProject.groupId
     repoName = rootProject.repoName
@@ -16,6 +16,7 @@ publish {
     website = rootProject.website
     licences = rootProject.licences
 }
+
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
 
@@ -24,10 +25,6 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
-    }
-
-    lintOptions {
-        abortOnError false
     }
 }
 dependencies {

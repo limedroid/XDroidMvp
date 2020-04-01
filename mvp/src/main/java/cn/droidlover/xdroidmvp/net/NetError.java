@@ -7,6 +7,7 @@ package cn.droidlover.xdroidmvp.net;
 public class NetError extends Exception {
     private Throwable exception;
     private int type = NoConnectError;
+    private String code;
 
     public static final int ParseError = 0;   //数据解析异常
     public static final int NoConnectError = 1;   //无连接异常
@@ -25,6 +26,18 @@ public class NetError extends Exception {
         this.type = type;
     }
 
+    public NetError(Throwable exception, int type, String code) {
+        this.exception = exception;
+        this.type = type;
+        this.code = code;
+    }
+
+    public NetError(String detailMessage, int type, String code) {
+        super(detailMessage);
+        this.type = type;
+        this.code = code;
+    }
+
     @Override
     public String getMessage() {
         if (exception != null) return exception.getMessage();
@@ -33,5 +46,13 @@ public class NetError extends Exception {
 
     public int getType() {
         return type;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

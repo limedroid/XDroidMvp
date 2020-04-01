@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.IOException;
 
 import cn.droidlover.xdroidmvp.log.XLog;
+import cn.jesse.nativelogger.logger.LoggerLevel;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -35,8 +36,8 @@ public class LogInterceptor implements Interceptor {
             String url = request.url().toString();
             Headers headers = request.headers();
 
-            XLog.d(TAG, "url : " + url);
-            XLog.d(TAG, "method : " + request.method());
+            XLog.e(TAG, "url : " + url);
+            XLog.e(TAG, "method : " + request.method());
             if (headers != null && headers.size() > 0) {
                 XLog.e(TAG, "headers : " + headers.toString());
             }
@@ -45,9 +46,9 @@ public class LogInterceptor implements Interceptor {
                 MediaType mediaType = requestBody.contentType();
                 if (mediaType != null) {
                     if (isText(mediaType)) {
-                        XLog.d(TAG, "params : " + bodyToString(request));
+                        XLog.e(TAG, "params : " + bodyToString(request));
                     } else {
-                        XLog.d(TAG, "params : " + " maybe [file part] , too large too print , ignored!");
+                        XLog.e(TAG, "params : " + " maybe [file part] , too large too print , ignored!");
                     }
                 }
             }
@@ -66,12 +67,11 @@ public class LogInterceptor implements Interceptor {
                 if (mediaType != null) {
                     if (isText(mediaType)) {
                         String resp = body.string();
-                        XLog.json(Log.DEBUG, TAG, resp);
-
+                        XLog.e(TAG, resp);
                         body = ResponseBody.create(mediaType, resp);
                         return response.newBuilder().body(body).build();
                     } else {
-                        XLog.d(TAG, "data : " + " maybe [file part] , too large too print , ignored!");
+                        XLog.e(TAG, "data : " + " maybe [file part] , too large too print , ignored!");
                     }
                 }
             }

@@ -43,7 +43,7 @@ open class StringItemAdapter<T : StringBean>(context: Context) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        super.onBindViewHolder(holder, position)
+        super.onBindViewHolder(holder, position)
         holder.name.text = data[position].itemString
         holder.name.setBackgroundResource(R.color.color_ffffff)
         holder.name.setTextColor(Utill.getColor(context.resources, R.color.color_0F83F0))

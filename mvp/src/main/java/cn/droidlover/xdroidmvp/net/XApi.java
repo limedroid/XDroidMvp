@@ -103,7 +103,9 @@ public class XApi {
         if (Kits.Empty.check(baseUrl)) {
             throw new IllegalStateException("baseUrl can not be null");
         }
-        if (clientMap.get(baseUrl) != null) return clientMap.get(baseUrl);
+        if (clientMap.get(baseUrl) != null) {
+            return clientMap.get(baseUrl);
+        }
 
         checkProvider(provider);
 
@@ -201,13 +203,14 @@ public class XApi {
                 return upstream.flatMap(new Function<T, Publisher<T>>() {
                     @Override
                     public Publisher<T> apply(T model) throws Exception {
-
-                        if (model == null || model.isNull()) {
+                        if (model == null) {
                             return Flowable.error(new NetError(model.getErrorMsg(), NetError.NoDataError));
+                        } else if (model.isNull()) {
+                            return Flowable.error(new NetError(model.getErrorMsg(), NetError.NoDataError, model.getErrorCode()));
                         } else if (model.isAuthError()) {
-                            return Flowable.error(new NetError(model.getErrorMsg(), NetError.AuthError));
+                            return Flowable.error(new NetError(model.getErrorMsg(), NetError.AuthError, model.getErrorCode()));
                         } else if (model.isBizError()) {
-                            return Flowable.error(new NetError(model.getErrorMsg(), NetError.BusinessError));
+                            return Flowable.error(new NetError(model.getErrorMsg(), NetError.BusinessError, model.getErrorCode()));
                         } else {
                             return Flowable.just(model);
                         }

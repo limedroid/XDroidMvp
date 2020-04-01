@@ -59,9 +59,9 @@ public class AudioRecorderUtil {
         this.mHandler.removeCallbacks(this.mUpdateMicStatusTimer);
 
         try {
-            this.mMediaRecorder.setAudioSource(1);
-            this.mMediaRecorder.setOutputFormat(0);
-            this.mMediaRecorder.setAudioEncoder(1);
+            this.mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
+            this.mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
+            this.mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
             this.filePath = this.folderPath + File.separator + System.currentTimeMillis() + ".mp3";
             this.mMediaRecorder.setOutputFile(this.filePath);
             this.mMediaRecorder.setMaxDuration(this.maxLength);

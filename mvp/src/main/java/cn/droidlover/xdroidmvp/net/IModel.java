@@ -5,6 +5,8 @@ package cn.droidlover.xdroidmvp.net;
  */
 
 public interface IModel {
+    String getErrorCode();
+
     boolean isNull();       //空数据
 
     boolean isAuthError();  //验证错误
