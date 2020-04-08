@@ -18,6 +18,8 @@ import java.util.UUID;
 
 import androidx.core.app.ActivityCompat;
 
+import com.lennon.cn.utill.base.BaseApplication;
+
 /**
  * 作者：11361 on 2019/1/24 10:07
  * <p>
@@ -25,7 +27,7 @@ import androidx.core.app.ActivityCompat;
  */
 public class VersionUtill {
     @SuppressLint({"WifiManagerLeak", "MissingPermission", "HardwareIds"})
-    public static String getAndroidId(Activity activity) {
+    public static String getAndroidId(Context context) {
         int REQUEST_EXTERNAL_STORAGE = 1;
         String[] PERMISSIONS_STORAGE = {
                 Manifest.permission.BLUETOOTH,
@@ -34,19 +36,27 @@ public class VersionUtill {
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int permission = ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-        if (permission != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(activity,
-                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(activity,
-                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(activity,
-                Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(activity,
+        if (permission != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(context,
+                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(context,
+                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(context,
+                Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(context,
                 Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
             // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-            );
+            if (context instanceof Activity) {
+                ActivityCompat.requestPermissions(
+                        (Activity) context,
+                        PERMISSIONS_STORAGE,
+                        REQUEST_EXTERNAL_STORAGE
+                );
+            }else if (BaseApplication.Companion.getCuttureActivity()!=null){
+                ActivityCompat.requestPermissions(
+                        BaseApplication.Companion.getCuttureActivity(),
+                        PERMISSIONS_STORAGE,
+                        REQUEST_EXTERNAL_STORAGE
+                );
+            }
         }
         BluetoothAdapter m_BluetoothAdapter = null; // Local Bluetooth adapter
         m_BluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -54,7 +64,7 @@ public class VersionUtill {
         if (m_BluetoothAdapter != null) {
             m_szBTMAC = m_BluetoothAdapter.getAddress();//蓝牙MAC地址
         }
-        WifiManager wm = (WifiManager) activity.getSystemService(Context.WIFI_SERVICE);
+        WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         String m_szWLANMAC = wm.getConnectionInfo().getMacAddress();//wifi MAC地址
         String m_szDevIDShort = "35" + //we make this look like a valid IMEI
                 Build.BOARD.length() % 10 +//主板编号
@@ -70,8 +80,8 @@ public class VersionUtill {
                 Build.TAGS.length() % 10 +//描述build的标签,如未签名，debug等等
                 Build.TYPE.length() % 10 +//build的类型
                 Build.USER.length() % 10; //13 digits
-        String m_szAndroidID = Settings.Secure.getString(activity.getContentResolver(), Settings.Secure.ANDROID_ID);
-        TelephonyManager TelephonyMgr = (TelephonyManager) activity.getSystemService(Activity.TELEPHONY_SERVICE);
+        String m_szAndroidID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        TelephonyManager TelephonyMgr = (TelephonyManager) context.getSystemService(Activity.TELEPHONY_SERVICE);
         String m_szImei = TelephonyMgr.getDeviceId();
         String m_szLongID = m_szImei + m_szDevIDShort
                 + m_szAndroidID + m_szWLANMAC + m_szBTMAC;

@@ -87,6 +87,7 @@ abstract class BaseActivity<P : BasePresent<*>> : XActivity<P>(), BaseView<P> {
         val dialog = CommonAlertDialog(this)
         dialog.setMsg(msg)
         dialog.disableCancle()
+        dialog.setCanceledOnTouchOutside(false)
         dialog.show()
         dialog.setDialogListener(object : OnAlertDialogListener() {
             override fun onSure() {
@@ -107,6 +108,7 @@ abstract class BaseActivity<P : BasePresent<*>> : XActivity<P>(), BaseView<P> {
         dialog.setMsg(msg)
         dialog.disableCancle()
         dialog.show()
+        dialog.setCanceledOnTouchOutside(false)
         dialog.setDialogListener(object : OnAlertDialogListener() {
             override fun onSure() {
                 super.onSure()
@@ -123,6 +125,7 @@ abstract class BaseActivity<P : BasePresent<*>> : XActivity<P>(), BaseView<P> {
             val dialog = CommonAlertDialog(this)
             dialog.setMsg(msg)
             dialog.disableCancle()
+            dialog.setCanceledOnTouchOutside(false)
             dialog.show()
             dialog.setDialogListener(object : OnAlertDialogListener() {
                 override fun onSure() {

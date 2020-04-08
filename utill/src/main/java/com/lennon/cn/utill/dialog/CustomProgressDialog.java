@@ -3,6 +3,7 @@ package com.lennon.cn.utill.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 

@@ -9,6 +9,7 @@ import android.view.*;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import lennon.com.utill.R;
 
 /**
@@ -83,7 +84,6 @@ public class CommonAlertDialog extends Dialog {
         mContentEdt.setText(content);
         mContentEdt.setSelection(mContentEdt.getText().length());
     }
-
 
     public void setDialogListener(OnAlertDialogListener listener) {
         this.mOnListener = listener;

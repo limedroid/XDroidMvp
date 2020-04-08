@@ -18,7 +18,7 @@ public class GetDeviceId {
      * @param context
      * @return
      */
-    public static String getDeviceId(Activity context) {
+    public static String getDeviceId(Context context) {
         //读取保存的在sd卡中的唯一标识符
         List<String> deviceIds = readDeviceID(context);
         if (deviceIds != null) {
