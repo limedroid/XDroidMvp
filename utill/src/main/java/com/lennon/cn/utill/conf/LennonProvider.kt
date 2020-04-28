@@ -20,8 +20,14 @@ abstract class LennonProvider {
         this.orientation = orientation
     }
 
-    open fun useDensity(activity: Activity) {
-        DensityUtils.setOrientation(activity, orientation)
+    open fun setDensity(activity: Activity) {
+        if (useDensity()) {
+            DensityUtils.setOrientation(activity, orientation)
+        }
+    }
+
+    open fun useDensity(): Boolean {
+        return true
     }
 
     abstract fun handleNetError(error: NetError): Boolean

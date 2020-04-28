@@ -85,7 +85,7 @@ class Lennon {
             if (provider == null) {
                 DensityUtils.setDefault(activity)
             } else {
-                provider!!.useDensity(activity)
+                provider!!.setDensity(activity)
             }
         }
 
