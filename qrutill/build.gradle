@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+//apply plugin: 'com.novoda.bintray-release'
+//publish {
+//    artifactId = 'lennon-qr-utill'  // artifactId
+//    uploadName = 'LennonQRUtill' // 展示名字
+//    publishVersion = '1.0.0' // 版本
+//    userOrg = rootProject.userOrg
+//    groupId = rootProject.groupId
+//    repoName = rootProject.repoName
+//    desc = ''
+//    website = rootProject.website
+//    licences = rootProject.licences
+//}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation rootProject.ext.dependencies["xdroid-mvp"]
+    api rootProject.ext.dependencies["zxing"]
+}

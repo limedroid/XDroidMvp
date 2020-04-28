@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+
 import androidx.annotation.Nullable;
+
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -75,6 +77,9 @@ public class GlideLoader implements ILoader {
                     @Override
                     public void onLoadFailed(@Nullable Drawable errorDrawable) {
                         super.onLoadFailed(errorDrawable);
+                        if (callback != null) {
+                            callback.onLoadFailed();
+                        }
                     }
 
                     @Override
@@ -82,6 +87,10 @@ public class GlideLoader implements ILoader {
                         if (resource != null) {
                             if (callback != null) {
                                 callback.onLoadReady(resource);
+                            }
+                        } else {
+                            if (callback != null) {
+                                callback.onLoadFailed();
                             }
                         }
                     }
@@ -129,7 +138,7 @@ public class GlideLoader implements ILoader {
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .priority(Priority.HIGH);
 
-        if (options != null){
+        if (options != null) {
             if (options.scaleType != null) {
                 if (options.loadingResId != Options.RES_NONE) {
                     request.placeholder(options.loadingResId);
@@ -158,7 +167,7 @@ public class GlideLoader implements ILoader {
             } else {
                 request.centerCrop();
             }
-        }else {
+        } else {
             request.centerCrop();
         }
 
@@ -177,6 +186,41 @@ public class GlideLoader implements ILoader {
                 .transition(withCrossFade())
                 .into(target);
 
+    }
+
+    @Override
+    public void loadCircle(String url, Context context, Options options, final LoadCallback callback) {
+        RequestOptions requestOptions = wrapScaleType(options);
+        requestOptions.optionalCircleCrop();
+
+        getRequestManager(context)
+                .load(url)
+                .apply(requestOptions)
+                .transition(withCrossFade())
+                .into(new SimpleTarget<Drawable>() {
+
+                    @Override
+                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                        super.onLoadFailed(errorDrawable);
+                        if (callback != null) {
+                            callback.onLoadFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+                        if (resource != null) {
+                            if (callback != null) {
+                                callback.onLoadReady(resource);
+                            }
+                        } else {
+                            if (callback != null) {
+                                callback.onLoadFailed();
+                            }
+                        }
+                    }
+
+                });
     }
 
     //加载圆形图片

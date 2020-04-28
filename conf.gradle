@@ -3,7 +3,7 @@ ext {
     android = [
             compileSdkVersion: 29,
 
-            minSdkVersion    : 16,
+            minSdkVersion    : 17,
             targetSdkVersion : 29,
 
             versionCode      : 1,
@@ -18,6 +18,8 @@ ext {
 
     ]
     dependencies = [
+            "zxing"                      : "com.google.zxing:core:3.3.3",
+
             "navigation-fragment-ktx"    : "androidx.navigation:navigation-fragment-ktx:${android["NavigationSDK"]}",
             "navigation-ui-ktx"          : "androidx.navigation:navigation-ui-ktx:${android["NavigationSDK"]}",
 
@@ -52,7 +54,7 @@ ext {
             "picasso"                    : "com.squareup.picasso:picasso:2.5.2",
 
             "xrecyclerview"              : "com.lennon.utill:xrecycler:1.0.3",
-            "xdroid-mvp"                 : "com.lennon.utill:xdroid-mvp:1.1.5",
+            "xdroid-mvp"                 : "com.lennon.utill:xdroid-mvp:1.1.8",
 
             "avi-loading"                : "com.wang.avi:library:1.0.2",
             "rxbus"                      : "com.blankj:rxbus:1.2",

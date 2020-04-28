@@ -102,5 +102,11 @@ class Lennon {
             }
             provider!!.restartApp()
         }
+        fun setDensity(orientation: DensityUtils.Density) {
+            if (provider == null) {
+                throw Throwable("请先注册provider")
+            }
+            provider!!.setDensity(orientation)
+        }
     }
 }

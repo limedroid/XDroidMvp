@@ -12,8 +12,12 @@ object DensityUtils {
     private var appScaledDensity: Float = 0.toFloat()
     private var appDisplayMetrics: DisplayMetrics? = null
     private var barHeight: Int = 0
-    val WIDTH = "width"
-    val HEIGHT = "height"
+//    val WIDTH = "width"
+//    val HEIGHT = "height"
+
+    enum class Density {
+        WIDTH, HEIGHT;
+    }
 
     /**
      * 在Application里初始化一下
@@ -50,7 +54,7 @@ object DensityUtils {
      * @param activity
      */
     fun setDefault(activity: Activity) {
-        setAppOrientation(activity, WIDTH)
+        setAppOrientation(activity, Density.WIDTH)
     }
 
     /**
@@ -59,18 +63,20 @@ object DensityUtils {
      * @param activity
      * @param orientation
      */
-    fun setOrientation(activity: Activity, orientation: String) {
+    fun setOrientation(activity: Activity, orientation: Density) {
         setAppOrientation(activity, orientation)
     }
+
     /**
      * 此方法用于在某一个Activity里面更改适配的方向
      * 在setContentView()之前设置
      * @param activity
      * @param orientation
      */
-    fun setOrientation(activity: Activity, orientation: String,f: Float) {
-        setAppOrientation(activity, orientation,f)
+    fun setOrientation(activity: Activity, orientation: String, f: Float) {
+        setAppOrientation(activity, orientation, f)
     }
+
     /**
      * targetDensity
      * targetScaledDensity
@@ -109,9 +115,9 @@ object DensityUtils {
      * 这三个参数是统一修改过后的值
      * orientation:方向值,传入width或height
      */
-    private fun setAppOrientation(activity: Activity, orientation: String) {
+    private fun setAppOrientation(activity: Activity, orientation: Density) {
         val targetDensity: Float
-        if (orientation == "height") {
+        if (orientation == Density.HEIGHT) {
             targetDensity = (appDisplayMetrics!!.heightPixels - barHeight) / 1080f//设计图的高度 单位:dp
         } else {
             targetDensity = appDisplayMetrics!!.widthPixels / 420f//设计图的宽度 单位:dp

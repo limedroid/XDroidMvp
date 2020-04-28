@@ -1,1 +1,2 @@
 include ':app', ':mvp', ':test',':xrecycler',':utill',':nativelogger'
+include ':qrutill'

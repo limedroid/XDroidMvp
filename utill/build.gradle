@@ -4,18 +4,18 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'com.novoda.bintray-release'
-publish {
-    artifactId = 'lennon-utill'  // artifactId
-    uploadName = 'LennonUtill' // 展示名字
-    publishVersion = '1.2.8' // 版本
-    userOrg = rootProject.userOrg
-    groupId = rootProject.groupId
-    repoName = rootProject.repoName
-    desc = ''
-    website = rootProject.website
-    licences = rootProject.licences
-}
+//apply plugin: 'com.novoda.bintray-release'
+//publish {
+//    artifactId = 'lennon-utill'  // artifactId
+//    uploadName = 'LennonUtill' // 展示名字
+//    publishVersion = '1.3.5' // 版本
+//    userOrg = rootProject.userOrg
+//    groupId = rootProject.groupId
+//    repoName = rootProject.repoName
+//    desc = ''
+//    website = rootProject.website
+//    licences = rootProject.licences
+//}
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion

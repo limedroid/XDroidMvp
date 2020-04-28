@@ -35,6 +35,8 @@ public interface ILoader {
 
     void loadCircle(String url, ImageView target, Options options);
 
+    void loadCircle(String url, Context context, Options options, LoadCallback callback);
+
     void loadCorner(String url, ImageView target, int radius, Options options);
 
     class Options {

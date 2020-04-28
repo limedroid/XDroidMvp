@@ -10,7 +10,7 @@ apply plugin: 'kotlin-android-extensions'
 //publish {
 //    artifactId = 'xdroid-mvp'  // artifactId
 //    uploadName = 'XDroidMvp' // 展示名字
-//    publishVersion = '1.1.5' // 版本
+//    publishVersion = '1.1.8' // 版本
 //    userOrg = rootProject.userOrg
 //    groupId = rootProject.groupId
 //    repoName = rootProject.repoName
