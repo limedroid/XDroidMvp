@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -12,6 +13,7 @@ import android.widget.Toast
 import cn.droidlover.xdroidmvp.log.XLog
 import cn.droidlover.xdroidmvp.mvp.XActivity
 import cn.droidlover.xdroidmvp.net.NetError
+import com.lennon.cn.utill.bean.ToastRunnable
 
 import com.lennon.cn.utill.conf.Lennon
 import com.lennon.cn.utill.dialog.CommonAlertDialog
@@ -68,8 +70,11 @@ abstract class BaseActivity<P : BasePresent<*>> : XActivity<P>(), BaseView<P> {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
         }
     }
+
     override fun showProgressDialog(msg: String) {
-        if (dialog != null) dialog!!.dismiss()
+        if (dialog != null) {
+            dialog!!.dismiss()
+        }
         dialog = CustomProgressDialog(getContext())
         dialog!!.setMessage(msg)
         dialog!!.show()
@@ -80,7 +85,10 @@ abstract class BaseActivity<P : BasePresent<*>> : XActivity<P>(), BaseView<P> {
     }
 
     override fun closeProgressDialog() {
-        if (null != dialog) dialog!!.dismiss()
+        if (null != dialog) {
+            dialog!!.dismiss()
+        }
+        dialog = null
     }
 
     override fun toast(msg: String, second: Int) {
@@ -103,11 +111,10 @@ abstract class BaseActivity<P : BasePresent<*>> : XActivity<P>(), BaseView<P> {
         toast(msg, true)
     }
 
-    override fun toast(msg: String, runnable: Runnable) {
+    override fun toast(msg: String, second: Int, runnable: ToastRunnable) {
         val dialog = CommonAlertDialog(getContext())
         dialog.setMsg(msg)
         dialog.disableCancle()
-        dialog.show()
         dialog.setCanceledOnTouchOutside(false)
         dialog.setDialogListener(object : OnAlertDialogListener() {
             override fun onSure() {
@@ -116,6 +123,32 @@ abstract class BaseActivity<P : BasePresent<*>> : XActivity<P>(), BaseView<P> {
                 runnable.run()
             }
         })
+        dialog.show()
+        Handler().postDelayed(Runnable {
+            dialog.dismiss()
+            runnable.run()
+        }, second * 1000L)
+        Toast.makeText(getContext(), msg, second)
+            .show()
+    }
+
+    override fun toast(msg: String, runnable: ToastRunnable) {
+        val dialog = CommonAlertDialog(getContext())
+        dialog.setMsg(msg)
+        dialog.disableCancle()
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.setDialogListener(object : OnAlertDialogListener() {
+            override fun onSure() {
+                super.onSure()
+                dialog.dismiss()
+                runnable.run()
+            }
+        })
+        dialog.show()
+        Handler().postDelayed(Runnable {
+            dialog.dismiss()
+            runnable.run()
+        }, 2000)
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT)
             .show()
     }

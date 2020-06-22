@@ -2,11 +2,13 @@ package com.lennon.cn.utill.base
 
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
 import android.view.Display
 import android.widget.Toast
 import cn.droidlover.xdroidmvp.log.XLog
 import cn.droidlover.xdroidmvp.mvp.XPresentation
 import cn.droidlover.xdroidmvp.net.NetError
+import com.lennon.cn.utill.bean.ToastRunnable
 import com.lennon.cn.utill.dialog.CommonAlertDialog
 import com.lennon.cn.utill.dialog.CustomProgressDialog
 import com.lennon.cn.utill.dialog.OnAlertDialogListener
@@ -50,7 +52,28 @@ abstract class BasePresentation<P : BasePresent<*>>(context: Context, display: D
         toast(msg, true)
     }
 
-    override fun toast(msg: String, runnable: Runnable) {
+    override fun toast(msg: String, second: Int, runnable: ToastRunnable) {
+        val dialog = CommonAlertDialog(getContext())
+        dialog.setMsg(msg)
+        dialog.disableCancle()
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.setDialogListener(object : OnAlertDialogListener() {
+            override fun onSure() {
+                super.onSure()
+                dialog.dismiss()
+                runnable.run()
+            }
+        })
+        dialog.show()
+        Handler().postDelayed(Runnable {
+            dialog.dismiss()
+            runnable.run()
+        }, second * 1000L)
+        Toast.makeText(getContext(), msg, second)
+            .show()
+    }
+
+    override fun toast(msg: String, runnable: ToastRunnable) {
         val dialog = CommonAlertDialog(getContext())
         dialog.setMsg(msg)
         dialog.disableCancle()
@@ -63,6 +86,10 @@ abstract class BasePresentation<P : BasePresent<*>>(context: Context, display: D
                 runnable.run()
             }
         })
+        Handler().postDelayed(Runnable {
+            dialog.dismiss()
+            runnable.run()
+        }, 2000L)
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT)
             .show()
     }

@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.lennon.cn.utill.base.BaseApplication;
 import com.lennon.cn.utill.base.BaseView;
 import com.lennon.cn.utill.bean.HttpEntity;
+import com.lennon.cn.utill.bean.ToastRunnable;
 import com.lennon.cn.utill.conf.Lennon;
 import com.trello.rxlifecycle3.LifecycleProvider;
 
@@ -96,9 +97,10 @@ public class DataCache<T extends HttpEntity> {
                         }
                         activity.closeProgressDialog();
                         if (error.getType() == NetError.AuthError) {
-                            activity.toast("登陆失效", new Runnable() {
+                            activity.toast("登陆失效", new ToastRunnable() {
+
                                 @Override
-                                public void run() {
+                                protected void function() {
                                     Lennon.Companion.requserLogin();
                                 }
                             });

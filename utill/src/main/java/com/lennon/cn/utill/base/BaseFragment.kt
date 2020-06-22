@@ -3,6 +3,7 @@ package com.lennon.cn.utill.base
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import android.widget.Toast
 import cn.droidlover.xdroidmvp.log.XLog
 
 import cn.droidlover.xdroidmvp.mvp.XFragment
+import com.lennon.cn.utill.bean.ToastRunnable
 import com.lennon.cn.utill.dialog.CommonAlertDialog
 import com.lennon.cn.utill.dialog.CustomProgressDialog
 import com.lennon.cn.utill.dialog.OnAlertDialogListener
@@ -71,7 +73,28 @@ abstract class BaseFragment<P : BasePresent<*>> : XFragment<P>(), BaseView<P> {
         toast(msg, true)
     }
 
-    override fun toast(msg: String, runnable: Runnable) {
+    override fun toast(msg: String, second: Int, runnable: ToastRunnable) {
+        val dialog = CommonAlertDialog(getContext())
+        dialog.setMsg(msg)
+        dialog.disableCancle()
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.setDialogListener(object : OnAlertDialogListener() {
+            override fun onSure() {
+                super.onSure()
+                dialog.dismiss()
+                runnable.run()
+            }
+        })
+        dialog.show()
+        Handler().postDelayed(Runnable {
+            dialog.dismiss()
+            runnable.run()
+        }, second * 1000L)
+        Toast.makeText(getContext(), msg, second)
+            .show()
+    }
+
+    override fun toast(msg: String, runnable: ToastRunnable) {
         val dialog = CommonAlertDialog(getContext())
         dialog.setMsg(msg)
         dialog.disableCancle()
@@ -83,6 +106,10 @@ abstract class BaseFragment<P : BasePresent<*>> : XFragment<P>(), BaseView<P> {
                 runnable.run()
             }
         })
+        Handler().postDelayed(Runnable {
+            dialog.dismiss()
+            runnable.run()
+        }, 2000)
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT)
             .show()
     }

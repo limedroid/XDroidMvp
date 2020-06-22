@@ -4,21 +4,16 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
-import android.os.Looper
 import android.text.TextUtils
-import android.widget.Toast
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 import cn.droidlover.xdroidmvp.cache.SharedPref
-import cn.droidlover.xdroidmvp.log.XLog
 import com.lennon.cn.utill.conf.Lennon
 import com.lennon.cn.utill.utill.DensityUtils
 import com.lennon.cn.utill.utill.Utill
-import lennon.com.utill.BuildConfig
 import java.io.BufferedReader
 import java.io.FileReader
 import java.util.*
-import java.util.logging.SimpleFormatter
 
 /**
  * Created by lennon on 2017/7/26.
@@ -97,7 +92,7 @@ open class BaseApplication : MultiDexApplication() {
         private var list: ArrayList<Activity>? = null
         private val loger = true
         private var appliction: BaseApplication? = null
-        private var test = true
+
         /**
          * 获取进程号对应的进程名
          *
@@ -193,10 +188,6 @@ open class BaseApplication : MultiDexApplication() {
 
         fun getAppliction(): BaseApplication? {
             return appliction
-        }
-
-        fun isTest(): Boolean {
-            return test && BuildConfig.DEBUG
         }
     }
 

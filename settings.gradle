@@ -1,2 +1,7 @@
-include ':app', ':mvp', ':test',':xrecycler',':utill',':nativelogger'
+include ':app'
+include':mvp'
+include':test'
+include':xrecycler'
+include':utill'
+include':nativelogger'
 include ':qrutill'
