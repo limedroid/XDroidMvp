@@ -73,7 +73,7 @@ object DensityUtils {
      * @param activity
      * @param orientation
      */
-    fun setOrientation(activity: Activity, orientation: String, f: Float) {
+    fun setOrientation(activity: Activity, orientation: Density, f: Float) {
         setAppOrientation(activity, orientation, f)
     }
 
@@ -84,11 +84,11 @@ object DensityUtils {
      * 这三个参数是统一修改过后的值
      * orientation:方向值,传入width或height
      */
-    private fun setAppOrientation(activity: Activity, orientation: String, f: Float) {
+    private fun setAppOrientation(activity: Activity, orientation: Density, f: Float) {
 
         val targetDensity: Float
 
-        if (orientation == "height") {
+        if (orientation == Density.HEIGHT) {
             targetDensity = (appDisplayMetrics!!.heightPixels - barHeight) / f//设计图的高度 单位:dp
         } else {
             targetDensity = appDisplayMetrics!!.widthPixels / f//设计图的宽度 单位:dp

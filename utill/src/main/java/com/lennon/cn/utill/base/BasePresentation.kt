@@ -2,6 +2,7 @@ package com.lennon.cn.utill.base
 
 import android.app.Activity
 import android.content.Context
+import android.os.Bundle
 import android.os.Handler
 import android.view.Display
 import android.widget.Toast
@@ -17,11 +18,30 @@ abstract class BasePresentation<P : BasePresent<*>>(context: Context, display: D
     XPresentation<P>(context, display), BaseView<P> {
     private var TAG = javaClass.simpleName
     private var dialog: CustomProgressDialog? = null
+    private var listener: ChangeListener? = null
+
+    interface ChangeListener {
+        fun onCancel(basePresentation: BasePresentation<*>)
+        fun onDismiss(basePresentation: BasePresentation<*>)
+        fun onShow(basePresentation: BasePresentation<*>)
+    }
+
+    fun setListener(listener: ChangeListener?) {
+        this.listener = listener
+    }
+
     override fun showProgressDialog(msg: String) {
         if (dialog != null) dialog!!.dismiss()
         dialog = CustomProgressDialog(getContext())
         dialog!!.setMessage(msg)
         dialog!!.show()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setOnCancelListener { listener?.onCancel(this) }
+        setOnDismissListener { listener?.onDismiss(this) }
+        setOnShowListener { listener?.onShow(this) }
     }
 
     override fun useEventBus(): Boolean {
@@ -124,7 +144,6 @@ abstract class BasePresentation<P : BasePresent<*>>(context: Context, display: D
     }
 
     override fun bindEvent() {
-
     }
 
     override fun getOptionsMenuId(): Int {
