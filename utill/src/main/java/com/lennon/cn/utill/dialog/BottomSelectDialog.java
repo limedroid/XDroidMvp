@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.IBinder;
 import android.view.*;
 import android.widget.PopupWindow;
@@ -92,6 +93,7 @@ public class BottomSelectDialog<T extends StringBean> extends PopupWindow {
         }
         this.context = context;
         this.list = t;
+        initType();
         wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         setContentView(generateCustomView());
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -105,6 +107,7 @@ public class BottomSelectDialog<T extends StringBean> extends PopupWindow {
     public BottomSelectDialog(Context context, List<T> list) {
         this.context = context;
         this.list = list;
+        initType();
         wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         setContentView(generateCustomView());
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -116,6 +119,7 @@ public class BottomSelectDialog<T extends StringBean> extends PopupWindow {
     }
 
     public View generateCustomView() {
+
         View root = View.inflate(context, R.layout.dialog_bottom_select, null);
         xRecyclerView = root.findViewById(R.id.list);
         xRecyclerView.verticalLayoutManager(context);

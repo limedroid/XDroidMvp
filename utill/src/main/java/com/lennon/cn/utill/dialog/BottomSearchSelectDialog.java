@@ -73,6 +73,7 @@ public class BottomSearchSelectDialog<T extends StringBean> extends PopupWindow 
         }
         this.context = context;
         this.list = t;
+        initType();
         wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         setContentView(generateCustomView());
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -95,6 +96,7 @@ public class BottomSearchSelectDialog<T extends StringBean> extends PopupWindow 
         }
         this.context = context;
         this.list = t;
+        initType();
         wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         setContentView(generateCustomView());
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -108,6 +110,7 @@ public class BottomSearchSelectDialog<T extends StringBean> extends PopupWindow 
     public BottomSearchSelectDialog(Context context, List<T> list) {
         this.context = context;
         this.list = list;
+        initType();
         wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         setContentView(generateCustomView());
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);

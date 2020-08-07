@@ -2,8 +2,9 @@ package com.lennon.cn.utill.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
 import android.view.View;
-import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class CustomProgressDialog extends Dialog {
         super(context, R.style.dialog_progress);
         this.mContext = context;
         setParams();
+        applyCompat();
     }
 
     public CustomProgressDialog(Context context, String title, String msg) {
@@ -32,6 +34,7 @@ public class CustomProgressDialog extends Dialog {
         setParams();
         setTitile(title);
         setMessage(msg);
+        applyCompat();
     }
 
     public CustomProgressDialog(Context context, int msg_resid) {
@@ -39,6 +42,7 @@ public class CustomProgressDialog extends Dialog {
         this.mContext = context;
         setParams();
         setMessage(msg_resid);
+        applyCompat();
     }
 
     public CustomProgressDialog(Context context, int title_resid, int msg_resid) {
@@ -47,6 +51,16 @@ public class CustomProgressDialog extends Dialog {
         setParams();
         setTitile(title_resid);
         setMessage(msg_resid);
+        applyCompat();
+    }
+
+    private void applyCompat() {
+        if (Build.VERSION.SDK_INT < 19) {
+            return;
+        }
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     @Override

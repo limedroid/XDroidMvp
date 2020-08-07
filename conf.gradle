@@ -63,7 +63,7 @@ ext {
 
             "PersistentCookieJar"        : "com.github.franmontiel:PersistentCookieJar:1.0.1",
 
-            "qiujuer-ui"                 : "net.qiujuer.genius:ui:+",
+            "qiujuer-ui"                 : "net.qiujuer.genius:ui:2.1.1",
 
             "appcompat-v7"               : "androidx.appcompat:appcompat:1.1.0",
 

@@ -94,7 +94,7 @@ public class RSACoder {
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
         Key privateKey = keyFactory.generatePrivate(pkcs8KeySpec);
         // 对数据解密
-        Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
+        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
         return cipher.doFinal(data);
     }
@@ -131,7 +131,7 @@ public class RSACoder {
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
         Key publicKey = keyFactory.generatePublic(x509KeySpec);
         // 对数据解密
-        Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
+        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.DECRYPT_MODE, publicKey);
         return cipher.doFinal(data);
     }
@@ -177,7 +177,7 @@ public class RSACoder {
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
         Key privateKey = keyFactory.generatePrivate(pkcs8KeySpec);
         // 对数据加密
-        Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
+        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
         return cipher.doFinal(data);
     }
