@@ -9,6 +9,7 @@
             <enum name="phone" value="0" />
             <enum name="card" value="1" />
             <enum name="IDcard" value="2" />
+            <enum name="manager" value="3" />
         </attr>
         <!--<attr name="use_bank_num_mode" format="boolean"  />-->
         <!--<attr name="scan_bank_click" format="boolean"  />-->

@@ -20,4 +20,10 @@ public interface IView<P extends IPresent> {
     boolean useEventBus();
 
     P newP();
+
+    void showProgressDialog(String msg);
+
+    void closeProgressDialog();
+
+    void onRefresh(Boolean bRefresh);
 }

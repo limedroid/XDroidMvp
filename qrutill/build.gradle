@@ -1,19 +1,18 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
-//apply plugin: 'com.novoda.bintray-release'
-//publish {
-//    artifactId = 'lennon-qr-utill'  // artifactId
-//    uploadName = 'LennonQRUtill' // 展示名字
-//    publishVersion = '1.0.2' // 版本
-//    userOrg = rootProject.userOrg
-//    groupId = rootProject.groupId
-//    repoName = rootProject.repoName
-//    desc = ''
-//    website = rootProject.website
-//    licences = rootProject.licences
-//}
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    artifactId = 'lennon-qr-utill'  // artifactId
+    uploadName = 'LennonQRUtill' // 展示名字
+    publishVersion = '1.0.3' // 版本
+    userOrg = rootProject.userOrg
+    groupId = rootProject.groupId
+    repoName = rootProject.repoName
+    desc = ''
+    website = rootProject.website
+    licences = rootProject.licences
+}
 
 
 android {

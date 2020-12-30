@@ -10,6 +10,7 @@ import cn.droidlover.xdroidmvp.log.XLog
 import cn.droidlover.xdroidmvp.mvp.XPresentation
 import cn.droidlover.xdroidmvp.net.NetError
 import com.lennon.cn.utill.bean.ToastRunnable
+import com.lennon.cn.utill.conf.Lennon
 import com.lennon.cn.utill.dialog.CommonAlertDialog
 import com.lennon.cn.utill.dialog.CustomProgressDialog
 import com.lennon.cn.utill.dialog.OnAlertDialogListener
@@ -42,10 +43,6 @@ abstract class BasePresentation<P : BasePresent<*>>(context: Context, display: D
         setOnCancelListener { listener?.onCancel(this) }
         setOnDismissListener { listener?.onDismiss(this) }
         setOnShowListener { listener?.onShow(this) }
-    }
-
-    override fun useEventBus(): Boolean {
-        return true
     }
 
     override fun closeProgressDialog() {
@@ -150,7 +147,4 @@ abstract class BasePresentation<P : BasePresent<*>>(context: Context, display: D
         return 0
     }
 
-    override fun onRefresh(bRefresh: Boolean) {
-        XLog.e("$TAG:onRefresh()")
-    }
 }

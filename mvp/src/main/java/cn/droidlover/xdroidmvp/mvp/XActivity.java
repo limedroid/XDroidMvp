@@ -2,13 +2,16 @@ package cn.droidlover.xdroidmvp.mvp;
 
 import android.app.Activity;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
+
 import android.view.Menu;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import cn.droidlover.xdroidmvp.XDroidConf;
 import cn.droidlover.xdroidmvp.event.BusProvider;
+
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 /**
@@ -23,7 +26,10 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
 
     private RxPermissions rxPermissions;
 
-
+    @Override
+    public void onRefresh(Boolean bRefresh) {
+        
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

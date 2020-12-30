@@ -5,7 +5,7 @@ apply plugin: 'com.android.library'
 //publish {
 //    artifactId = 'xrecycler'  // artifactId
 //    uploadName = 'XRecycler' // 展示名字
-//    publishVersion = '1.0.4' // 版本
+//    publishVersion = '1.0.5' // 版本
 //    userOrg = rootProject.userOrg
 //    groupId = rootProject.groupId
 //    repoName = rootProject.repoName

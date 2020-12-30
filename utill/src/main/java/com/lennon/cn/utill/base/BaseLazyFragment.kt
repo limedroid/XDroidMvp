@@ -22,16 +22,8 @@ abstract class BaseLazyFragment<P : BasePresent<*>> : XLazyFragment<P>(), BaseVi
     override fun showLoading(visibility: Int) {
     }
 
-    override fun useEventBus(): Boolean {
-        return true
-    }
-
     private var isFirst = true
     private var stop = false
-
-
-    override fun onRefresh(bRefresh: Boolean) {
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

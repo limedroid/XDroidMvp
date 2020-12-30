@@ -11,7 +11,7 @@ object TimeUtill {
         val hours = mss % (1000 * 60 * 60 * 24) / (1000 * 60 * 60)
         val minutes = mss % (1000 * 60 * 60) / (1000 * 60)
         val seconds = mss % (1000 * 60) / 1000
-        val millis = mss and 1000
+        val millis = mss % 1000
         var s = ""
         if (days > 0) {
             s += days.toString() + "天"

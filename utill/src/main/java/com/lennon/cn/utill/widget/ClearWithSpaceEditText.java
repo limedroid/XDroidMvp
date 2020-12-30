@@ -1,5 +1,6 @@
 package com.lennon.cn.utill.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.Editable;
@@ -11,7 +12,8 @@ import android.text.method.DigitsKeyListener;
 import android.util.AttributeSet;
 import android.widget.EditText;
 import android.widget.Toast;
-import androidx.appcompat.widget.AppCompatEditText;
+
+import cn.droidlover.xdroidmvp.log.XLog;
 import lennon.com.utill.R;
 
 /**
@@ -21,14 +23,16 @@ import lennon.com.utill.R;
  * 创建时间：16/10/28
  */
 
-public class ClearWithSpaceEditText extends AppCompatEditText {
+@SuppressLint("AppCompatCustomView")
+public class ClearWithSpaceEditText extends EditText {
 
     private int contentType;
     public static final int TYPE_PHONE = 0;
     public static final int TYPE_CARD = 1;
     public static final int TYPE_IDCARD = 2;
+    public static final int TYPE_MANAGER = 3;
     private int maxLength = 100;
-    private int start, count,before;
+    private int start, count, before;
     private String digits;
 
     public ClearWithSpaceEditText(Context context) {
@@ -54,7 +58,7 @@ public class ClearWithSpaceEditText extends AppCompatEditText {
         addTextChangedListener(watcher);
     }
 
-    private void initType(){
+    private void initType() {
         if (contentType == TYPE_PHONE) {
             maxLength = 13;
             digits = "0123456789 ";
@@ -67,6 +71,10 @@ public class ClearWithSpaceEditText extends AppCompatEditText {
             maxLength = 21;
             digits = null;
             setInputType(InputType.TYPE_CLASS_TEXT);
+        } else if (contentType == TYPE_MANAGER) {
+            maxLength = 16;
+            digits = "YCyc0123456789 ";
+            setInputType(InputType.TYPE_CLASS_TEXT);
         }
         setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
     }
@@ -75,13 +83,25 @@ public class ClearWithSpaceEditText extends AppCompatEditText {
     public void setInputType(int type) {
         if (contentType == TYPE_PHONE || contentType == TYPE_CARD) {
             type = InputType.TYPE_CLASS_NUMBER;
-        }else if(contentType == TYPE_IDCARD){
+        } else if (contentType == TYPE_IDCARD || contentType == TYPE_MANAGER) {
             type = InputType.TYPE_CLASS_TEXT;
         }
         super.setInputType(type);
         /* 非常重要:setKeyListener要在setInputType后面调用，否则无效。*/
-        if(!TextUtils.isEmpty(digits)) {
-            setKeyListener(DigitsKeyListener.getInstance(digits));
+        if (!TextUtils.isEmpty(digits)) {
+            final int finalType = type;
+            setKeyListener(new DigitsKeyListener() {
+                @Override
+                public int getInputType() {
+                    return finalType;
+                }
+
+                @Override
+                protected char[] getAcceptedChars() {
+                    char[] data = digits.toCharArray();
+                    return data;
+                }
+            });
         }
     }
 
@@ -114,16 +134,48 @@ public class ClearWithSpaceEditText extends AppCompatEditText {
             if (!isMiddle && isSpace(s.length())) {
                 isNeedSpace = true;
             }
-            if (isMiddle || isNeedSpace || count > 1) {
-                String newStr = s.toString();
+            boolean isNeedDelYC = false;
+            boolean yc = s.toString().toUpperCase().startsWith("YC");
+            boolean y = s.toString().toUpperCase().startsWith("Y");
+            if (yc) {
+                if (s.toString().indexOf("Y", 2) > 0 || s.toString().indexOf("C", 2) > 0) {
+                    isNeedDelYC = true;
+                }
+            } else {
+                String s1 = s.toString().toUpperCase();
+                if (y) {
+                    s1 = s.toString().subSequence(1, s.length()).toString();
+                }
+                if (s1.contains("Y") || s1.contains("C")) {
+                    isNeedDelYC = true;
+                }
+            }
+            if (isMiddle || isNeedSpace || count > 1 || isNeedDelYC) {
+                String a = s.toString().toUpperCase();
+                if (isNeedDelYC) {
+                    String replace = a.replace("Y", "");
+                    replace = replace.replace("C", "");
+                    if (yc) {
+                        a = "YC" + replace;
+                    } else {
+                        if (y) {
+                            a = "Y" + replace;
+                        } else {
+                            a = replace;
+                        }
+                    }
+                }
+                String newStr = a;
                 newStr = newStr.replace(" ", "");
                 StringBuilder sb = new StringBuilder();
                 int spaceCount = 0;
                 for (int i = 0; i < newStr.length(); i++) {
-                    sb.append(newStr.substring(i, i+1));
+                    sb.append(newStr.substring(i, i + 1));
                     //如果当前输入的字符下一位为空格(i+1+1+spaceCount)，因为i是从0开始计算的，所以一开始的时候需要先加1
-                    if(isSpace(i + 2 + spaceCount)){
+                    XLog.e(sb.toString());
+                    if (isSpace(i + 2 + spaceCount)) {
                         sb.append(" ");
+                        XLog.e(sb.toString());
                         spaceCount += 1;
                     }
                 }
@@ -133,24 +185,24 @@ public class ClearWithSpaceEditText extends AppCompatEditText {
                  * 参照网上解决方法，将该句话替换成s.replace(...)
                  * 该种方法不会导致输入法的跳转。
                  * 造成输入法跳转的原因可能是setText会重新唤起输入法控件*/
-                s.replace(0, s.length(),sb);
+                s.replace(0, s.length(), sb);
                 //如果是在末尾的话,或者加入的字符个数大于零的话（输入或者粘贴）
                 if (!isMiddle || count > 1) {
-                    setSelection(s.length() <= maxLength ? s.length() : maxLength);
+                    setSelection(Math.min(s.length(), maxLength));
                 } else if (isMiddle) {
                     //如果是删除
                     if (count == 0) {
                         //如果删除时，光标停留在空格的前面，光标则要往前移一位
                         if (isSpace(start - before + 1)) {
-                            setSelection((start - before) > 0 ? start - before : 0);
+                            setSelection(Math.max((start - before), 0));
                         } else {
-                            setSelection((start - before + 1) > s.length() ? s.length() : (start - before + 1));
+                            setSelection(Math.min((start - before + 1), s.length()));
                         }
                     }
                     //如果是增加
                     else {
                         if (isSpace(start - before + count)) {
-                            setSelection((start + count - before + 1) < s.length() ? (start + count - before + 1) : s.length());
+                            setSelection(Math.min((start + count - before + 1), s.length()));
                         } else {
                             setSelection(start + count - before);
                         }
@@ -163,21 +215,22 @@ public class ClearWithSpaceEditText extends AppCompatEditText {
 
     /**
      * 获取无空格的字符串
+     *
      * @return
      */
-    public String getNoSpaceText(){
-        String newStr = this.getText().toString();
-        if (!TextUtils.isEmpty(newStr)){
+    public String getNoSpaceText() {
+        String newStr = this.getText().toString().toUpperCase();
+        if (!TextUtils.isEmpty(newStr)) {
             String strNOSpace = newStr.replace(" ", "");
-            if(!TextUtils.isEmpty(strNOSpace)){
+            if (!TextUtils.isEmpty(strNOSpace)) {
                 strNOSpace = strNOSpace.replace("　", "");
             }
-            return  strNOSpace;
+            return strNOSpace;
         }
         return "";
     }
 
-    public boolean checkTextRight(){
+    public boolean checkTextRight() {
         String text = getNoSpaceText();
         //这里做个简单的内容判断
         if (contentType == TYPE_PHONE) {
@@ -215,8 +268,19 @@ public class ClearWithSpaceEditText extends AppCompatEditText {
             return isSpaceCard(length);
         } else if (contentType == TYPE_IDCARD) {
             return isSpaceIDCard(length);
+        } else if (contentType == TYPE_MANAGER) {
+            return isSpaceManager(length);
         }
         return false;
+    }
+
+    private boolean isSpaceManager(int length) {
+        XLog.e("-----------" + length + "---------" + getText());
+        if (getNoSpaceText().startsWith("YC")) {
+            return length == 3 || length == 7 || (length > 7 && length < 16 && (length - 2) % 5 == 0);
+        } else {
+            return length >= 4 && (length == 4 || (length + 1) % 5 == 0) && length < 13;
+        }
     }
 
     private boolean isSpacePhone(int length) {

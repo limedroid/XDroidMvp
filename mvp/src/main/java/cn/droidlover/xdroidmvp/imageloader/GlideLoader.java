@@ -139,27 +139,26 @@ public class GlideLoader implements ILoader {
                 .priority(Priority.HIGH);
 
         if (options != null) {
+            if (options.loadingResId != Options.RES_NONE) {
+                request.placeholder(options.loadingResId);
+            }
+            if (options.loadErrorResId != Options.RES_NONE) {
+                request.error(options.loadErrorResId);
+            }
             if (options.scaleType != null) {
-                if (options.loadingResId != Options.RES_NONE) {
-                    request.placeholder(options.loadingResId);
-                }
-                if (options.loadErrorResId != Options.RES_NONE) {
-                    request.error(options.loadErrorResId);
-                }
-
                 switch (options.scaleType) {
                     case MATRIX:
                     case FIT_XY:
                     case FIT_START:
                     case FIT_END:
                     case CENTER:
-                    case CENTER_INSIDE:
-                        break;
-
                     case FIT_CENTER:
                         request.fitCenter();
                         break;
-
+                    default:
+                    case CENTER_INSIDE:
+                        request.centerInside();
+                        break;
                     case CENTER_CROP:
                         request.centerCrop();
                         break;

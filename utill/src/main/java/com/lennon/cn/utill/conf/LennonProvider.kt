@@ -1,10 +1,8 @@
 package com.lennon.cn.utill.conf
 
 import android.app.Activity
-import android.graphics.drawable.GradientDrawable
 import cn.droidlover.xdroidmvp.net.NetError
 import com.lennon.cn.utill.utill.DensityUtils
-import com.lennon.cn.utill.utill.Utill
 
 abstract class LennonProvider {
     abstract fun appName(): String
@@ -16,13 +14,23 @@ abstract class LennonProvider {
     abstract fun isTest(): Boolean
     abstract fun getFilePathName(): String
     private var orientation: DensityUtils.Density = DensityUtils.Density.WIDTH
+    private var pixels: Float = 0.0f
+
+    fun setPixels(pixels: Float) {
+        this.pixels = pixels
+    }
+
     fun setDensity(orientation: DensityUtils.Density) {
         this.orientation = orientation
     }
 
     open fun setDensity(activity: Activity) {
         if (useDensity()) {
-            DensityUtils.setOrientation(activity, orientation)
+            if (pixels > 0.0f) {
+                DensityUtils.setOrientation(activity, orientation, pixels)
+            } else {
+                DensityUtils.setOrientation(activity, orientation)
+            }
         }
     }
 

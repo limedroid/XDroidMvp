@@ -2,21 +2,21 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-parcelize'
 
-//apply plugin: 'com.novoda.bintray-release'
-//
-//publish {
-//    artifactId = 'xdroid-mvp'  // artifactId
-//    uploadName = 'XDroidMvp' // 展示名字
-//    publishVersion = '1.1.9' // 版本
-//    userOrg = rootProject.ext.userOrg
-//    groupId =rootProject.ext.groupId
-//    repoName = rootProject.ext.repoName
-//    desc = ''
-//    website = rootProject.ext.website
-//    licences = rootProject.ext.licences
-//}
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    artifactId = 'xdroid-mvp'  // artifactId
+    uploadName = 'XDroidMvp' // 展示名字
+    publishVersion = '1.3.5' // 版本
+    userOrg = rootProject.ext.userOrg
+    groupId =rootProject.ext.groupId
+    repoName = rootProject.ext.repoName
+    desc = ''
+    website = rootProject.ext.website
+    licences = rootProject.ext.licences
+}
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -33,6 +33,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
@@ -55,7 +56,12 @@ dependencies {
     api rootProject.ext.dependencies["retrofit-converter-gson"]
     api rootProject.ext.dependencies["retrofit-adapter-rxjava"]
     api rootProject.ext.dependencies["okhttp3"]
+
     api rootProject.ext.dependencies["rxbus"]
+
+//    api rootProject.ext.dependencies["eventBus"]
+//    annotationProcessor rootProject.ext.dependencies["eventbus-annotation-processor"]
+//    kapt rootProject.ext.dependencies["eventbus-annotation-processor"]
 
     api rootProject.ext.dependencies["rxlifecycle"]
     api rootProject.ext.dependencies["rxlifecycle-android"]

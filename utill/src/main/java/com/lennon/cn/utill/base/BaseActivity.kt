@@ -80,10 +80,6 @@ abstract class BaseActivity<P : BasePresent<*>> : XActivity<P>(), BaseView<P> {
         dialog!!.show()
     }
 
-    override fun useEventBus(): Boolean {
-        return true
-    }
-
     override fun closeProgressDialog() {
         if (null != dialog) {
             dialog!!.dismiss()
@@ -181,11 +177,6 @@ abstract class BaseActivity<P : BasePresent<*>> : XActivity<P>(), BaseView<P> {
     override fun getContext(): Context {
         return this
     }
-
-    override fun onRefresh(bRefresh: Boolean) {
-        XLog.e("$TAG:onRefresh()")
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         XLog.e("$TAG:onCreate")

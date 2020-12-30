@@ -28,6 +28,10 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
 
     private RxPermissions rxPermissions;
 
+    @Override
+    public void onRefresh(Boolean bRefresh) {
+
+    }
 
     @Nullable
     @Override

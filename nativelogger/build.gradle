@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android'
 //publish {
 //    artifactId = 'nativelogger'  // artifactId
 //    uploadName = 'NativeLogger' // 展示名字
-//    publishVersion = '1.0' // 版本
+//    publishVersion = '1.1' // 版本
 //    userOrg = rootProject.userOrg
 //    groupId = rootProject.groupId
 //    repoName = rootProject.repoName

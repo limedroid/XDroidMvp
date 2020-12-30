@@ -185,9 +185,6 @@ public class AmtUtils {
         } else {
             String intString = amString.substring(0, amString.length() - 2);
             for (int i = 1; i <= intString.length(); i++) {
-                if ((i - 1) % 3 == 0 && i != 1) {
-                    result.append(",");
-                }
                 result.append(intString.substring(intString.length() - i, intString.length() - i + 1));
             }
             result.reverse().append(".").append(amString.substring(amString.length() - 2));

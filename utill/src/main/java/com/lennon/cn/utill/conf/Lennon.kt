@@ -1,6 +1,7 @@
 package com.lennon.cn.utill.conf
 
 import android.app.Activity
+import android.app.Presentation
 import cn.droidlover.xdroidmvp.net.NetError
 import com.lennon.cn.utill.utill.DensityUtils
 import lennon.com.utill.R
@@ -102,11 +103,19 @@ class Lennon {
             }
             provider!!.restartApp()
         }
+
         fun setDensity(orientation: DensityUtils.Density) {
             if (provider == null) {
                 throw Throwable("请先注册provider")
             }
             provider!!.setDensity(orientation)
+        }
+
+        fun setPixels(pixels: Float) {
+            if (provider == null) {
+                throw Throwable("请先注册provider")
+            }
+            provider!!.setPixels(pixels)
         }
     }
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
+
 import cn.droidlover.xdroidmvp.XDroidConf;
 
 /**
@@ -29,7 +30,7 @@ public class Router {
 
     public static final int RES_NONE = -1;
 
-    private static RouterCallback callback;
+    private RouterCallback callback;
 
     private Router() {
         intent = new Intent();
@@ -60,6 +61,11 @@ public class Router {
 
     public Router putBundle(@Nullable String key, Bundle bundle) {
         getBundleData().putBundle(key, bundle);
+        return this;
+    }
+
+    public Router setBundle(@Nullable Bundle bundle) {
+        this.data = bundle;
         return this;
     }
 
@@ -102,6 +108,7 @@ public class Router {
         getBundleData().putCharSequence(key, value);
         return this;
     }
+
 
     public Router putParcelable(@Nullable String key, @Nullable Parcelable value) {
         getBundleData().putParcelable(key, value);
@@ -206,11 +213,13 @@ public class Router {
         return data;
     }
 
+
     public static void pop(Activity activity) {
         activity.finish();
     }
 
-    public static void setCallback(RouterCallback callback) {
-        Router.callback = callback;
+    public Router setCallback(RouterCallback callback) {
+        this.callback = callback;
+        return this;
     }
 }

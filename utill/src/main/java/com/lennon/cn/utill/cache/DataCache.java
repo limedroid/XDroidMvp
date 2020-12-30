@@ -87,7 +87,7 @@ public class DataCache<T extends HttpEntity> {
         flowable.compose(XApi.<T>getApiTransformer())
                 .compose(XApi.<T>getScheduler())
                 .compose(lifecycleProvider.<T>bindToLifecycle())
-                .subscribe(new ApiSubscriber<T>() {
+                .subscribe(new ApiSubscriber<T>(activity) {
                     @Override
                     protected void onFail(NetError error) {
                         if (getLocalData() != null) {
@@ -106,6 +106,11 @@ public class DataCache<T extends HttpEntity> {
                             });
                             return;
                         }
+                    }
+
+                    @Override
+                    protected boolean useCommonErrorHandler() {
+                        return false;
                     }
 
                     @Override

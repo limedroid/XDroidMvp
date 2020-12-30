@@ -20,6 +20,11 @@ public abstract class XLazyFragment<P extends IPresent>
     private RxPermissions rxPermissions;
 
     @Override
+    public void onRefresh(Boolean bRefresh) {
+
+    }
+
+    @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
 

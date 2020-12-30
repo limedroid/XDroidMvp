@@ -1,6 +1,5 @@
 package cn.droidlover.xdroidmvp.mvp;
 
-import android.app.Activity;
 import android.app.Presentation;
 import android.content.Context;
 import android.os.Bundle;
@@ -29,6 +28,11 @@ public abstract class XPresentation<P extends IPresent>  extends Presentation im
     public XPresentation(Context outerContext, Display display, int theme) {
         super(outerContext, display, theme);
         this.context=outerContext;
+    }
+
+    @Override
+    public void onRefresh(Boolean bRefresh) {
+
     }
 
     @Override

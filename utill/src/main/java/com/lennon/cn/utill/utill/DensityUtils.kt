@@ -47,7 +47,6 @@ object DensityUtils {
             })
         }
     }
-
     /**
      * 此方法在BaseActivity中做初始化(如果不封装BaseActivity的话,直接用下面那个方法就好)
      * 在setContentView()之前设置
@@ -107,6 +106,7 @@ object DensityUtils {
         activityDisplayMetrics.scaledDensity = targetScaledDensity
         activityDisplayMetrics.densityDpi = targetDensityDpi
     }
+
 
     /**
      * targetDensity

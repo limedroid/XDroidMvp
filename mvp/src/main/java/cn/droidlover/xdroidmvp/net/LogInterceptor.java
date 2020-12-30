@@ -66,8 +66,13 @@ public class LogInterceptor implements Interceptor {
                 MediaType mediaType = body.contentType();
                 if (mediaType != null) {
                     if (isText(mediaType)) {
+                        XLog.e(TAG, "url : " + response.request().url());
                         String resp = body.string();
                         XLog.e(TAG, resp);
+                        Headers headers = response.headers();
+                        if (headers != null && headers.size() > 0) {
+                            XLog.e(TAG, "headers : " + headers.toString());
+                        }
                         body = ResponseBody.create(mediaType, resp);
                         return response.newBuilder().body(body).build();
                     } else {

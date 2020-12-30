@@ -2,12 +2,12 @@ package com.lennon.cn.utill.base
 
 import android.app.Activity
 import android.content.Context
+import cn.droidlover.xdroidmvp.mvp.IView
 import cn.droidlover.xdroidmvp.net.NetError
 import com.lennon.cn.utill.bean.ToastRunnable
 
-interface BaseView<P : BasePresent<*>?> {
-    fun showProgressDialog(msg: String)
-    fun closeProgressDialog()
+interface BaseView<P : BasePresent<*>?> :IView<P> {
+
     fun toast(msg: String, second: Int)
     fun toast(msg: String)
     fun toast(msg: String, runnable: ToastRunnable)
@@ -16,6 +16,6 @@ interface BaseView<P : BasePresent<*>?> {
     fun showLoading(visibility: Int)
     fun showLoadingError(errorType: NetError)
     fun getContext(): Context?
-    fun onRefresh(bRefresh: Boolean)
+
     fun getActivity(): Activity?
 }

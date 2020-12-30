@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <net.qiujuer.genius.ui.widget.Loading
+        android:id="@+id/progressdialog_anim_progress"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_40"
+        android:layout_gravity="center"
+        app:gForegroundColor="?attr/colorPrimary" />
+
+    <TextView
+        android:id="@+id/progressdialog_ms_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_20"
+        android:gravity="center"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_18" />
+</LinearLayout>

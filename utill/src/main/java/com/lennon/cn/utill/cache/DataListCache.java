@@ -3,6 +3,7 @@ package com.lennon.cn.utill.cache;
 import android.text.TextUtils;
 
 import cn.droidlover.xdroidmvp.net.NetError;
+
 import com.google.gson.Gson;
 import com.lennon.cn.utill.base.BaseApplication;
 import com.lennon.cn.utill.base.BaseView;
@@ -14,6 +15,7 @@ import com.trello.rxlifecycle3.LifecycleProvider;
 import java.lang.reflect.Type;
 
 import androidx.annotation.NonNull;
+
 import cn.droidlover.xdroidmvp.cache.SharedPref;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.XApi;
@@ -96,7 +98,7 @@ public class DataListCache<T extends HttpEntity> {
         dataCallBack.getFlowable(page).compose(XApi.<T>getApiTransformer())
                 .compose(XApi.<T>getScheduler())
                 .compose(lifecycleProvider.<T>bindToLifecycle())
-                .subscribe(new ApiSubscriber<T>() {
+                .subscribe(new ApiSubscriber<T>(activity) {
                     @Override
                     protected void onFail(NetError error) {
                         if (getLocalData(page) != null) {
@@ -115,6 +117,11 @@ public class DataListCache<T extends HttpEntity> {
                             });
                             return;
                         }
+                    }
+
+                    @Override
+                    protected boolean useCommonErrorHandler() {
+                        return false;
                     }
 
                     @Override
