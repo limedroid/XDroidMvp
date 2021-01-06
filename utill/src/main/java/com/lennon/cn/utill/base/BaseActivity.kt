@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.viewbinding.ViewBinding
 import cn.droidlover.xdroidmvp.log.XLog
 import cn.droidlover.xdroidmvp.mvp.XActivity
 import cn.droidlover.xdroidmvp.net.NetError
@@ -25,7 +26,8 @@ import com.lennon.cn.utill.utill.Utill
 import java.lang.Exception
 
 
-abstract class BaseActivity<P : BasePresent<*>> : XActivity<P>(), BaseView<P> {
+abstract class BaseActivity<P : BasePresent<*>, E : ViewBinding> : XActivity<P, E>(),
+    BaseView<P, E> {
     private var TAG = javaClass.simpleName
     private var dialog: CustomProgressDialog? = null
 

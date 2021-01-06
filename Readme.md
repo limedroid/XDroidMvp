@@ -200,9 +200,14 @@ dependencies {
 * [一定]()要修改当前项目的 gradle.properties添加  
     android.useAndroidX=true  
     android.enableJetifier=true
+* [注意]()使用viewBinding的模块需要在 build.gradle中的 android节点内添加  
+    buildFeatures {
+     viewBinding true
+    }
 
 ## 更新日志
 
+* 2021-01-06, 添加viewBinding支持
 * 2019-11-27, 修改support依赖为AndroidX依赖  
 * 2017-04-23，新增proguard rules,upgrade to rx2
 * 2016-12-23，新增mvp、base、cache、event、imageloader、log、router

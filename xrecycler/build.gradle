@@ -1,18 +1,9 @@
 apply plugin: 'com.android.library'
 
-//apply plugin: 'com.novoda.bintray-release'
-//
-//publish {
-//    artifactId = 'xrecycler'  // artifactId
-//    uploadName = 'XRecycler' // 展示名字
-//    publishVersion = '1.0.5' // 版本
-//    userOrg = rootProject.userOrg
-//    groupId = rootProject.groupId
-//    repoName = rootProject.repoName
-//    desc = ''
-//    website = rootProject.website
-//    licences = rootProject.licences
-//}
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+version = '1.0.5' // 版本
+
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -68,4 +59,57 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives sourcesJar
     archives javadocJar
+}
+
+group = rootProject.groupId
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'jar'
+                name 'XRecycler'
+                url rootProject.website
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'xrecycler'
+                        name rootProject.groupId
+                        email rootProject.email
+                    }
+                }
+                scm {
+                    connection rootProject.gitUrl
+                    developerConnection rootProject.gitUrl
+                    url rootProject.siteUrl
+                }
+            }
+        }
+    }
+}
+
+Properties properties = new Properties()
+boolean isHasFile = false
+if (project.rootProject.file('local.properties') != null){
+    isHasFile = true
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+}
+bintray {
+    user = isHasFile ? properties.getProperty("bintray.user") : System.getenv("bintray.user")
+    key = isHasFile ? properties.getProperty("bintray.apikey") : System.getenv("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = rootProject.repoName
+        name = "XRecycler"
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
 }

@@ -9,7 +9,6 @@ import cn.droidlover.xdroidmvp.demo.R;
 import cn.droidlover.xdroidmvp.demo.model.GankResults;
 import cn.droidlover.xdroidmvp.demo.present.PBasePager;
 import cn.droidlover.xdroidmvp.demo.widget.StateView;
-import cn.droidlover.xdroidmvp.mvp.XLazyFragment;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xrecyclerview.XRecyclerContentLayout;
 import cn.droidlover.xrecyclerview.XRecyclerView;

@@ -1,3 +1,5 @@
+@file:Suppress("FINITE_BOUNDS_VIOLATION_IN_JAVA")
+
 package com.lennon.cn.utill.base
 
 import android.app.Activity
@@ -8,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.viewbinding.ViewBinding
 import cn.droidlover.xdroidmvp.log.XLog
 
 import cn.droidlover.xdroidmvp.mvp.XFragment
@@ -16,7 +19,7 @@ import com.lennon.cn.utill.dialog.CommonAlertDialog
 import com.lennon.cn.utill.dialog.CustomProgressDialog
 import com.lennon.cn.utill.dialog.OnAlertDialogListener
 
-abstract class BaseFragment<P : BasePresent<*>> : XFragment<P>(), BaseView<P> {
+abstract class BaseFragment<P : BasePresent<*>,E:ViewBinding> : XFragment<P,E>(), BaseView<P,E> {
     private var isFragmentVisible: Boolean = false
     private var isReuseView: Boolean = false
     private var isFirstVisible: Boolean = true

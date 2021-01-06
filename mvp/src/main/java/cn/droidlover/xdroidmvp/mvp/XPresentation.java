@@ -4,30 +4,40 @@ import android.app.Presentation;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.LayoutInflater;
+
+import androidx.viewbinding.ViewBinding;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 import cn.droidlover.xdroidmvp.XDroidConf;
 import cn.droidlover.xdroidmvp.event.BusProvider;
 
-public abstract class XPresentation<P extends IPresent>  extends Presentation implements IView<P>  {
+public abstract class XPresentation<P extends IPresent, E extends ViewBinding> extends Presentation implements IView<P, E> {
     private P p;
     private VDelegate vDelegate;
     protected Context context;
-
+    private E viewBinding;
     private RxPermissions rxPermissions;
+
     public XPresentation(Context outerContext, Display display) {
         super(outerContext, display);
-        this.context=outerContext;
+        this.context = outerContext;
     }
+
     protected RxPermissions getRxPermissions() {
         rxPermissions = new RxPermissions(getOwnerActivity());
         rxPermissions.setLogging(XDroidConf.DEV);
         return rxPermissions;
     }
+
     public XPresentation(Context outerContext, Display display, int theme) {
         super(outerContext, display, theme);
-        this.context=outerContext;
+        this.context = outerContext;
     }
 
     @Override
@@ -36,16 +46,28 @@ public abstract class XPresentation<P extends IPresent>  extends Presentation im
     }
 
     @Override
+    public E getViewBinding() {
+        return viewBinding;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getP();
-
-        if (getLayoutId() > 0) {
-            setContentView(getLayoutId());
+        try {
+            Class<E> eClass = getViewBindingClass();
+            Method method2 = eClass.getMethod("inflate", LayoutInflater.class);
+            viewBinding = (E) method2.invoke(null, getLayoutInflater());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (viewBinding != null) {
+            setContentView(viewBinding.getRoot());
             bindEvent();
         }
         initData(savedInstanceState);
     }
+
     protected VDelegate getvDelegate() {
         if (vDelegate == null) {
             vDelegate = VDelegateBase.create(context);

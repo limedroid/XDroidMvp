@@ -3,7 +3,10 @@ package cn.droidlover.xdroidmvp.mvp;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,41 +15,55 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import cn.droidlover.xdroidmvp.XDroidConf;
 import cn.droidlover.xdroidmvp.event.BusProvider;
+
 import com.trello.rxlifecycle3.components.support.RxFragment;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * Created by wanglei on 2016/12/29.
  */
 
-public abstract class XFragment<P extends IPresent> extends RxFragment implements IView<P> {
+public abstract class XFragment<P extends IPresent, E extends ViewBinding> extends RxFragment implements IView<P, E> {
 
     private VDelegate vDelegate;
     private P p;
     protected Activity context;
-    private View rootView;
     protected LayoutInflater layoutInflater;
 
     private RxPermissions rxPermissions;
+    private E viewBinding;
 
     @Override
     public void onRefresh(Boolean bRefresh) {
 
     }
 
+    @Override
+    public E getViewBinding() {
+        return viewBinding;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         layoutInflater = inflater;
-        if (rootView == null && getLayoutId() > 0) {
-            rootView = inflater.inflate(getLayoutId(), null);
-        } else {
-            ViewGroup viewGroup = (ViewGroup) rootView.getParent();
+        try {
+            Class<E> eClass = getViewBindingClass();
+            Method method2 = eClass.getMethod("inflate", LayoutInflater.class, ViewGroup.class, Boolean.class);
+            viewBinding = (E) method2.invoke(null, inflater, container, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (viewBinding != null) {
+            ViewGroup viewGroup = (ViewGroup) viewBinding.getRoot().getParent();
             if (viewGroup != null) {
-                viewGroup.removeView(rootView);
+                viewGroup.removeView(viewBinding.getRoot());
             }
         }
-
-        return rootView;
+        return viewBinding.getRoot();
     }
 
 

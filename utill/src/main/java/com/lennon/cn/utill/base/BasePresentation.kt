@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.Display
 import android.widget.Toast
+import androidx.viewbinding.ViewBinding
 import cn.droidlover.xdroidmvp.log.XLog
 import cn.droidlover.xdroidmvp.mvp.XPresentation
 import cn.droidlover.xdroidmvp.net.NetError
@@ -15,16 +16,16 @@ import com.lennon.cn.utill.dialog.CommonAlertDialog
 import com.lennon.cn.utill.dialog.CustomProgressDialog
 import com.lennon.cn.utill.dialog.OnAlertDialogListener
 
-abstract class BasePresentation<P : BasePresent<*>>(context: Context, display: Display) :
-    XPresentation<P>(context, display), BaseView<P> {
+abstract class BasePresentation<P : BasePresent<*>,E: ViewBinding>(context: Context, display: Display) :
+    XPresentation<P,E>(context, display), BaseView<P,E> {
     private var TAG = javaClass.simpleName
     private var dialog: CustomProgressDialog? = null
     private var listener: ChangeListener? = null
 
     interface ChangeListener {
-        fun onCancel(basePresentation: BasePresentation<*>)
-        fun onDismiss(basePresentation: BasePresentation<*>)
-        fun onShow(basePresentation: BasePresentation<*>)
+        fun onCancel(basePresentation: BasePresentation<*,*>)
+        fun onDismiss(basePresentation: BasePresentation<*,*>)
+        fun onShow(basePresentation: BasePresentation<*,*>)
     }
 
     fun setListener(listener: ChangeListener?) {

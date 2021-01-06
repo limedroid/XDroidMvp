@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 
+import android.view.LayoutInflater;
 import android.view.Menu;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -14,11 +16,15 @@ import cn.droidlover.xdroidmvp.event.BusProvider;
 
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+
 /**
  * Created by wanglei on 2016/12/29.
  */
 
-public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity implements IView<P> {
+public abstract class XActivity<P extends IPresent, E extends ViewBinding> extends RxAppCompatActivity implements IView<P, E> {
 
     private VDelegate vDelegate;
     private P p;
@@ -26,22 +32,34 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
 
     private RxPermissions rxPermissions;
 
+    private E viewBinding;
+
     @Override
     public void onRefresh(Boolean bRefresh) {
-        
+
+    }
+
+    @Override
+    public E getViewBinding() {
+        return viewBinding;
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-
         getP();
-
-        if (getLayoutId() > 0) {
-            setContentView(getLayoutId());
-            bindEvent();
+        try {
+            Class<E> eClass = getViewBindingClass();
+            Method method2 = eClass.getMethod("inflate", LayoutInflater.class);
+            viewBinding = (E) method2.invoke(null, getLayoutInflater());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        if (viewBinding != null) {
+            setContentView(viewBinding.getRoot());
+        }
+        bindEvent();
         initData(savedInstanceState);
 
     }
