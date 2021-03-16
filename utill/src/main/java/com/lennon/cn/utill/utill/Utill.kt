@@ -1,5 +1,6 @@
 package com.lennon.cn.utill.utill
 
+import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
@@ -19,13 +20,11 @@ import java.util.ArrayList
 import com.lennon.cn.utill.conf.Lennon
 import android.provider.MediaStore
 import android.content.ContentValues
-import android.R.layout
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Color
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
 import android.view.View
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 
 object Utill {
@@ -43,13 +42,11 @@ object Utill {
      * view转bitmap
      */
     fun viewConversionBitmap(v: View): Bitmap {
-        val w = v.getWidth()
-        val h = v.getHeight()
+        val w = v.width
+        val h = v.height
 
         val bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val c = Canvas(bmp)
-
-//        c.drawColor(Color.WHITE)
         /** 如果不设置canvas画布为白色，则生成透明  */
 
         v.layout(0, 0, w, h)
@@ -57,6 +54,7 @@ object Utill {
 
         return bmp
     }
+
     fun getImageContentUri(context: Context, imageFile: File): Uri? {
         val filePath = imageFile.absolutePath
         val cursor = context.contentResolver.query(
@@ -69,15 +67,15 @@ object Utill {
             val baseUri = Uri.parse("content://media/external/images/media")
             return Uri.withAppendedPath(baseUri, "" + id)
         } else {
-            if (imageFile.exists()) {
+            return if (imageFile.exists()) {
                 val values = ContentValues()
                 values.put(MediaStore.Images.Media.DATA, filePath)
-                return context.contentResolver.insert(
+                context.contentResolver.insert(
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     values
                 )
             } else {
-                return null
+                null
             }
         }
     }
@@ -93,7 +91,7 @@ object Utill {
         //任务管理类
         val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         //遍历所有应用
-        val infos = manager.getRunningAppProcesses()
+        val infos = manager.runningAppProcesses
         for (info in infos) {
             if (info.pid == pid)//得到当前应用
                 return info.processName//返回包名
@@ -224,16 +222,12 @@ object Utill {
     fun isPad(context: Context): Boolean {
         val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val display = wm.defaultDisplay
-        // 屏幕宽度
-        val screenWidth = display.width.toFloat()
-        // 屏幕高度
-        val screenHeight = display.height.toFloat()
         val dm = DisplayMetrics()
         display.getMetrics(dm)
-        val x = Math.pow((dm.widthPixels / dm.xdpi).toDouble(), 2.0)
-        val y = Math.pow((dm.heightPixels / dm.ydpi).toDouble(), 2.0)
+        val x = (dm.widthPixels / dm.xdpi).toDouble().pow(2.0)
+        val y = (dm.heightPixels / dm.ydpi).toDouble().pow(2.0)
         // 屏幕尺寸
-        val screenInches = Math.sqrt(x + y)
+        val screenInches = sqrt(x + y)
         // 大于6尺寸则为Pad
         return screenInches >= 8.0
     }

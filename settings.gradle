@@ -1,7 +1,5 @@
-//include ':mylibrary'
-//include ':app'
+include ':http'
 include':mvp'
-//include':test'
 include':xrecycler'
 include':utill'
 include':nativelogger'

@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = '1.0.3' // 版本
+version = '1.0.4' // 版本
 
 
 
@@ -72,7 +72,7 @@ install {
         // This generates POM.xml with proper parameters
         pom {
             project {
-                packaging 'jar'
+                packaging 'aar'
                 name 'LennonQRUtill'
                 url rootProject.website
                 licenses {

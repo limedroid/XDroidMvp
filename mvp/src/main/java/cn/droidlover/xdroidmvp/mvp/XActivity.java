@@ -12,6 +12,7 @@ import android.view.Menu;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import cn.droidlover.xdroidmvp.XDroidConf;
+import cn.droidlover.xdroidmvp.XDroidMvpUtill;
 import cn.droidlover.xdroidmvp.event.BusProvider;
 
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
@@ -24,7 +25,7 @@ import java.lang.reflect.Type;
  * Created by wanglei on 2016/12/29.
  */
 
-public abstract class XActivity<P extends IPresent, E extends ViewBinding> extends RxAppCompatActivity implements IView<P, E> {
+public abstract class XActivity<P extends IPresent, E extends ViewBinding> extends RxAppCompatActivity implements IView<P> {
 
     private VDelegate vDelegate;
     private P p;
@@ -39,8 +40,7 @@ public abstract class XActivity<P extends IPresent, E extends ViewBinding> exten
 
     }
 
-    @Override
-    public E getViewBinding() {
+    protected final E getViewBinding() {
         return viewBinding;
     }
 
@@ -51,8 +51,10 @@ public abstract class XActivity<P extends IPresent, E extends ViewBinding> exten
         getP();
         try {
             Class<E> eClass = getViewBindingClass();
-            Method method2 = eClass.getMethod("inflate", LayoutInflater.class);
-            viewBinding = (E) method2.invoke(null, getLayoutInflater());
+            if (eClass != null) {
+                Method method2 = eClass.getMethod("inflate", LayoutInflater.class);
+                viewBinding = (E) method2.invoke(null, getLayoutInflater());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,6 +64,10 @@ public abstract class XActivity<P extends IPresent, E extends ViewBinding> exten
         bindEvent();
         initData(savedInstanceState);
 
+    }
+
+    protected Class<E> getViewBindingClass() {
+        return XDroidMvpUtill.<E>getViewBindingClass(getClass());
     }
 
     protected VDelegate getvDelegate() {

@@ -7,7 +7,7 @@ import cn.droidlover.xdroidmvp.mvp.IView
 import cn.droidlover.xdroidmvp.net.NetError
 import com.lennon.cn.utill.bean.ToastRunnable
 
-interface BaseView<P : BasePresent<*>?, E : ViewBinding> : IView<P, E> {
+interface BaseView<P : BasePresent<*>?, E : ViewBinding> : IView<P> {
 
     fun toast(msg: String, second: Int)
     fun toast(msg: String)

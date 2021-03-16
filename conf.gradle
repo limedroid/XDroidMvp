@@ -24,7 +24,6 @@ ext {
 
             minSdkVersion    : 17,
             targetSdkVersion : 29,
-
             versionCode      : 1,
             versionName      : '1.0.0',
 
@@ -76,15 +75,15 @@ ext {
 
             "design"                       : "com.google.android.material:material:1.0.0",
 
-            "recyclerview-v7"              : "androidx.recyclerview:recyclerview:1.1.0",
+            "recyclerview-v7"              : "androidx.recyclerview:recyclerview:1.0.0",
 
             "eventbus"                     : "org.greenrobot:eventbus:+",
 
             "picasso"                      : "com.squareup.picasso:picasso:+",
 
-            "xrecyclerview"                : "com.lennon.utill:xrecycler:1.0.5",
+            "xrecyclerview"                : "com.lennon.utill:xrecycler:1.0.7",
 
-            "xdroid-mvp"                   : "com.lennon.utill:mvp:1.3.8",
+            "xdroid-mvp"                   : "com.lennon.utill:mvp:1.3.23",
 
             "avi-loading"                  : "com.wang.avi:library:+",
             "rxbus"                        : "com.blankj:rxbus:+",
@@ -110,7 +109,7 @@ ext {
             "canary-debug"                 : "com.squareup.leakcanary:leakcanary-android:+",
             "canary-release"               : "com.squareup.leakcanary:leakcanary-android-no-op:+",
 
-            "XStateController"             : "com.github.limedroid:XStateController:+",
+            "XStateController"             : "com.github.limedroid:XStateController:v1.1.1",
 
             "nativelogger"                 : "com.lennon.utill:nativelogger:1.1"
     ]

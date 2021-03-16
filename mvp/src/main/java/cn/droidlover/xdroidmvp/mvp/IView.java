@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding;
  * Created by wanglei on 2016/12/29.
  */
 
-public interface IView<P extends IPresent, E extends ViewBinding> {
+public interface IView<P extends IPresent> {
 
     void bindEvent();
 
@@ -17,13 +17,9 @@ public interface IView<P extends IPresent, E extends ViewBinding> {
 
     int getOptionsMenuId();
 
-    E getViewBinding();
-
     boolean useEventBus();
 
     P newP();
-
-    Class<E> getViewBindingClass();
 
     void showProgressDialog(String msg);
 

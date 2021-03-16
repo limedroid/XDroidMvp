@@ -2,8 +2,7 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
-version = '1.0.5' // 版本
-
+version = '1.0.7' // 版本
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -68,7 +67,7 @@ install {
         // This generates POM.xml with proper parameters
         pom {
             project {
-                packaging 'jar'
+                packaging 'aar'
                 name 'XRecycler'
                 url rootProject.website
                 licenses {

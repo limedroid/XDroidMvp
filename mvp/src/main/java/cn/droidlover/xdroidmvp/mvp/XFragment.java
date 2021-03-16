@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import cn.droidlover.xdroidmvp.XDroidConf;
+import cn.droidlover.xdroidmvp.XDroidMvpUtill;
 import cn.droidlover.xdroidmvp.event.BusProvider;
 
 import com.trello.rxlifecycle3.components.support.RxFragment;
@@ -26,7 +27,7 @@ import java.lang.reflect.Type;
  * Created by wanglei on 2016/12/29.
  */
 
-public abstract class XFragment<P extends IPresent, E extends ViewBinding> extends RxFragment implements IView<P, E> {
+public abstract class XFragment<P extends IPresent, E extends ViewBinding> extends RxFragment implements IView<P> {
 
     private VDelegate vDelegate;
     private P p;
@@ -41,8 +42,7 @@ public abstract class XFragment<P extends IPresent, E extends ViewBinding> exten
 
     }
 
-    @Override
-    public E getViewBinding() {
+    protected final E getViewBinding() {
         return viewBinding;
     }
 
@@ -52,8 +52,10 @@ public abstract class XFragment<P extends IPresent, E extends ViewBinding> exten
         layoutInflater = inflater;
         try {
             Class<E> eClass = getViewBindingClass();
-            Method method2 = eClass.getMethod("inflate", LayoutInflater.class, ViewGroup.class, Boolean.class);
-            viewBinding = (E) method2.invoke(null, inflater, container, false);
+            if (eClass != null) {
+                Method method = eClass.getMethod("inflate", LayoutInflater.class, ViewGroup.class, Boolean.TYPE);
+                viewBinding = (E) method.invoke(null, inflater, container, false);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,12 +68,15 @@ public abstract class XFragment<P extends IPresent, E extends ViewBinding> exten
         return viewBinding.getRoot();
     }
 
+    private Class<E> getViewBindingClass() {
+        return XDroidMvpUtill.<E>getViewBindingClass(getClass());
+    }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getP();
-
         if (useEventBus()) {
             BusProvider.getBus().register(this);
         }

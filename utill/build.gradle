@@ -6,7 +6,7 @@ apply plugin: 'kotlin-parcelize'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = '1.6.21' // 版本
+version = '1.6.30' // 版本
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -62,7 +62,7 @@ install {
     repositories.mavenInstaller {
         pom {
             project {
-                packaging 'jar'
+                packaging 'aar'
                 name 'LennonUtill'
                 url rootProject.website
                 licenses {

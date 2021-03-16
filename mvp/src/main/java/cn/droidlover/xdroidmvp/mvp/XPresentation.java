@@ -15,9 +15,10 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 import cn.droidlover.xdroidmvp.XDroidConf;
+import cn.droidlover.xdroidmvp.XDroidMvpUtill;
 import cn.droidlover.xdroidmvp.event.BusProvider;
 
-public abstract class XPresentation<P extends IPresent, E extends ViewBinding> extends Presentation implements IView<P, E> {
+public abstract class XPresentation<P extends IPresent, E extends ViewBinding> extends Presentation implements IView<P> {
     private P p;
     private VDelegate vDelegate;
     protected Context context;
@@ -45,8 +46,7 @@ public abstract class XPresentation<P extends IPresent, E extends ViewBinding> e
 
     }
 
-    @Override
-    public E getViewBinding() {
+    protected final E getViewBinding() {
         return viewBinding;
     }
 
@@ -66,6 +66,10 @@ public abstract class XPresentation<P extends IPresent, E extends ViewBinding> e
             bindEvent();
         }
         initData(savedInstanceState);
+    }
+
+    private Class<E> getViewBindingClass() {
+        return XDroidMvpUtill.<E>getViewBindingClass(getClass());
     }
 
     protected VDelegate getvDelegate() {

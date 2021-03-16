@@ -58,7 +58,7 @@ install {
         // This generates POM.xml with proper parameters
         pom {
             project {
-                packaging 'jar'
+                packaging 'aar'
                 name 'NativeLogger'
                 url rootProject.website
                 licenses {
