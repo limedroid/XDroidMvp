@@ -2,9 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-version = '1.3.23'
+
+version = '1.3.25'
+group = rootProject.ext.groupId
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -23,6 +23,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
@@ -50,10 +55,6 @@ dependencies {
 
     api rootProject.ext.dependencies["rxbus"]
 
-//    api rootProject.ext.dependencies["eventBus"]
-//    annotationProcessor rootProject.ext.dependencies["eventbus-annotation-processor"]
-//    kapt rootProject.ext.dependencies["eventbus-annotation-processor"]
-
     api rootProject.ext.dependencies["rxlifecycle"]
     api rootProject.ext.dependencies["rxlifecycle-android"]
     api rootProject.ext.dependencies["rxlifecycle-components"]
@@ -64,6 +65,7 @@ dependencies {
     api rootProject.ext.dependencies["nativelogger"]
 
     api rootProject.ext.dependencies["viewpager2"]
+
 }
 
 tasks.withType(JavaCompile) {
@@ -90,54 +92,7 @@ artifacts {
     archives javadocJar
     archives sourcesJar
 }
-group = rootProject.groupId
 
-install {
-    repositories.mavenInstaller {
-        pom {
-            project {
-                packaging 'aar'
-                name 'XDroidMvp'
-                url rootProject.website
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'xdroid-mvp'
-                        name rootProject.groupId
-                        email rootProject.email
-                    }
-                }
-                scm {
-                    connection rootProject.gitUrl
-                    developerConnection rootProject.gitUrl
-                    url rootProject.siteUrl
-                }
-            }
-        }
-    }
-}
-
-Properties properties = new Properties()
-boolean isHasFile = false
-if (project.rootProject.file('local.properties') != null){
-    isHasFile = true
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-}
-bintray {
-    user = isHasFile ? properties.getProperty("bintray.user") : System.getenv("bintray.user")
-    key = isHasFile ? properties.getProperty("bintray.apikey") : System.getenv("bintray.apikey")
-    configurations = ['archives']
-    pkg {
-        repo = rootProject.repoName
-        name = "XDroidMvp"
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
-        publish = true
-    }
-}
+//apply from:'uploadLocal.gradle'
+//apply from:'uploadAliRelease.gradle'
+apply from:'uploadAliSnapshot.gradle'

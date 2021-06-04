@@ -1,45 +1,19 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: "conf.gradle"
 
 buildscript {
-    ext.kotlin_version = '1.4.21'
+    ext.kotlin_version = '1.5.10'
     repositories {
-
         maven {url 'http://127.0.0.1:8081/repository/lennon/' }
-//        jcenter() { url 'https://maven.aliyun.com/repository/public' }
-//        maven {url 'https://dl.bintray.com/lennon-xia/lennon/'}
-//        jcenter()
-
-//        maven {
-//            url 'https://maven.google.com/'
-//            name 'Google'
-//        }
     }
     dependencies {
-        //noinspection GradleDependency
         classpath 'com.android.tools.build:gradle:4.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-//        classpath 'com.novoda:bintray-release:0.9.2'
     }
 }
 
 allprojects {
     repositories {
-
-//        jcenter() { url 'https://maven.aliyun.com/repository/public' }
         maven {url 'http://127.0.0.1:8081/repository/lennon/' }
-//        maven {url 'https://dl.bintray.com/lennon-xia/lennon/'}
-//        mavenCentral()
-
-//        maven {
-//            url 'https://maven.google.com/'
-//            name 'Google'
-//        }
-//        jcenter()
-//        maven { url "https://jitpack.io" }
     }
     tasks.withType(Javadoc).all {
         enabled = false

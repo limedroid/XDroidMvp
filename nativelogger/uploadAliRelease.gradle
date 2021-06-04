@@ -1,0 +1,27 @@
+apply plugin: 'maven'
+
+def artifactId = 'nativelogger'
+Properties properties = new Properties()
+boolean isHasFile = false
+if (project.rootProject.file('local.properties') != null) {
+    isHasFile = true
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+}
+def user = isHasFile ? properties.getProperty("aliyun.userName") : System.getenv("aliyun.userName")
+def key = isHasFile ? properties.getProperty("aliyun.password") : System.getenv("aliyun.password")
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'https://packages.aliyun.com/maven/repository/2065511-release-TFq04W/') {
+                authentication(
+                        userName: user,
+                        password: key
+                )
+            }
+            pom.version = version
+            pom.artifactId = artifactId
+            pom.groupId = rootProject.ext.groupId
+        }
+    }
+}

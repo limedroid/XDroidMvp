@@ -2,12 +2,8 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
-
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-
-version = '1.6.30' // 版本
-
+version = '1.6.31' // 版本
+group = rootProject.groupId
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
 
@@ -55,55 +51,6 @@ artifacts {
     archives javadocJar
     archives sourcesJar
 }
-
-group = rootProject.groupId
-
-install {
-    repositories.mavenInstaller {
-        pom {
-            project {
-                packaging 'aar'
-                name 'LennonUtill'
-                url rootProject.website
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'lennon-utill'
-                        name rootProject.groupId
-                        email rootProject.email
-                    }
-                }
-                scm {
-                    connection rootProject.gitUrl
-                    developerConnection rootProject.gitUrl
-                    url rootProject.siteUrl
-                }
-            }
-        }
-    }
-}
-
-Properties properties = new Properties()
-boolean isHasFile = false
-if (project.rootProject.file('local.properties') != null){
-    isHasFile = true
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-}
-bintray {
-    user = isHasFile ? properties.getProperty("bintray.user") : System.getenv("bintray.user")
-    key = isHasFile ? properties.getProperty("bintray.apikey") : System.getenv("bintray.apikey")
-    configurations = ['archives']
-    pkg {
-        repo = rootProject.repoName
-        name = "LennonUtill"
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
-        publish = true
-    }
-}
+apply from:'uploadLocal.gradle'
+//apply from:'uploadAliRelease.gradle'
+//apply from:'uploadAliSnapshot.gradle'

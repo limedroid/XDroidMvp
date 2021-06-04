@@ -1,0 +1,26 @@
+apply plugin: 'maven'
+
+def artifactId = 'lennon-utill'
+Properties properties = new Properties()
+boolean isHasFile = false
+if (project.rootProject.file('local.properties') != null) {
+    isHasFile = true
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+}
+def userName = isHasFile ? properties.getProperty("userName") : System.getenv("userName")
+def password = isHasFile ? properties.getProperty("password") : System.getenv("password")
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'http://127.0.0.1:8081/repository/maven-releases/') {
+                authentication(
+                        userName: userName,
+                        password: password
+                )
+            }
+            pom.version = version
+            pom.artifactId = artifactId
+            pom.groupId = rootProject.ext.groupId
+        }
+    }
+}

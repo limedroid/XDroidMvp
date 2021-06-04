@@ -1,6 +1,1 @@
-include ':http'
-include':mvp'
-include':xrecycler'
-include':utill'
-include':nativelogger'
-include ':qrutill'
+include ':mvp',':xrecycler',':utill',':nativelogger' ,':qrutill'
