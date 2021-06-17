@@ -240,4 +240,5 @@ dependencies {
 
 若您在使用过程中遇到任何问题，欢迎加入 **153569290** 群或者是邮件反馈，谢谢您的关注。**XDroidMvp**会持续维护，如果喜欢，记得star fork。
 
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 
