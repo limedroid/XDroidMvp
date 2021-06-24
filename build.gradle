@@ -18,8 +18,6 @@ allprojects {
     tasks.withType(Javadoc).all {
         enabled = false
     }
-
-
 }
 
 task clean(type: Delete) {

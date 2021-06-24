@@ -93,6 +93,6 @@ artifacts {
     archives sourcesJar
 }
 
-//apply from:'uploadLocal.gradle'
-//apply from:'uploadAliRelease.gradle'
-apply from:'uploadAliSnapshot.gradle'
+//apply from: 'uploadLocal.gradle'
+//apply from: 'uploadAliRelease.gradle'
+apply from: 'uploadAliSnapshot.gradle'
