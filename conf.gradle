@@ -27,92 +27,85 @@ ext {
             versionCode      : 1,
             versionName      : '1.0.0',
 
-            VSupportSdk      : '27.1.1',
             VRetrofitSdk     : '2.9.0',
-            VOkhttp          : '4.7.2',
+            VOkhttp          : '4.9.1',
             VRxlifecycle     : '3.1.0',
 
-            NavigationSDK    : "2.2.2",
+            NavigationSDK    : "2.3.5",
 
     ]
     dependencies = [
-            "viewpager2"                   : "androidx.viewpager2:viewpager2:1.0.0",
+            "viewpager2"                 : "androidx.viewpager2:viewpager2:1.0.0",
 
-            "eventBus"                     : "org.greenrobot:eventbus:3.2.0",
-            "eventbus-annotation-processor": "org.greenrobot:eventbus-annotation-processor:3.2.0",
+            "annotations"                : "androidx.annotation:annotation:1.2.0",
 
-            "annotations"                  : "androidx.annotation:annotation:1.1.0",
+            "constraintlayout"           : "androidx.constraintlayout:constraintlayout:2.0.4",
 
-            "constraintlayout"             : "androidx.constraintlayout:constraintlayout:1.1.3",
-            "arch-lifecycle"               : "android.arch.lifecycle:extensions:+",
-
-            "glide"                        : "com.github.bumptech.glide:glide:4.11.0",
-            "glide-compiler"               : "com.github.bumptech.glide:compiler:4.11.0",
+            "glide"                      : "com.github.bumptech.glide:glide:4.12.0",
+            "glide-compiler"             : "com.github.bumptech.glide:compiler:4.12.0",
 
 
-            "zxing"                        : "com.google.zxing:core:3.4.0",
+            "zxing"                      : "com.google.zxing:core:3.4.1",
 
-            "navigation-fragment-ktx"      : "androidx.navigation:navigation-fragment-ktx:${android["NavigationSDK"]}",
-            "navigation-ui-ktx"            : "androidx.navigation:navigation-ui-ktx:${android["NavigationSDK"]}",
+            "navigation-fragment-ktx"    : "androidx.navigation:navigation-fragment-ktx:${android["NavigationSDK"]}",
+            "navigation-ui-ktx"          : "androidx.navigation:navigation-ui-ktx:${android["NavigationSDK"]}",
 
-            "navigation-ui"                : "androidx.navigation:navigation-ui:${android["NavigationSDK"]}",
-            "navigation-fragment"          : "androidx.navigation:navigation-fragment:${android["NavigationSDK"]}",
+            "navigation-ui"              : "androidx.navigation:navigation-ui:${android["NavigationSDK"]}",
+            "navigation-fragment"        : "androidx.navigation:navigation-fragment:${android["NavigationSDK"]}",
 
 
 
-            "exifinterface"                : "androidx.exifinterface:exifinterface:1.2.0",
+            "exifinterface"              : "androidx.exifinterface:exifinterface:1.3.2",
 
-            "multidex"                     : "androidx.multidex:multidex:2.0.1",
+            "multidex"                   : "androidx.multidex:multidex:2.0.1",
 
-            "kotlin"                       : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            "kotlin"                     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
 
-            "PersistentCookieJar"          : "com.github.franmontiel:PersistentCookieJar:1.0.1",
+            "PersistentCookieJar"        : "com.github.franmontiel:PersistentCookieJar:1.0.1",
 
-            "qiujuer-ui"                   : "net.qiujuer.genius:ui:2.1.1",
+            "qiujuer-ui"                 : "net.qiujuer.genius:ui:2.1.1",
 
-            "appcompat-v7"                 : "androidx.appcompat:appcompat:1.1.0",
+            "appcompat-v7"               : "androidx.appcompat:appcompat:1.2.0",
 
-            "support-v4"                   : "androidx.legacy:legacy-support-v4:1.0.0",
+            "support-v4"                 : "androidx.legacy:legacy-support-v4:1.0.0",
 
-            "design"                       : "com.google.android.material:material:1.0.0",
+            "design"                     : "com.google.android.material:material:1.2.1",
 
-            "recyclerview-v7"              : "androidx.recyclerview:recyclerview:1.0.0",
+            "recyclerview-v7"            : "androidx.recyclerview:recyclerview:1.2.1",
 
-            "eventbus"                     : "org.greenrobot:eventbus:+",
+            "picasso"                    : "com.squareup.picasso:picasso:2.8",
 
-            "picasso"                      : "com.squareup.picasso:picasso:+",
+            "xrecyclerview"              : "com.lennon.utill:xrecycler:1.0.7",
 
-            "xrecyclerview"                : "com.lennon.utill:xrecycler:1.0.7",
+            "xdroid-mvp"                 : "com.lennon.utill:mvp:1.3.27",
 
-            "xdroid-mvp"                   : "com.lennon.utill:mvp:1.3.24",
+            "avi-loading"                : "com.wang.avi:library:2.1.3",//https://github.com/81813780/AVLoadingIndicatorView
+            "rxbus"                      : "com.blankj:rxbus:1.6",
 
-            "avi-loading"                  : "com.wang.avi:library:+",
-            "rxbus"                        : "com.blankj:rxbus:+",
+            "gson"                       : "com.google.code.gson:gson:2.8.7",
+            "rxandroid"                  : "io.reactivex.rxjava2:rxandroid:2.1.1",
+            "rxjava"                     : "io.reactivex.rxjava2:rxjava:2.2.21",
 
-            "gson"                         : "com.google.code.gson:gson:+",
-            "rxandroid"                    : "io.reactivex.rxjava2:rxandroid:+",
-            "rxjava"                       : "io.reactivex.rxjava2:rxjava:+",
+            "retrofit"                   : "com.squareup.retrofit2:retrofit:${android["VRetrofitSdk"]}",
+            "retrofit-converter-gson"    : "com.squareup.retrofit2:converter-gson:${android["VRetrofitSdk"]}",
+            "retrofit-adapter-rxjava"    : "com.squareup.retrofit2:adapter-rxjava2:${android["VRetrofitSdk"]}",
+            "okhttp3-logging-interceptor": "com.squareup.okhttp3:logging-interceptor:${android["VOkhttp"]}",
+            "okhttp3"                    : "com.squareup.okhttp3:okhttp:${android["VOkhttp"]}",
 
-            "retrofit"                     : "com.squareup.retrofit2:retrofit:${android["VRetrofitSdk"]}",
-            "retrofit-converter-gson"      : "com.squareup.retrofit2:converter-gson:${android["VRetrofitSdk"]}",
-            "retrofit-adapter-rxjava"      : "com.squareup.retrofit2:adapter-rxjava2:${android["VRetrofitSdk"]}",
-            "okhttp3-logging-interceptor"  : "com.squareup.okhttp3:logging-interceptor:${android["VOkhttp"]}",
-            "okhttp3"                      : "com.squareup.okhttp3:okhttp:${android["VOkhttp"]}",
+            "rxlifecycle"                : "com.trello.rxlifecycle3:rxlifecycle:${android["VRxlifecycle"]}",
 
-            "rxlifecycle"                  : "com.trello.rxlifecycle3:rxlifecycle:${android["VRxlifecycle"]}",
+            "rxlifecycle-android"        : "com.trello.rxlifecycle3:rxlifecycle-android:${android["VRxlifecycle"]}",
 
-            "rxlifecycle-android"          : "com.trello.rxlifecycle3:rxlifecycle-android:${android["VRxlifecycle"]}",
+            "rxlifecycle-components"     : "com.trello.rxlifecycle3:rxlifecycle-components:${android["VRxlifecycle"]}",
 
-            "rxlifecycle-components"       : "com.trello.rxlifecycle3:rxlifecycle-components:${android["VRxlifecycle"]}",
+            "rxpermissions"              : "com.tbruyelle.rxpermissions2:rxpermissions:0.9.5",
 
-            "rxpermissions"                : "com.tbruyelle.rxpermissions2:rxpermissions:latest.integration",
+            "canary-debug"               : "com.squareup.leakcanary:leakcanary-android:2.7",
+            "canary-release"             : "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3",
 
-            "canary-debug"                 : "com.squareup.leakcanary:leakcanary-android:+",
-            "canary-release"               : "com.squareup.leakcanary:leakcanary-android-no-op:+",
+            "XStateController"           : "com.github.limedroid:XStateController:v1.1.1",
 
-            "XStateController"             : "com.github.limedroid:XStateController:v1.1.1",
-
-            "nativelogger"                 : "com.lennon.utill:nativelogger:1.1"
+            "nativelogger"               : "com.lennon.utill:nativelogger:1.1"
     ]
 
 }

@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
-version = '1.6.31' // 版本
+version = '1.6.33' // 版本
 group = rootProject.groupId
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -51,6 +51,6 @@ artifacts {
     archives javadocJar
     archives sourcesJar
 }
-apply from:'uploadLocal.gradle'
+//apply from:'uploadLocal.gradle'
 //apply from:'uploadAliRelease.gradle'
-//apply from:'uploadAliSnapshot.gradle'
+apply from:'uploadAliSnapshot.gradle'
