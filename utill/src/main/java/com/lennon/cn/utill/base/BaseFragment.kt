@@ -14,13 +14,14 @@ import androidx.viewbinding.ViewBinding
 import cn.droidlover.xdroidmvp.log.XLog
 
 import cn.droidlover.xdroidmvp.mvp.XFragment
+import cn.droidlover.xdroidmvp.net.NetError
 import com.lennon.cn.utill.bean.ToastRunnable
 import com.lennon.cn.utill.dialog.CommonAlertDialog
 import com.lennon.cn.utill.dialog.CustomProgressDialog
 import com.lennon.cn.utill.dialog.OnAlertDialogListener
 
 abstract class BaseFragment<P : BasePresent<*>, E : ViewBinding> : XFragment<P, E>(),
-    BaseView<P, E> {
+    BaseView<P> {
 
     private var rootView: View? = null
     private var dialog: CustomProgressDialog? = null
@@ -28,6 +29,9 @@ abstract class BaseFragment<P : BasePresent<*>, E : ViewBinding> : XFragment<P, 
     override fun showLoading(visibility: Int) {
     }
 
+    override fun showLoadingError(errorType: NetError) {
+
+    }
     protected fun <T : View> findViewById(i: Int): T {
         return rootView!!.findViewById<T>(i)
     }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
@@ -70,5 +71,5 @@ public abstract class SimpleViewBindingAdapter<T, E extends ViewBinding> extends
     /*
      *       获取   ViewBinding   实现类
      * */
-    protected abstract E getViewBinding(int viewType, LayoutInflater from, ViewGroup parent);
+    protected abstract E getViewBinding(@NonNull int viewType, @NonNull LayoutInflater from, @NonNull ViewGroup parent);
 }

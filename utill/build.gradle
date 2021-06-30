@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
-version = '1.6.33' // 版本
+version = '1.6.41' // 版本
 group = rootProject.groupId
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion

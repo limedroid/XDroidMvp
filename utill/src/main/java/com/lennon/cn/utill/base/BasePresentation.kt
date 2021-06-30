@@ -17,7 +17,7 @@ import com.lennon.cn.utill.dialog.CustomProgressDialog
 import com.lennon.cn.utill.dialog.OnAlertDialogListener
 
 abstract class BasePresentation<P : BasePresent<*>,E: ViewBinding>(context: Context, display: Display) :
-    XPresentation<P,E>(context, display), BaseView<P,E> {
+    XPresentation<P,E>(context, display), BaseView<P> {
     private var TAG = javaClass.simpleName
     private var dialog: CustomProgressDialog? = null
     private var listener: ChangeListener? = null

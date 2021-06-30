@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.viewbinding.ViewBinding
 import cn.droidlover.xdroidmvp.log.XLog
 import cn.droidlover.xdroidmvp.mvp.XActivity
+import cn.droidlover.xdroidmvp.mvp.XPresent
 import cn.droidlover.xdroidmvp.net.NetError
 import com.lennon.cn.utill.bean.ToastRunnable
 
@@ -27,7 +28,7 @@ import java.lang.Exception
 
 
 abstract class BaseActivity<P : BasePresent<*>, E : ViewBinding> : XActivity<P, E>(),
-    BaseView<P, E> {
+    BaseView<P> {
     private var TAG = javaClass.simpleName
     private var dialog: CustomProgressDialog? = null
 
