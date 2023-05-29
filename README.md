@@ -220,6 +220,10 @@ dependencies {
 * [x] wiki
 * [x] demo
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=limedroid/XDroidMvp&type=Date)](https://star-history.com/#limedroid/XDroidMvp&Date)
+
 ## About Me
 
 **Email** : droidlover@126.com
