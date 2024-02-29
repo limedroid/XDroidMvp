@@ -1,12 +1,19 @@
 package cn.droidlover.xdroidmvp.net;
 
+import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
+
 import org.reactivestreams.Publisher;
 
+import java.security.Provider;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import cn.droidlover.xdroidmvp.kit.Kits;
+import cn.droidlover.xdroidmvp.mvp.VDelegateBase;
 import cn.droidlover.xdroidmvp.net.progress.ProgressHelper;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
@@ -16,6 +23,7 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.CookieJar;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -53,7 +61,9 @@ public class XApi {
 
 
     public static <S> S get(String baseUrl, Class<S> service) {
-        return getInstance().getRetrofit(baseUrl, true).create(service);
+        Config config = new Config(baseUrl)
+                .setUseRx(true);
+        return getInstance().getRetrofit(config).create(service);
     }
 
     public static void registerProvider(NetProvider provider) {
@@ -64,13 +74,21 @@ public class XApi {
         getInstance().providerMap.put(baseUrl, provider);
     }
 
-
     public Retrofit getRetrofit(String baseUrl, boolean useRx) {
-        return getRetrofit(baseUrl, null, useRx);
+        Config config = new Config(baseUrl)
+                .setUseRx(useRx);
+        return getRetrofit(config);
     }
 
 
-    public Retrofit getRetrofit(String baseUrl, NetProvider provider, boolean useRx) {
+    public Retrofit getRetrofit(Config config) {
+
+        String baseUrl = config.baseUrl;
+        NetProvider provider = config.provider;
+        boolean useRx = config.useRx;
+
+        List<Converter.Factory> factories = config.converterFactories;
+
         if (Kits.Empty.check(baseUrl)) {
             throw new IllegalStateException("baseUrl can not be null");
         }
@@ -88,6 +106,11 @@ public class XApi {
                 .baseUrl(baseUrl)
                 .client(getClient(baseUrl, provider))
                 .addConverterFactory(GsonConverterFactory.create());
+
+        for (int i = 0, j = factories.size(); i < j; i++) {
+            builder.addConverterFactory(factories.get(j));
+        }
+
         if (useRx) {
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         }
@@ -217,5 +240,35 @@ public class XApi {
         };
     }
 
+    public static class Config {
+        private String baseUrl;
+        private boolean useRx;
+        private NetProvider provider;
+        private final List<Converter.Factory> converterFactories = new ArrayList<>();
+
+        public Config(String baseUrl) {
+            this.baseUrl = baseUrl;
+        }
+
+        public Config setBaseUrl(@NonNull String baseUrl) {
+            this.baseUrl = baseUrl;
+            return this;
+        }
+
+        public Config setUseRx(boolean useRx) {
+            this.useRx = useRx;
+            return this;
+        }
+
+        public Config setProvider(NetProvider provider) {
+            this.provider = provider;
+            return this;
+        }
+
+        public Config addConverterFactory(@NonNull Converter.Factory factory) {
+            this.addConverterFactory(factory);
+            return this;
+        }
+    }
 
 }
