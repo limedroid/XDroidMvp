@@ -16,17 +16,14 @@ public class XPresent<V extends IView> implements IPresent<V> {
 
     @Override
     public void detachV() {
-        if (v.get() != null) {
+        if (v != null) {
             v.clear();
+            v = null;
         }
-        v = null;
     }
 
     protected V getV() {
-        if (v == null || v.get() == null) {
-            throw new IllegalStateException("v can not be null");
-        }
-        return v.get();
+        return v == null ? null : v.get();
     }
 
 

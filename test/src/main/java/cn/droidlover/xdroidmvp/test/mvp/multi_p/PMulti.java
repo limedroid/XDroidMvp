@@ -9,6 +9,8 @@ import cn.droidlover.xdroidmvp.mvp.XPresent;
 public class PMulti extends XPresent<ICommonV> {
 
     public void loadData() {
-        getV().showError(new IllegalStateException(""));
+        if (hasV()) {
+            getV().showError(new IllegalStateException(""));
+        }
     }
 }
